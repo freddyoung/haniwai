@@ -1158,8 +1158,7 @@ header.scrolled {
   .form-feedback.error { color: red; }
   
   .donation-hero {
-    background: linear-gradient(rgba(20, 75, 68, 0.7), rgba(20, 75, 68, 0.7)), 
-                url('/static/images/donate-bg.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(20, 75, 68, 0.7), rgba(20, 75, 68, 0.7));
     color: white;
     text-align: center;
     padding: 120px 20px 80px;
