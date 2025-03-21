@@ -1,0 +1,1697 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display:wght@700&family=Nunito:wght@700&display=swap');
+
+/* General Styles */
+html, body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Mystic - Soft Background */
+    color: #221b11; /* Oil - Dark Brownish Black */
+    overflow-x: hidden;
+    width: 100%;
+}
+section {
+    width: 100vw; /* ✅ Forces sections to fit viewport width */
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 60px 0;
+    overflow-x: hidden;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #bbbf4d; /* Celery - Bright Highlight */
+}
+
+/* Donate Button */
+/* ✅ Support Us Button - Perfect Centering */
+/* ✅ Support Us Button - Border Only & Centered Text */
+/* ✅ Support Us Button - Thicker Border & Aligned */
+/* ✅ Support Button - No Background, Aligns Properly */
+/* ✅ Support Button - Proper Alignment */
+/* ✅ Support Button - No Border, Red Hover Effect */
+/* ✅ Keep the support text color the same, but turn the heart red on hover */
+/* Ensure the heart is inside a span */
+/* Ensure the heart is styled separately */
+/* Ensure the heart is styled separately */
+.donate-btn span.heart {
+    color: inherit; /* Keeps initial color */
+    font-size: 1.3em; /* ✅ Default size */
+    margin-left: 5px; /* ✅ Adds space between text and heart */
+    transition: color 0.3s ease, transform 0.3s ease; /* ✅ Smooth color & size transition */
+}
+
+/* Change only the heart color and size on hover */
+.donate-btn:hover span.heart {
+    color: red; /* ✅ Turns the heart red */
+    transform: scale(1.4); /* ✅ Increases size when hovered */
+}
+/* ✅ Fix "Support Us" Button with Rounded Corners */
+.donate-btn {
+    display: inline-block;
+    padding: 5px 12px;
+    font-weight: bold;
+    border: 3px solid #bbbf4d; /* ✅ Border effect */
+    background: transparent;
+    color: #bbbf4d;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    margin-left: 15px;
+    border-radius: 50px; /* ✅ Proper rounded edges */
+}
+
+/* ✅ Hover Effect */
+.donate-btn:hover {
+    background: transparent;
+    color: white;
+}
+.donate-btn.active-donate span.heart {
+    color: red;
+}
+
+
+/* General Page Layout */
+/* ✅ Allow Main Content to Expand Fully */
+main {
+    width: 100vw; /* ✅ Ensures full viewport width */
+    max-width: 100%; /* ✅ Prevents unwanted restrictions */
+    margin: 0;
+    padding: 0;
+    display: block; /* ✅ Ensures it's a block-level element */
+}
+
+/* Hero Section */
+/* ✅ Hero Section: Balanced Layout */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%; /* ✅ Adjusted for wider but centered layout */
+    width: 100%;
+    min-height: 75vh; /* ✅ Limits excessive height */
+    padding-bottom: 0; /* ✅ Removes unnecessary padding */
+    margin-bottom: 0; /* ✅ Prevents gaps */
+  
+}
+
+/* ✅ Left Side: Text Content */
+.hero-content {
+    flex: 1;
+    max-width: 85%; /* ✅ Prevents text from stretching too much */
+    text-align: left;
+    padding-right: 50px; /* ✅ Adds space between text & image */
+    padding-left: 125px;
+    padding-bottom: 0; /* ✅ Removes extra space */
+    margin-bottom: 0;  /* ✅ Ensures no gaps */
+
+}
+
+/* ✅ Import a new elegant & impactful Google Font */
+
+.hero-content h1 {
+    font-size: 3.8em; /* ✅ Large and attention-grabbing */
+    font-weight: 700; /* ✅ Extra bold for emphasis */
+    font-family: 'Merriweather', serif !important;    color: #144b44; /* ✅ Maintains dark green color */
+    line-height: 1.2; /* ✅ Good spacing for readability */
+
+}
+.hero-divider {
+    width: 80px;  /* ✅ Short, stubby width */
+    height: 5px;  /* ✅ Slightly thick */
+    background-color: #bbbf4d; /* ✅ Celery - Bright Highlight */
+    margin: -25px 0 25px;  /* ✅ Space above & below */
+    border-radius: 3px;  /* ✅ Smooth edges */
+}
+@media (max-width: 768px) {
+    .hero-content {
+        text-align: center;  /* ✅ Centers everything */
+        padding-left: 0;
+        padding-top: 50px;
+
+    }
+
+    .hero-divider {
+        width: 60px;  /* ✅ Adjusts size for mobile */
+        height: 4px;
+        margin: 15px auto;  /* ✅ Centers properly */
+    }
+}
+
+
+.hero-image {
+    flex: 1;
+    max-width: 100%; /* ✅ Prevents overflow */
+    text-align: right;
+}
+
+.hero-image img {
+    width: 800px; /* ✅ Slightly bigger image */
+    height: auto;
+}
+
+/* ✅ Responsive: Stacks on Mobile */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column; /* ✅ Stacks content vertically */
+        text-align: center;
+        padding: 30px;
+    }
+
+    .hero-content {
+        max-width: 90%; /* ✅ Ensures text doesn't stretch */
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .hero-image {
+        max-width: 90%; /* ✅ Ensures proper scaling */
+        text-align: center;
+    }
+
+    .hero-image img {
+        max-width: 90%; /* ✅ Keeps images manageable */
+    }
+}
+.motto-section {
+    background-color: transparent;
+    text-align: center;
+    padding: 80px 20px;
+    overflow: hidden;
+    margin-top: -50px; /* ✅ Pulls the section up */
+    padding-top: 0; /* ✅ Removes unnecessary space */
+}
+
+/* ✅ Align images side by side */
+.motto-container {
+    display: flex;
+    justify-content: space-between; /* ✅ Pushes images to left, center, and right */
+    align-items: flex-start; 
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px; /* ✅ Adds spacing from edges */
+}
+/* ✅ Targets each specific image */
+.motto-image:nth-child(1) { /* Preserve */
+    align-self: flex-start;
+}
+
+.motto-image:nth-child(2) { /* Protect */
+    align-self: center;
+}
+
+.motto-image:nth-child(3) { /* Transform */
+    align-self: flex-end;
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 1024px) {
+    .motto-container {
+        justify-content: space-evenly; /* ✅ Keeps spacing on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .motto-container {
+        flex-direction: column;
+        align-items: center; /* ✅ Stacks images centered */
+        gap: 30px;
+    }
+}
+
+/* ✅ Style for images */
+.motto-image {
+    width: auto; /* ✅ Adjust size */
+    height: 175px;
+    opacity: 0; /* ✅ Initially hidden */
+    object-fit: contain;
+    transform: translateY(50px); /* ✅ Start position (moves up) */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* ✅ Make images appear when in viewport */
+.motto-image.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ✅ Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .motto-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* ✅ Centers images properly */
+      justify-content: center;
+      gap: 30px; /* ✅ Ensures even spacing */
+      padding: 25px 20px; /* ✅ Adds spacing from screen edges */
+      width: 100%; /* ✅ Ensures it takes full width */
+    }
+  
+    .motto-image {
+      width: 300px; /* ✅ Keeps image size appropriate */
+      height: auto;
+      transform: none; /* ✅ Removes any offset */
+      opacity: 1; /* ✅ Ensures visibility */
+      margin: 0 auto; /* ✅ Ensures proper centering */
+      padding: 20px 0px;
+    }
+  
+    .motto-image:nth-child(1),
+    .motto-image:nth-child(2),
+    .motto-image:nth-child(3) {
+      align-self: center !important; /* ✅ Forces all images to center */
+    }
+  }
+
+
+/* About Section */
+.about {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.about h2 {
+    font-size: 2em;
+    color: #144b44; /* Elephant - Dark Green */
+}
+
+.about p {
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Buttons */
+.btn {
+    background: #bbbf4d; /* Celery - Bright */
+    color: #221b11; /* Dark Text */
+    padding: 12px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 25px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #5eae7c; /* Aqua Forest - Soft Green */
+}
+
+/* Section Dividers */
+.divider {
+    height: 2px;
+    width: 80%;
+    background-color: #5d684e; /* Siam - Border Separator */
+    margin: 40px auto;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        display: block;
+        text-align: center;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+}
+
+/* Navbar Layout */
+/* ✅ Top Navbar (Now Darker & Larger) */
+.top-nav {
+    background: linear-gradient(to right, #144b44, #5eae7c);     color: white;
+    font-size: 14px;
+    padding: 12px 0; /* ✅ Increased height */
+    width: 100%;
+    position: fixed; /* ✅ Stays at the top */
+    top: 0;
+    left: 0;
+    z-index: 1001; /* ✅ Higher than the main navbar */
+}
+
+header {
+    background: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 40px;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Shadow Effect (Initially Hidden) */
+header.scrolled {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* ✅ Soft shadow */
+}
+@media (max-width: 768px) {
+    header {
+        background: white;
+        top: -2px;
+
+
+    }
+}
+
+/* ✅ Fix Top Navbar Layout */
+.top-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+.top-nav a:hover {
+    color: #bbbf4d; /* ✅ Celery - Bright Contrast */
+}
+
+/* ✅ Hide Top Navbar on Mobile & Tablet */
+@media (max-width: 768px) {
+    .top-nav {
+        display: none;
+    }
+
+    /* ✅ Show Partners & FAQs Inside Dropdown */
+    .mobile-only {
+        display: block !important;
+    }
+}
+
+/* ✅ Hide Partners & FAQs from Desktop Navbar */
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 13000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0; /* ✅ Increased padding to move navbar right */
+    height: auto;
+    min-height: 60px;
+}
+
+/* ✅ Adjust Logo Container to Align Logos in a Row */
+.logo-container {
+    position: absolute;
+    left: 30px; /* ✅ Adjusts main placement */
+    top: 10px;
+    display: flex; /* ✅ Ensures logos are in a row */
+    align-items: center; /* ✅ Aligns logos vertically */
+    gap: 15px; /* ✅ Adds spacing between the two logos */
+}
+
+
+/* ✅ First Logo */
+.logo img {
+    height: 125px; /* ✅ Keeps main logo size */
+    width: auto;
+}
+
+/* ✅ Second Logo - Stays in Line with First Logo */
+.second-logo img {
+    height: 35px; /* ✅ Smaller size for second logo */
+    width: auto;
+    padding-bottom: 50px;
+}
+
+/* ✅ Show logo only in mobile and move it next to the menu toggle */
+@media (max-width: 768px) {
+    .logo {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 20px;
+      top: 100%;
+      padding-top: 10px;
+    }
+  
+    .logo img {
+      height: 100px; /* Adjust size for mobile */
+      width: auto;
+      transform: translateY(-50%);
+      transform: translateX(-25%);
+      z-index: 1001; /* Make sure it's above */
+    }
+    .second-logo img {
+        display: none;
+    }
+  
+    .menu-toggle {
+      left: 70px; /* Push it slightly right to make room for logo */
+      
+
+    }
+  }
+/* Hide by default (desktop & above) */
+/* Fully hide in desktop */
+  
+/* ✅ Prevent Logo from Moving When Window Shrinks */
+@media (max-width: 1000px) { 
+    .logo img {
+        left: 50px; /* Adjusts position for medium screens */
+    }
+}
+
+@media (max-width: 800px) {
+    .logo img {
+        left: 30px; /* Prevents logo from touching edge */
+    }
+}
+
+/* ✅ Hide Logo When It Touches Navbar */
+
+
+
+/* ✅ Fix: Navbar Tabs Always Visible in Desktop */
+.nav-links {
+    display: flex;
+    align-items: center; /* ✅ Ensures all tabs & "Support Us" button align */
+    justify-content: flex-end; /* ✅ Moves tabs slightly to the right */
+    gap: 20px; /* ✅ Adds spacing between tabs */
+    margin-left: 500px; /* ✅ Pushes tabs to the right */
+    position: absolute;
+
+    
+}
+/* ✅ Navbar Tabs with Hover Underline Matching Word Length */
+/* Reset all underline styles */
+.nav-links li {
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  .nav-links li a {
+    position: relative;
+    text-decoration: none;
+    color: #144b44;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 4px; /* spacing for underline */
+
+
+  }
+  
+  /* Underline appears on hover */
+  .nav-links li a:hover {
+    color: #bbbf4d;
+    border-bottom: 3px solid #bbbf4d;
+  }
+  
+  /* Underline stays on active page */
+  .nav-links li a.active {
+    color: #bbbf4d;
+    border-bottom: 3px solid #bbbf4d;
+  }
+  
+/* 🚫 REMOVE Underline from "Support Us" Button */
+.nav-links li .donate-btn::after {
+    display: none; /* ✅ Prevents underline */
+}
+
+/* ✅ Adjusts the "Support Us" Button */
+
+
+
+
+
+/* ✅ Fix: Navbar Tabs Hover Effect in Desktop */
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex !important;
+        position: relative;
+    }
+
+    .nav-links li {
+        padding: 0 15px;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        color: #144b44 !important;
+        font-size: 18px;
+        font-weight: 600;
+        transition: color 0.3s ease-in-out; /* ✅ Smooth transition */
+    }
+
+    .nav-links li a:hover {
+        color: #bbbf4d !important; /* ✅ Only text color changes */
+    }
+}
+
+/* ✅ Fix: Dropdown Menu for Mobile */
+@media (max-width: 768px) {
+    .nav-links {
+      margin-left: 0 !important;
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 90px; /* Adjust based on your header height */
+      transform: translateX(-50%) translateY(-10px); /* Centers it */
+      width: 80%; /* Leaves space on both sides */
+      background: white;
+      border-radius: 12px;
+      flex-direction: column;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      padding: 12px 0;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 9999;
+
+      
+     
+
+      
+    }
+  
+    .nav-links.active {
+      display: flex;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  
+    .nav-links li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      width: 100%;
+    }
+  
+    .nav-links li:last-child {
+      border-bottom: none;
+    }
+  
+    .nav-links li a {
+      font-size: 18px;
+      color: #144b44;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      padding: 8px 12px;
+    }
+  
+    .nav-links li a:hover {
+      color: #bbbf4d;
+    }
+  }
+  
+  
+/* ✅ Fix: Ensure "menu" is Only Visible on Mobile */
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    font-weight: bold;
+    color: #144b44;
+    cursor: pointer;
+    background: transparent;
+
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
+    transform: translateX(250%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ✅ Replace Caret Symbol with Triangle ▼ */
+.menu-arrow {
+    display: inline-block;
+    font-size: 18px;
+    transition: transform 0.3s ease-in-out;
+    line-height: 1;
+    content: "▼"; /* Default is downward triangle */
+}
+
+/* ✅ Flip Triangle ▲ When Menu is Open */
+.menu-toggle.active .menu-arrow {
+    content: "▲"; /* Upward triangle when active */
+    transform: rotate(0deg); /* No rotation needed */
+}
+
+/* ✅ Hide "menu" on Large Screens */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none !important;
+    }
+}
+
+/* ✅ Default Downward Triangle */
+.menu-arrow {
+    display: inline-block;
+    font-size: 18px;
+    transition: transform 0.3s ease-in-out; /* ✅ Smooth animation */
+}
+
+/* ✅ Flip Triangle When Menu is Active */
+.menu-toggle.active .menu-arrow {
+    transform: rotate(180deg); /* ✅ Rotates the triangle */
+}
+
+
+
+/* ✅ Prevent Navbar Links from Wrapping */
+.nav-links li {
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* ✅ Reduce Spacing Between Tabs When Window Shrinks */
+@media (max-width: 900px) {
+    .nav-links {
+        gap: 10px; /* Reduces space between tabs */
+    }
+}
+
+/* ✅ Reduce Font Size Slightly for Small Screens */
+@media (max-width: 768px) {
+    .nav-links li a {
+        font-size: 16px; /* Slightly smaller text */
+    }
+}
+/* Gallery Section */
+.gallery {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    padding-top: 20px; /* ✅ Adjusts top padding of gallery */
+    margin-top: 0; /* ✅ Ensures no unwanted space */
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery-item {
+    max-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.gallery-caption {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+/* ✅ Gallery Layout */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.gallery-img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+}
+
+/* ✅ Lightbox Styling */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 5px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* ✅ Navigation Arrows */
+.lightbox-controls {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.prev, .next {
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.prev {
+    position: absolute;
+    left: 20px;
+}
+
+.next {
+    position: absolute;
+    right: 20px;
+}
+
+/* ✅ Image Counter */
+.image-counter {
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.see-more-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.see-more-link {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #144b44; /* ✅ Matches site theme */
+    transition: color 0.3s;
+}
+
+.see-more-link:hover {
+    color: #bbbf4d; /* ✅ Changes color on hover */
+}
+
+/* ✅ About Page Hero Section */
+.about-hero {
+    background: url("../images/about-hero-bg.jpg") no-repeat center center/cover;
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 250px; /* ✅ Pushes content down to clear the navbar */
+}
+
+.about-hero-content {
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.6); /* ✅ Subtle overlay for readability */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.about-hero h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+/* ✅ Who We Are & Mission Section */
+.about-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 10%;
+    gap: 40px;
+    padding: 80px 10%; /* ✅ Ensures space on both sides */
+    max-width: 1200px; /* ✅ Prevents it from going too wide */
+    margin: 0 auto; /* ✅ Centers it properly */
+}
+
+.about-intro-content {
+    flex: 1;
+}
+
+.about-image img {
+    max-width: 450px;
+    border-radius: 10px;
+    width: 100%; /* ✅ Ensures image does not overflow */
+}
+
+/* ✅ SDG Timeline Section */
+.sdg-goals {
+    background: #f9f9f9;
+    padding: 80px 10%;
+    text-align: center;
+    max-width: 1200px; /* ✅ Prevents overflow */
+    margin: 0 auto; /* ✅ Centers it properly */
+}
+
+.sdg-goals h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap; /* ✅ Ensures responsiveness */
+}
+
+.timeline-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+    min-width: 250px; /* ✅ Ensures items don’t shrink too much */
+    max-width: 320px; /* ✅ Prevents items from stretching too wide */
+}
+
+.timeline-item .year {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #bbbf4d;
+}
+
+/* ✅ Vision & Values Section */
+/* ✅ Full-width background with image */
+.vision-values {
+    width: 100vw; /* ✅ Ensures full viewport width */
+    max-width: 100%; /* ✅ Prevents any unwanted margins */
+    margin: 0 auto;
+    padding: 80px 20px; /* ✅ Keeps padding for spacing */
+    text-align: center;
+    background: linear-gradient(rgba(20, 75, 68, 0.6), rgba(20, 75, 68, 0.6)), 
+                url('../images/vision-bg.jpg') center/cover no-repeat; /* ✅ Adds image with tint */
+    color: white; /* ✅ Ensures text is readable */
+}
+
+/* ✅ Individual Vision & Value Cards */
+.vision-values .value-card {
+    background: rgba(255, 255, 255, 0.15); /* ✅ Adds subtle transparency effect */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+}
+
+/* ✅ Responsive Fix for Mobile */
+@media (max-width: 768px) {
+    .vision-values {
+        padding: 50px 15px; /* ✅ Adjust padding for smaller screens */
+    }
+
+    .vision-values .value-card {
+        margin: 10px auto; /* ✅ Centers value cards properly */
+    }
+}
+.vision, .values {
+    flex: 1;
+}
+
+
+.values ul {
+    list-style: none;
+    padding: 0;
+}
+
+.values li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.values li::before {
+    content: "✔ ";
+    color: #bbbf4d;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 150px 20px 60px; /* ✅ Extra padding for mobile */
+    }
+}
+/* ✅ Responsive Fix for Mobile & Tablets */
+@media (max-width: 900px) {
+    .about-intro {
+        flex-direction: column; /* ✅ Stack content on mobile */
+        text-align: center;
+        padding: 60px 5%; /* ✅ Reduces side padding for smaller screens */
+    }
+
+    .about-image {
+        order: -1; /* ✅ Moves the image to the top on mobile */
+    }
+
+    .about-image img {
+        max-width: 80%; /* ✅ Keeps image at good size */
+        margin: 0 auto; /* ✅ Centers image */
+    }
+
+    .sdg-goals {
+        padding: 60px 5%; /* ✅ Adjusts padding for mobile */
+    }
+
+    .timeline {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timeline-item {
+        max-width: 100%; /* ✅ Ensures it doesn't shrink too much */
+    }
+}
+
+.contact-page {
+    padding: 100px 20px;
+    background: url('../images/test.png') center; /* ✅ Adds image with tint */
+    font-family: 'Poppins', sans-serif;
+    padding-top: 160px; /* adjust depending on your navbar height */
+    padding-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .contact-wrapper {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-wrap: wrap;
+  }
+  
+  .contact-info {
+    flex: 1;
+    background: #144b44;
+    color: white;
+    padding: 40px;
+    min-width: 300px;
+  }
+  
+  .contact-info h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .contact-info p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+  
+  .contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  
+  .contact-info li {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+  }
+  
+  .contact-info a {
+    color: #bbbf4d;
+    text-decoration: none;
+  }
+  
+  .contact-info .social-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-icon {
+    font-size: 24px;
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    color: #bbbf4d;
+  }
+  
+  .contact-form {
+    flex: 1;
+    padding: 40px;
+    min-width: 300px;
+  }
+  
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 15px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+  }
+  
+  .contact-form button.btn {
+    background-color: #bbbf4d;
+    color: #221b11;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .contact-form button.btn:hover {
+    background-color: #5eae7c;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .contact-wrapper {
+      flex-direction: column;
+    }
+  
+    .contact-info,
+    .contact-form {
+      padding: 30px 20px;
+    }
+  }
+  .form-feedback {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .form-feedback.success { color: green; }
+  .form-feedback.error { color: red; }
+  
+  .donation-hero {
+    background: linear-gradient(rgba(20, 75, 68, 0.7), rgba(20, 75, 68, 0.7)), 
+                url('/static/images/donate-bg.jpg') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 120px 20px 80px;
+}
+
+.donation-hero-content h1 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.donation-hero-content p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.donation-section {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.donation-form-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.donation-form-container h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+    color: #144b44;
+    text-align: center;
+}
+
+.donation-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.donation-form input,
+.donation-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.btn-donate {
+    background-color: #bbbf4d;
+    color: #221b11;
+    padding: 14px 25px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.btn-donate:hover {
+    background-color: #5eae7c;
+    color: white;
+}
+
+.gallery-hero {
+    text-align: center;
+    padding: 80px 20px 40px;
+    background-color: #f9f9f9;
+}
+
+.gallery-hero h1 {
+    font-size: 3em;
+    color: #144b44;
+    margin-bottom: 10px;
+}
+
+.gallery-hero p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.gallery-section {
+    padding: 40px 20px;
+    background: white;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.gallery-item {
+    max-width: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+}
+
+.gallery-caption {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.95em;
+    color: #444;
+}
+.events-section {
+    padding: 60px 20px;
+    background: #f7f7f7;
+}
+
+.events-section h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #144b44;
+}
+
+.events-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.event-date {
+    font-weight: bold;
+    color: #5eae7c;
+    margin-bottom: 10px;
+}
+  
+/* ✅ Footer Styling */
+/* ✅ Pre-Footer Donate Section */
+/* ✅ Full-Width Pre-Footer Section */
+.pre-footer {
+    background: #144b44;
+    color: white;
+    text-align: center;
+    padding: 10px 20px; /* ✅ Increased padding for better spacing */
+    display: flex;
+    justify-content: left; /* ✅ Centers content */
+    align-items: center;
+    width: 100vw; /* ✅ Ensures it spans the full width */
+    max-width: 100%;
+    gap: 250px;
+
+}
+
+/* ✅ Larger Title */
+.pre-footer h2 {
+    font-size: 40px; /* ✅ Increased size */
+    font-weight: bold;
+    flex: none;
+    text-align: center;
+    margin-left: 250px;
+
+}
+
+/* ✅ Larger Donate Button & Centered */
+.pre-footer .btn-donate {
+    background: none;
+    border: 3px solid white; /* ✅ Thicker border */
+    color: white;
+    padding: 15px 30px; /* ✅ Increased padding for a bigger button */
+    font-size: 20px; /* ✅ Larger text */
+    text-decoration: none;
+    border-radius: 8px; /* ✅ Softer corners */
+    transition: background 0.3s, color 0.3s;
+    max-width: 15%;
+
+
+}
+
+.pre-footer .btn-donate:hover {
+    background: white;
+    color: #144b44;
+}
+
+@media (max-width: 768px) {
+    .pre-footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+      padding: 20px 10px;
+      align-items: center; /* ✅ Ensures child elements are centered */
+    }
+  
+    .pre-footer h2 {
+      font-size: 26px;
+      text-align: center;
+      margin: 0 auto; /* ✅ Centers the heading */
+    }
+  
+    .pre-footer .btn-donate {
+      font-size: 18px;
+      padding: 12px 25px;
+      margin-top: 10px;
+    }
+  }
+
+
+/* ✅ Footer Styling */
+footer {
+    background: #030202;
+    color: white;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+}
+
+/* ✅ Footer Container (More Space Between Left & Right) */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    gap: 80px;
+    position: relative; /* ✅ Ensures the image is positioned correctly */
+    padding-right: 0;
+    margin-right: 0;
+}
+
+
+/* ✅ Left Section (About & Newsletter) */
+.footer-left {
+    flex: 1;
+    min-width: 350px;
+    text-align: left;
+}
+
+/* ✅ Right Section (Quick Links, Contacts, Social Media) */
+.footer-right {
+    flex: 1;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px; /* ✅ Space between Quick Links, Contact Info & Social Media */
+}
+.footer-image {
+    position: absolute;
+    right: -40px; /* ✅ Pushes image fully to the right */
+    bottom: 0;
+    height: 100%; /* ✅ Ensures it spans the full footer height */
+    display: flex;
+    align-items: center; /* ✅ Keeps it vertically centered */
+    padding-right: 0;
+    margin-right: 0;
+    justify-content: flex-end;
+
+}
+
+.footer-image img {
+    height: 450px; /* ✅ Ensures it fills the footer height */
+    width: auto; /* ✅ Maintains aspect ratio */
+    object-fit: contain; /* ✅ Ensures it fits without distortion */
+    padding-bottom: 40px;
+}
+
+@media (max-width: 900px) {
+    .footer-image {
+        display: none !important; /* ✅ Hides the image on mobile & tablets */
+    }
+}
+
+
+
+
+/* ✅ Make Responsive */
+@media (max-width: 900px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-image {
+        justify-content: center; /* ✅ Centers image on mobile */
+        margin-top: 20px;
+    }
+
+    .footer-image img {
+        max-width: 140px; /* ✅ Smaller on mobile */
+    }
+}
+/* ✅ Titles in Footer Are Now Larger */
+.footer-container h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+/* ✅ Quick Links (Evenly Spaced in Two Rows) */
+.quick-links-row {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 5px;
+}
+.quick-links ul {
+    display: flex;
+    flex-wrap: wrap; /* ✅ Allows wrapping when screen is smaller */
+    gap: 20px; /* ✅ Adds space between links */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quick-links li {
+    display: inline-block;
+    text-align: center;
+    flex: 1 1 30%; /* ✅ Keeps them in 2 columns on smaller screens */
+}
+
+/* ✅ Stack them properly on mobile */
+@media (max-width: 600px) {
+    .quick-links ul {
+        flex-direction: column;
+        align-items: center; /* ✅ Centers links when stacked */
+    }
+
+    .quick-links li {
+        width: 100%; /* ✅ Ensures full width for smaller screens */
+    }
+}
+
+
+
+
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #bbbf4d;
+}
+
+/* ✅ Contact Info */
+.footer-contact {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.footer-contact p {
+    margin: 5px 0;
+}
+
+.footer-contact a {
+    color: #bbbf4d;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-contact a:hover {
+    color: #5eae7c;
+}
+
+/* ✅ Newsletter Subscription (More Space Below) */
+.footer-newsletter {
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.footer-newsletter input {
+    width: 80%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.footer-newsletter button {
+    background: #bbbf4d;
+    color: #221b11;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.footer-newsletter button:hover {
+    background: #5eae7c;
+}
+
+/* ✅ Social Media Icons */
+.footer-social .social-icons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.footer-social .social-icon {
+    font-size: 22px;
+    color: white;
+    transition: color 0.3s;
+}
+
+.footer-social .social-icon:hover {
+    color: #bbbf4d;
+}
+
+/* ✅ Copyright Section */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* ✅ Responsive Footer */
+@media (max-width: 768px) {
+    .pre-footer {
+        text-align: center; /* ✅ Centers text */
+        flex-direction: column; /* ✅ Stacks elements */
+        gap: 15px; /* ✅ Adds spacing */
+        padding: 20px 10px; /* ✅ Adjusts padding */
+    }
+
+    .pre-footer .donate-btn {
+        margin-top: 10px; /* ✅ Adds spacing between text & button */
+    }
+
+    .pre-footer h2 {
+        text-align: center;
+        padding: 0;
+        gap: 0;
+    }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .footer-left {
+    text-align: center;
+    padding: 0 20px;
+    width: auto; /* ✅ Keeps it centered */
+  }
+
+  .footer-right {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .quick-links ul {
+    justify-content: center;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .quick-links li {
+    flex: none;
+    width: auto;
+  }
+
+  .footer-contact {
+    text-align: center;
+  }
+
+  .footer-social .social-icons {
+    justify-content: center;
+  }
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px; /* ✅ Spacing between icons */
+}
+
+.social-link {
+    font-size: 24px; /* ✅ Icon size */
+    color: white; /* ✅ Default white */
+    transition: color 0.3s ease-in-out;
+}
+
+.social-link:hover {
+    color: var(--hover-color); /* ✅ Change to their respective colors */
+}
+
+/* ✅ Custom Hover Colors */
+.social-link:nth-child(1):hover { color: #1877F2; } /* Facebook */
+.social-link:nth-child(2):hover { color: #d2d2d2; } /* Twitter/X */
+.social-link:nth-child(3):hover { color: #E4405F; } /* Instagram */
+.social-link:nth-child(4):hover { color: #0077B5; } /* LinkedIn */
+.social-link:nth-child(5):hover { color: #BD081C; } /* Pinterest */
+.social-link:nth-child(6):hover { color: #FF0000; } /* YouTube */

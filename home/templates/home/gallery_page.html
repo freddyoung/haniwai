@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block title %}Gallery - Haniwai NGO{% endblock %}
+
+{% block content %}
+<section class="gallery-hero">
+    <h1>Our Full Gallery</h1>
+    {% if page.description %}
+        <div class="gallery-description">
+            {{ page.description|richtext }}
+        </div>
+    {% endif %}
+</section>
+
+<section class="gallery">
+    <div class="gallery-container">
+        {% for image in gallery_images %}
+            <img src="{{ image.image.file.url }}"
+                 alt="{{ image.caption }}"
+                 class="gallery-img"
+                 data-index="{{ forloop.counter0 }}">
+        {% endfor %}
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="">
+        <div class="lightbox-controls">
+            <span class="prev">&lt;</span>
+            <span id="image-counter" class="image-counter"></span>
+            <span class="next">&gt;</span>
+        </div>
+    </div>
+</section>
+{% endblock %}

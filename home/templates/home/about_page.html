@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block title %}About Us - Haniwai NGO{% endblock %}
+
+{% block content %}
+
+<!-- ✅ Hero Banner -->
+<section class="about-hero">
+    <div class="about-hero-content">
+        <h1>Empowering Change in PNG & Oceania</h1>
+        <p>We are dedicated to uplifting communities across the Pacific through sustainable initiatives, gender equality, and environmental preservation.</p>
+    </div>
+</section>
+
+<!-- ✅ Who We Are & Our Mission -->
+<section class="about-intro">
+    <div class="about-intro-content">
+        <h2>Who We Are</h2>
+        <p>Haniwai NGO is a dedicated organization working to empower marginalized communities, preserve indigenous culture, and protect the environment across Papua New Guinea and the South Pacific.</p>
+        
+        <h2>Our Mission</h2>
+        <p>We aim to create sustainable solutions that address **climate change, women’s empowerment, social justice, and economic inclusion** across **PNG and Oceania.**</p>
+    </div>
+    <div class="about-image">
+        <img src="{% static 'images/about-mission.jpg' %}" alt="Our Mission Image">
+    </div>
+</section>
+
+<!-- ✅ Fast-Tracking PNG to Achieve SDG Goals (Timeline) -->
+<section class="sdg-goals">
+    <h2>Our Commitment to Sustainable Development Goals (SDGs)</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <span class="year">2025</span>
+            <p><b>Quality Education</b>: Ensure accessible education for marginalized communities.</p>
+        </div>
+        <div class="timeline-item">
+            <span class="year">2027</span>
+            <p><b>Gender Equality</b>: Expand women-led initiatives and legal support.</p>
+        </div>
+        <div class="timeline-item">
+            <span class="year">2030</span>
+            <p><b>Climate Action</b>: Implement community-driven environmental protection programs.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ Vision & Core Values -->
+<section class="vision-values">
+    <div class="vision">
+        <h2>Our Vision</h2>
+        <p>To create a **just, sustainable, and inclusive future** for Papua New Guinea and the Pacific, where communities thrive with dignity and independence.</p>
+    </div>
+    <div class="values">
+        <h2>Core Values</h2>
+        <ul>
+            <li><b>Integrity</b> – We act with honesty and accountability.</li>
+            <li><b>Empowerment</b> – We uplift communities with knowledge and opportunity.</li>
+            <li><b>Environmental Responsibility</b> – We protect our planet for future generations.</li>
+            <li><b>Cultural Preservation</b> – We respect and celebrate indigenous heritage.</li>
+        </ul>
+    </div>
+</section>
+
+{% endblock %}

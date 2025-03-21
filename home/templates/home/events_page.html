@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block title %}Events - Haniwai NGO{% endblock %}
+
+{% block content %}
+<section class="events-section">
+    <div class="container">
+        <h1>Upcoming Events</h1>
+        <div class="intro">
+            {{ page.intro_text|richtext }}
+        </div>
+
+        <div class="events-grid">
+            {% for event in page.event_items.all %}
+                <div class="event-card">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                    {% endif %}
+                    <h3>{{ event.title }}</h3>
+                    <p class="event-date">{{ event.date }}</p>
+                    <div class="event-description">
+                        {{ event.description|richtext }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
