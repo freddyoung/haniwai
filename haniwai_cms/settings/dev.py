@@ -10,6 +10,8 @@ SECRET_KEY = "django-insecure-qys@z2$gs=+r=y3=_7)h5274^(-&ars0y!tb^up@o2&$rc=)j5
 ALLOWED_HOSTS = ["*"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 
 try:
