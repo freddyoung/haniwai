@@ -1,5 +1,26 @@
 from .base import *
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+INSTALLED_APPS += [
+    'cloudinary',
+    'cloudinary_storage',
+]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('dnjriqqg6'),
+    'API_KEY': os.getenv('838562369428849'),
+    'API_SECRET': os.getenv('EYKWNAX4WXir_BkgE7HumndFzYc'),
+    'SECURE': True, 
+    'UPLOAD_PREFIX': 'haniwai',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL = 'https://res.cloudinary.com/{}/'.format(os.getenv('CLOUDINARY_CLOUD_NAME'))
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 
