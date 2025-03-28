@@ -9,14 +9,16 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-from decouple import config
+import os
+import dj_database_url
+from decouple import Config, RepositoryEnv
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_DIR)
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -84,15 +86,20 @@ TEMPLATES = [
 WSGI_APPLICATION = "haniwai_cms.wsgi.application"
 
 
-import dj_database_url
+
+config = Config(RepositoryEnv(os.path.join(BASE_DIR, '.env.dev')))
+
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: v.split(','))
 
+
+
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
+    'default': dj_database_url.config(default=config('DATABASE_URL'))
 }
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

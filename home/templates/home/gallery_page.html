@@ -1,29 +1,37 @@
-
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
+
 {% block title %}Gallery - Haniwai NGO{% endblock %}
 
 {% block content %}
+
+<!-- ✅ Hero Section -->
 <section class="gallery-hero">
-    <h1>Our Full Gallery</h1>
-    {% if page.description %}
-        <div class="gallery-description">
-            {{ page.description|richtext }}
-        </div>
-    {% endif %}
+    <div class="gallery-hero-overlay"></div>
+    <div class="gallery-hero-content">
+        <h1>Our Full Gallery</h1>
+        {% if page.description %}
+            <div class="gallery-description">
+                {{ page.description|richtext }}
+            </div>
+        {% endif %}
+    </div>
 </section>
 
-<section class="gallery">
+<!-- ✅ Gallery Grid -->
+<section class="gallery-section">
     <div class="gallery-container">
         {% for image in gallery_images %}
-            <img src="{{ image.image.file.url }}"
-                 alt="{{ image.caption }}"
-                 class="gallery-img"
-                 data-index="{{ forloop.counter0 }}">
+            <div class="gallery-item">
+                <img src="{{ image.image.file.url }}"
+                     alt="{{ image.caption }}"
+                     class="gallery-img"
+                     data-index="{{ forloop.counter0 }}">
+            </div>
         {% endfor %}
     </div>
 
-    <!-- Lightbox -->
+    <!-- ✅ Lightbox -->
     <div id="lightbox" class="lightbox">
         <span class="close">&times;</span>
         <img id="lightbox-img" class="lightbox-img" src="" alt="">
@@ -34,4 +42,5 @@
         </div>
     </div>
 </section>
+
 {% endblock %}

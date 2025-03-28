@@ -7,11 +7,12 @@
 
 <!-- ✅ Hero Banner -->
 <section class="about-hero">
+    <div class="about-hero-overlay"></div>
     <div class="about-hero-content">
-        <h1>Empowering Change in PNG & Oceania</h1>
-        <p>We are dedicated to uplifting communities across the Pacific through sustainable initiatives, gender equality, and environmental preservation.</p>
+        <img src="{% static 'images/haniwa_logo.png' %}" alt="Haniwai Logo" class="about-hero-logo">
     </div>
 </section>
+
 
 <!-- ✅ Who We Are & Our Mission -->
 <section class="about-intro">
@@ -30,6 +31,7 @@
 <!-- ✅ Fast-Tracking PNG to Achieve SDG Goals (Timeline) -->
 <section class="sdg-goals">
     <h2>Our Commitment to Sustainable Development Goals (SDGs)</h2>
+    <img src="{% static 'images/sdg.png' %}" alt="SDG Goals" class="sdg-image">
     <div class="timeline">
         <div class="timeline-item">
             <span class="year">2025</span>
@@ -46,21 +48,22 @@
     </div>
 </section>
 
-<!-- ✅ Vision & Core Values -->
-<section class="vision-values">
-    <div class="vision">
-        <h2>Our Vision</h2>
-        <p>To create a **just, sustainable, and inclusive future** for Papua New Guinea and the Pacific, where communities thrive with dignity and independence.</p>
+<section class="vision-section">
+    <div class="vision-overlay"></div>
+    <div class="vision-content">
+      <h2>Our Vision & Core Values</h2>
+      <p>
+        Our vision is to empower indigenous women and marginalized communities in Papua New Guinea through sustainable development, cultural preservation, and environmental protection. We believe in equity, dignity, and a future where humanity and nature thrive together.
+      </p>
+      <ul class="core-values">
+        <li>🌱 Empowerment</li>
+        <li>🌍 Sustainability</li>
+        <li>🤝 Inclusiveness</li>
+        <li>🌸 Dignity & Respect</li>
+        <li>💪 Cultural & Environmental Protection</li>
+      </ul>
     </div>
-    <div class="values">
-        <h2>Core Values</h2>
-        <ul>
-            <li><b>Integrity</b> – We act with honesty and accountability.</li>
-            <li><b>Empowerment</b> – We uplift communities with knowledge and opportunity.</li>
-            <li><b>Environmental Responsibility</b> – We protect our planet for future generations.</li>
-            <li><b>Cultural Preservation</b> – We respect and celebrate indigenous heritage.</li>
-        </ul>
-    </div>
-</section>
+  </section>
+  
 
 {% endblock %}

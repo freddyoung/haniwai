@@ -1,18 +1,18 @@
 from .base import *
+from decouple import Config, RepositoryEnv
+config = Config(RepositoryEnv('.env.dev'))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# ✅ Get secret key, debug, and allowed hosts from .env.dev
+SECRET_KEY = config("SECRET_KEY")
+DEBUG = config("DEBUG", cast=bool, default=True)
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=lambda v: v.split(","))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-qys@z2$gs=+r=y3=_7)h5274^(-&ars0y!tb^up@o2&$rc=)j5"
-
-# SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ["*"]
-
+# ✅ Email backend just for local dev
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# ✅ Static file storage (optional for local dev, but useful)
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
 
 try:
     from .local import *

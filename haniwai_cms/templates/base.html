@@ -9,11 +9,10 @@
     <title>{% block title %}Haniwai NGO{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 </head>
 <body>
 
-    <!-- ✅ Fixed Top Navbar (Darker & Stuck at Top) -->
+    <!-- ✅ Fixed Top Navbar -->
     <div class="top-nav">
         <div class="top-nav-container">
             <div class="top-nav-left">
@@ -25,188 +24,164 @@
         </div>
     </div>
 
-    
-
     <!-- ✅ Main Navbar -->
     <header>
         <nav>
             <div class="nav-container">
-                
-                <!-- Mobile Menu Toggle Button -->
-                <div class="menu-toggle" onclick="toggleMenu()">
-                    menu <span class="menu-arrow">▼</span>
 
-                
-                </div>
+                <!-- ✅ Burger Icon -->
 
                 <div class="logo-container">
-                    <!-- First Logo -->
                     <a href="/" class="logo">
                         <img src="{% static 'images/haniwa_logo.png' %}" alt="Haniwai NGO Logo">
                     </a>
-                    <!-- Second Logo -->
                     <a href="/" class="logo second-logo">
                         <img src="{% static 'images/haniwai.org.png' %}" alt="Partner Logo">
                     </a>
                 </div>
+
+                <div class="nav-actions">
+                    <a href="/donate-now/" class="donate-btn mobile-donate {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart">♥</span></a>
+                    <div class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>    
+                </div>
+                
+
+                <!-- ✅ Nav Links -->
             
-                <!-- Navigation Links -->
                 <ul class="nav-links">
-                    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">HOME</a></li>
-                    <li><a href="/about-us/" class="{% if request.path == '/about-us/' %}active{% endif %}">ABOUT</a></li>
-                    <li><a href="/gallery/" class="{% if request.path == '/gallery/' %}active{% endif %}">GALLERY</a></li>
-                    <li><a href="/events/" class="{% if request.path == '/events/' %}active{% endif %}">EVENTS</a></li>
-                    <li><a href="/contact/" class="{% if request.path == '/contact/' %}active{% endif %}">CONTACT</a></li>
-                    <li><a href="/donate-now/" class="donate-btn {% if request.path == '/donate-now/' %}active-donate{% endif %}">Support Us <span class="heart">♥</span></a></li>
-                    <!-- ✅ Added Partners & FAQs to Dropdown -->
-                    <li class="mobile-only"><a href="/partners">Partners</a></li>
-                    <li class="mobile-only"><a href="/faqs">FAQs</a></li>
+                    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="/about-us/" class="{% if request.path == '/about-us/' %}active{% endif %}">About Us</a></li>
+                    <li><a href="/gallery/" class="{% if request.path == '/gallery/' %}active{% endif %}">Our Gallery</a></li>
+                    <li><a href="/events/" class="{% if request.path == '/events/' %}active{% endif %}">News & Events</a></li>
+                    <li><a href="/contact/" class="{% if request.path == '/contact/' %}active{% endif %}">Contact Us</a></li>
+                    <li class="desktop-donate"><a href="/donate-now/" class="donate-btn {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart">♥</span></a></li>                    <li class="mobile-only"><a href="/partners">Partners</a></li>
+                    <li class="mobile-only"><a href="/faqs">FAQs</a></li>  
                 </ul>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content Block -->
+    <!-- ✅ Main Content -->
     <main>
         {% block content %}{% endblock %}
     </main>
 
-<!-- ✅ Pre-Footer Donate Section -->
-<section class="pre-footer">
-    <h2>Help Us Reach Our Goals</h2>
-    <a href="/donate-now/" class="btn-donate">Donate Now</a>
-</section>
+    <!-- ✅ Pre-Footer Donate Section -->
+    <section class="pre-footer">
+        <h2>Help Us Reach Our Goals</h2>
+        <a href="/donate-now/" class="btn-donate">DONATE</a>
+    </section>
 
-<!-- ✅ Modern Footer -->
-<footer>
-    <div class="footer-container">
-
-        <!-- ✅ Left Section: About & Newsletter -->
-        <div class="footer-left">
+    <!-- ✅ Footer -->
+    <footer>
+        <div class="footer-container">
+          <div class="footer-left">
             <div class="footer-about">
-                <h3>About</h3>
-                <p>We empower women and marginalized communities in Papua New Guinea by providing shelter, advocacy, and environmental protection.</p>
+              <h3>About</h3>
+              <p>We empower women and marginalized communities in Papua New Guinea by providing shelter, advocacy, and environmental protection.</p>
             </div>
-
             <div class="footer-newsletter">
-                <h3>Stay Updated</h3>
-                <p>Sign Up For Our Newsletter!</p>
-                <form action="#" method="post">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
+              <h3>Stay Updated</h3>
+              <p>Sign up for our newsletter!</p>
+              <form action="#" method="post">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+              </form>
             </div>
-        </div>
-
-        <!-- ✅ Right Section: Quick Links, Contact Info, Social Media -->
-        <div class="footer-right">
+          </div>
+      
+          <div class="footer-center">
             <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul class="quick-links-row">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about-us/">About Us</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
+              <h3>Quick Links</h3>
+              <div class="quick-links-grid">
+                <ul>
+                    <li><a href="/faqs/">FAQs</a></li>
+                  <li><a href="/about-us/">About Us</a></li>
+                  <li><a href="/gallery/">Gallery</a></li>
                 </ul>
-                <ul class="quick-links-row">
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                    <li><a href="/donate-now/">Donate</a></li>
+                <ul>
+                  <li><a href="/events/">Events</a></li>
+                  <li><a href="/contact/">Contact</a></li>
+                  <li><a href="/partners/">Partners</a></li>
                 </ul>
+              </div>
             </div>
-
+      
             <div class="footer-contact">
-                <p>Email: <a href="mailto:info@haniwai.org">info@haniwai.org</a></p>
-                <p>Phone: <a href="tel:+1234567890">+123-456-7890</a></p>
+              <p>Email: <a href="mailto:info@haniwai.org">info@haniwai.org</a></p>
+              <p>Phone: <a href="tel:+1234567890">+123-456-7890</a></p>
             </div>
-
+      
             <div class="footer-social">
-                <div class="social-icons">
-                    <a href="https://facebook.com" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="social-link"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://instagram.com" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://linkedin.com" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://pinterest.com" target="_blank" class="social-link"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="https://youtube.com" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
-                </div>                
+              <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-link"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://pinterest.com" target="_blank" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://youtube.com" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+              </div>
             </div>
-        </div>
-        <div class="footer-image">
+          </div>
+      
+          <div class="footer-right">
             <img src="{% static 'images/footer.png' %}" alt="Footer Image">
+          </div>
         </div>
-    </div>
+      
+        <div class="footer-bottom">
+          <p>© 2025 <b>Humanity and Nature Indigenous Women's Association Incorporated</b>. All rights reserved.</p>
+        </div>
+      </footer>
+      
+      
 
-    <!-- ✅ Copyright Section -->
-    <div class="footer-bottom">
-        <p>© 2025 <b>Humanity and Nature Indigenous Women's Association Incorporated</b>. All rights reserved.</p>
-    </div>
-</footer>
-
-
+    <!-- ✅ JavaScript -->
     <script>
-        function toggleMenu() {
-            var nav = document.querySelector('.nav-links');
-            var menuArrow = document.querySelector('.menu-arrow');
+        // Burger Menu Toggle
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
 
-            if (nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                setTimeout(() => {
-                    nav.style.display = "none";
-                }, 300);
-            } else {
-                nav.style.display = "flex";
-                setTimeout(() => {
-                    nav.classList.add('active');
-                }, 10);
-            }
-
-            // Rotate the arrow when clicked
-            menuArrow.style.transform = nav.classList.contains('active') ? "rotate(180deg)" : "rotate(0deg)";
-        }
-
-        // ✅ Close menu when clicking outside
-        document.addEventListener("click", function (event) {
-            var nav = document.querySelector('.nav-links');
-            var menuToggle = document.querySelector('.menu-toggle');
-
-            if (!menuToggle.contains(event.target) && !nav.contains(event.target)) {
-                nav.classList.remove('active');
-                setTimeout(() => {
-                    nav.style.display = "none";
-                }, 300);
-            }
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            menuToggle.classList.toggle("active");
+            document.body.classList.toggle("menu-open");
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const menuToggle = document.querySelector(".menu-toggle");
-            const menuArrow = document.querySelector(".menu-arrow");
 
-            menuToggle.addEventListener("click", function () {
-                this.classList.toggle("active");
-
-                // ✅ Change triangle direction dynamically
-                if (this.classList.contains("active")) {
-                    menuArrow.textContent = "▲"; // Upward Triangle
-                } else {
-                    menuArrow.textContent = "▼"; // Downward Triangle
-                }
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const header = document.querySelector("header");
         
-            window.addEventListener("scroll", function () {
-                if (window.scrollY > 50) { 
-                    header.classList.add("scrolled");  /* ✅ Add shadow when scrolling */
-                } else {
-                    header.classList.remove("scrolled"); /* ❌ Remove shadow at top */
-                }
-            });
-        });
-            
-    </script>
-    <script src="{% static 'js/script.js' %}"></script>
 
+        // Scroll Behavior
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+          const body = document.body;
+          const currentScroll = window.pageYOffset;
+          
+          if (currentScroll > 50 && currentScroll > lastScroll) {
+            body.classList.add('hide-top-bar');
+          } else if (currentScroll < lastScroll) {
+            body.classList.remove('hide-top-bar');
+          }
+        
+          lastScroll = currentScroll;
+        });
+        
+
+        // Light/Dark Mode Toggle
+        const toggleTheme = document.querySelector('.toggle-theme');
+        if (toggleTheme) {
+            toggleTheme.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+            });
+        }
+    </script>
+
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 </html>

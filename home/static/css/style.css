@@ -1,1696 +1,1255 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Playfair+Display:wght@700&family=Nunito:wght@700&display=swap');
-
-/* General Styles */
-html, body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff; /* Mystic - Soft Background */
-    color: #221b11; /* Oil - Dark Brownish Black */
-    overflow-x: hidden;
-    width: 100%;
-}
-section {
-    width: 100vw; /* ✅ Forces sections to fit viewport width */
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 60px 0;
-    overflow-x: hidden;
-}
+/* =============================
+   🌱 Haniwai Project Modern CSS - FINAL HERO POSITION & BUTTON ALIGN
+   ============================= */
+   @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap');
 
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-}
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+:root {
+  --primary-color: #144b44;
+  --accent-color: #bbbf4d;
+  --secondary-color: #5eae7c;
+  --text-color: #221b11;
+  --light-bg: #f9f9f9;
+  --dark-bg: #030202;
+  --white: #ffffff;
+  --black: #000000;
+
+  --font-base: 'Poppins', sans-serif;
+  --font-sm: 0.9rem;
+  --font-base-size: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 2.5rem;
+
+  --radius: 10px;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  --bg: var(--light-bg);
+  --text: var(--black);
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    transition: color 0.3s ease-in-out;
+[data-theme="dark"] {
+  --bg: #121212;
+  --text: var(--white);
 }
 
-nav ul li a:hover {
-    color: #bbbf4d; /* Celery - Bright Highlight */
-}
-
-/* Donate Button */
-/* ✅ Support Us Button - Perfect Centering */
-/* ✅ Support Us Button - Border Only & Centered Text */
-/* ✅ Support Us Button - Thicker Border & Aligned */
-/* ✅ Support Button - No Background, Aligns Properly */
-/* ✅ Support Button - Proper Alignment */
-/* ✅ Support Button - No Border, Red Hover Effect */
-/* ✅ Keep the support text color the same, but turn the heart red on hover */
-/* Ensure the heart is inside a span */
-/* Ensure the heart is styled separately */
-/* Ensure the heart is styled separately */
-.donate-btn span.heart {
-    color: inherit; /* Keeps initial color */
-    font-size: 1.3em; /* ✅ Default size */
-    margin-left: 5px; /* ✅ Adds space between text and heart */
-    transition: color 0.3s ease, transform 0.3s ease; /* ✅ Smooth color & size transition */
-}
-
-/* Change only the heart color and size on hover */
-.donate-btn:hover span.heart {
-    color: red; /* ✅ Turns the heart red */
-    transform: scale(1.4); /* ✅ Increases size when hovered */
-}
-/* ✅ Fix "Support Us" Button with Rounded Corners */
-.donate-btn {
-    display: inline-block;
-    padding: 5px 12px;
-    font-weight: bold;
-    border: 3px solid #bbbf4d; /* ✅ Border effect */
-    background: transparent;
-    color: #bbbf4d;
-    transition: all 0.3s ease-in-out;
-    text-align: center;
-    margin-left: 15px;
-    border-radius: 50px; /* ✅ Proper rounded edges */
-}
-
-/* ✅ Hover Effect */
-.donate-btn:hover {
-    background: transparent;
-    color: white;
-}
-.donate-btn.active-donate span.heart {
-    color: red;
-}
-
-
-/* General Page Layout */
-/* ✅ Allow Main Content to Expand Fully */
-main {
-    width: 100vw; /* ✅ Ensures full viewport width */
-    max-width: 100%; /* ✅ Prevents unwanted restrictions */
-    margin: 0;
-    padding: 0;
-    display: block; /* ✅ Ensures it's a block-level element */
-}
-
-/* Hero Section */
-/* ✅ Hero Section: Balanced Layout */
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 100%; /* ✅ Adjusted for wider but centered layout */
-    width: 100%;
-    min-height: 75vh; /* ✅ Limits excessive height */
-    padding-bottom: 0; /* ✅ Removes unnecessary padding */
-    margin-bottom: 0; /* ✅ Prevents gaps */
-  
-}
-
-/* ✅ Left Side: Text Content */
-.hero-content {
-    flex: 1;
-    max-width: 85%; /* ✅ Prevents text from stretching too much */
-    text-align: left;
-    padding-right: 50px; /* ✅ Adds space between text & image */
-    padding-left: 125px;
-    padding-bottom: 0; /* ✅ Removes extra space */
-    margin-bottom: 0;  /* ✅ Ensures no gaps */
-
-}
-
-/* ✅ Import a new elegant & impactful Google Font */
-
-.hero-content h1 {
-    font-size: 3.8em; /* ✅ Large and attention-grabbing */
-    font-weight: 700; /* ✅ Extra bold for emphasis */
-    font-family: 'Merriweather', serif !important;    color: #144b44; /* ✅ Maintains dark green color */
-    line-height: 1.2; /* ✅ Good spacing for readability */
-
-}
-.hero-divider {
-    width: 80px;  /* ✅ Short, stubby width */
-    height: 5px;  /* ✅ Slightly thick */
-    background-color: #bbbf4d; /* ✅ Celery - Bright Highlight */
-    margin: -25px 0 25px;  /* ✅ Space above & below */
-    border-radius: 3px;  /* ✅ Smooth edges */
-}
-@media (max-width: 768px) {
-    .hero-content {
-        text-align: center;  /* ✅ Centers everything */
-        padding-left: 0;
-        padding-top: 50px;
-
-    }
-
-    .hero-divider {
-        width: 60px;  /* ✅ Adjusts size for mobile */
-        height: 4px;
-        margin: 15px auto;  /* ✅ Centers properly */
-    }
-}
-
-
-.hero-image {
-    flex: 1;
-    max-width: 100%; /* ✅ Prevents overflow */
-    text-align: right;
-}
-
-.hero-image img {
-    width: 800px; /* ✅ Slightly bigger image */
-    height: auto;
-}
-
-/* ✅ Responsive: Stacks on Mobile */
-@media (max-width: 1024px) {
-    .hero {
-        flex-direction: column; /* ✅ Stacks content vertically */
-        text-align: center;
-        padding: 30px;
-    }
-
-    .hero-content {
-        max-width: 90%; /* ✅ Ensures text doesn't stretch */
-        padding-right: 0;
-        text-align: center;
-    }
-
-    .hero-image {
-        max-width: 90%; /* ✅ Ensures proper scaling */
-        text-align: center;
-    }
-
-    .hero-image img {
-        max-width: 90%; /* ✅ Keeps images manageable */
-    }
-}
-.motto-section {
-    background-color: transparent;
-    text-align: center;
-    padding: 80px 20px;
-    overflow: hidden;
-    margin-top: -50px; /* ✅ Pulls the section up */
-    padding-top: 0; /* ✅ Removes unnecessary space */
-}
-
-/* ✅ Align images side by side */
-.motto-container {
-    display: flex;
-    justify-content: space-between; /* ✅ Pushes images to left, center, and right */
-    align-items: flex-start; 
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 50px; /* ✅ Adds spacing from edges */
-}
-/* ✅ Targets each specific image */
-.motto-image:nth-child(1) { /* Preserve */
-    align-self: flex-start;
-}
-
-.motto-image:nth-child(2) { /* Protect */
-    align-self: center;
-}
-
-.motto-image:nth-child(3) { /* Transform */
-    align-self: flex-end;
-}
-
-/* ✅ Responsive adjustments */
-@media (max-width: 1024px) {
-    .motto-container {
-        justify-content: space-evenly; /* ✅ Keeps spacing on medium screens */
-    }
-}
-
-@media (max-width: 768px) {
-    .motto-container {
-        flex-direction: column;
-        align-items: center; /* ✅ Stacks images centered */
-        gap: 30px;
-    }
-}
-
-/* ✅ Style for images */
-.motto-image {
-    width: auto; /* ✅ Adjust size */
-    height: 175px;
-    opacity: 0; /* ✅ Initially hidden */
-    object-fit: contain;
-    transform: translateY(50px); /* ✅ Start position (moves up) */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* ✅ Make images appear when in viewport */
-.motto-image.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ✅ Responsive adjustments for mobile */
-@media (max-width: 768px) {
-    .motto-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* ✅ Centers images properly */
-      justify-content: center;
-      gap: 30px; /* ✅ Ensures even spacing */
-      padding: 25px 20px; /* ✅ Adds spacing from screen edges */
-      width: 100%; /* ✅ Ensures it takes full width */
-    }
-  
-    .motto-image {
-      width: 300px; /* ✅ Keeps image size appropriate */
-      height: auto;
-      transform: none; /* ✅ Removes any offset */
-      opacity: 1; /* ✅ Ensures visibility */
-      margin: 0 auto; /* ✅ Ensures proper centering */
-      padding: 20px 0px;
-    }
-  
-    .motto-image:nth-child(1),
-    .motto-image:nth-child(2),
-    .motto-image:nth-child(3) {
-      align-self: center !important; /* ✅ Forces all images to center */
-    }
+* {
+    box-sizing: border-box;
   }
+  
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
 
+body {
+  font-family: var(--font-base);
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
 
-/* About Section */
-.about {
-    text-align: center;
-    margin: 50px 0;
 }
+body.menu-open {
+    overflow: hidden;
+  }
+  
 
-.about h2 {
-    font-size: 2em;
-    color: #144b44; /* Elephant - Dark Green */
-}
+p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
 
-.about p {
-    font-size: 1.1em;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-/* Buttons */
-.btn {
-    background: #bbbf4d; /* Celery - Bright */
-    color: #221b11; /* Dark Text */
-    padding: 12px 20px;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 25px;
-    transition: background 0.3s ease;
-}
-
-.btn:hover {
-    background: #5eae7c; /* Aqua Forest - Soft Green */
-}
-
-/* Section Dividers */
-.divider {
-    height: 2px;
-    width: 80%;
-    background-color: #5d684e; /* Siam - Border Separator */
-    margin: 40px auto;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
 }
 
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav ul {
-        display: block;
-        text-align: center;
-        padding: 0;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .hero h1 {
-        font-size: 2.2em;
-    }
-
-    .hero p {
-        font-size: 1em;
-    }
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-/* Navbar Layout */
-/* ✅ Top Navbar (Now Darker & Larger) */
+a:hover {
+  color: var(--accent-color);
+}
+
+/* ================= Top Gradient Bar ================= */
 .top-nav {
-    background: linear-gradient(to right, #144b44, #5eae7c);     color: white;
-    font-size: 14px;
-    padding: 12px 0; /* ✅ Increased height */
-    width: 100%;
-    position: fixed; /* ✅ Stays at the top */
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1001; /* ✅ Higher than the main navbar */
-}
-
-header {
-    background: white;
-    padding: 10px 0;
-    position: fixed;
-    top: 40px;
     width: 100%;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-}
+    z-index: 999;
+    height: 32px;
+    transition: transform 0.4s ease, opacity 3s ease;
+    background: linear-gradient(90deg, #144b44 0%, #5eae7c 100%);
+    color: var(--white);
+    font-size: var(--font-sm);
+  }
 
-/* ✅ Shadow Effect (Initially Hidden) */
-header.scrolled {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* ✅ Soft shadow */
-}
-@media (max-width: 768px) {
-    header {
-        background: white;
-        top: -2px;
-
-
-    }
-}
-
-/* ✅ Fix Top Navbar Layout */
 .top-nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
 }
 
-.top-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    margin: 0 5px;
-    transition: color 0.3s ease;
+.top-nav-left a, .top-nav-right span {
+  color: var(--white);
+  margin-right: 12px;
 }
 
-.top-nav a:hover {
-    color: #bbbf4d; /* ✅ Celery - Bright Contrast */
+.top-nav-left a:hover {
+  color: var(--accent-color);
 }
 
-/* ✅ Hide Top Navbar on Mobile & Tablet */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     .top-nav {
-        display: none;
+      display: none;
     }
+  }
+  
 
-    /* ✅ Show Partners & FAQs Inside Dropdown */
-    .mobile-only {
-        display: block !important;
+/* ================= Main Navbar ================= */
+header {
+    position: fixed;
+    top: 32px;
+    width: 100%;
+    z-index: 998;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    transition: top 0.3s ease;
+  }
+
+  @media (max-width: 1100px) {
+    header {
+        top: 0;
     }
-}
-
-/* ✅ Hide Partners & FAQs from Desktop Navbar */
-@media (min-width: 769px) {
-    .mobile-only {
-        display: none !important;
-    }
-}
-
+  }
 
 
 .nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.nav-right {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    max-width: 13000px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0; /* ✅ Increased padding to move navbar right */
-    height: auto;
-    min-height: 60px;
-}
+    gap: 15px;
+  }
 
-/* ✅ Adjust Logo Container to Align Logos in a Row */
 .logo-container {
-    position: absolute;
-    left: 30px; /* ✅ Adjusts main placement */
-    top: 10px;
-    display: flex; /* ✅ Ensures logos are in a row */
-    align-items: center; /* ✅ Aligns logos vertically */
-    gap: 15px; /* ✅ Adds spacing between the two logos */
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-
-/* ✅ First Logo */
 .logo img {
-    height: 125px; /* ✅ Keeps main logo size */
-    width: auto;
+  height: 50px;
+  width: auto;
 }
 
-/* ✅ Second Logo - Stays in Line with First Logo */
 .second-logo img {
-    height: 35px; /* ✅ Smaller size for second logo */
-    width: auto;
-    padding-bottom: 50px;
+  height: 50px;
+  width: auto;
 }
 
-/* ✅ Show logo only in mobile and move it next to the menu toggle */
-@media (max-width: 768px) {
-    .logo {
-      display: flex;
-      align-items: center;
-      position: absolute;
-      left: 20px;
-      top: 100%;
-      padding-top: 10px;
-    }
-  
-    .logo img {
-      height: 100px; /* Adjust size for mobile */
+@media (max-width: 600px) {
+    .second-logo img {
+      height: 30px;
       width: auto;
-      transform: translateY(-50%);
-      transform: translateX(-25%);
-      z-index: 1001; /* Make sure it's above */
     }
+  }
+
+  @media (max-width: 420px) {
     .second-logo img {
         display: none;
     }
-  
-    .menu-toggle {
-      left: 70px; /* Push it slightly right to make room for logo */
-      
-
-    }
-  }
-/* Hide by default (desktop & above) */
-/* Fully hide in desktop */
-  
-/* ✅ Prevent Logo from Moving When Window Shrinks */
-@media (max-width: 1000px) { 
-    .logo img {
-        left: 50px; /* Adjusts position for medium screens */
-    }
-}
-
-@media (max-width: 800px) {
-    .logo img {
-        left: 30px; /* Prevents logo from touching edge */
-    }
-}
-
-/* ✅ Hide Logo When It Touches Navbar */
-
-
-
-/* ✅ Fix: Navbar Tabs Always Visible in Desktop */
-.nav-links {
-    display: flex;
-    align-items: center; /* ✅ Ensures all tabs & "Support Us" button align */
-    justify-content: flex-end; /* ✅ Moves tabs slightly to the right */
-    gap: 20px; /* ✅ Adds spacing between tabs */
-    margin-left: 500px; /* ✅ Pushes tabs to the right */
-    position: absolute;
-
     
-}
-/* ✅ Navbar Tabs with Hover Underline Matching Word Length */
-/* Reset all underline styles */
-.nav-links li {
-    position: relative;
-    white-space: nowrap;
   }
-  
-  .nav-links li a {
-    position: relative;
-    text-decoration: none;
-    color: #144b44;
-    font-size: 18px;
-    font-weight: 600;
-    padding-bottom: 4px; /* spacing for underline */
 
+  
 
-  }
-  
-  /* Underline appears on hover */
-  .nav-links li a:hover {
-    color: #bbbf4d;
-    border-bottom: 3px solid #bbbf4d;
-  }
-  
-  /* Underline stays on active page */
-  .nav-links li a.active {
-    color: #bbbf4d;
-    border-bottom: 3px solid #bbbf4d;
-  }
-  
-/* 🚫 REMOVE Underline from "Support Us" Button */
-.nav-links li .donate-btn::after {
-    display: none; /* ✅ Prevents underline */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
 }
 
-/* ✅ Adjusts the "Support Us" Button */
+.nav-links li a {
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: color 0.3s;
+}
 
+.nav-links li .donate-btn {
+  color: var(--white);
+}
 
+.nav-links li a:hover, .nav-links li a.active {
+  color: var(--accent-color);
+}
 
+.mobile-only {
+    display: none;
+  }
+  
+  @media (max-width: 1100px) {
+    .mobile-only {
+      display: block;
+    }
+  }
+  
+.donate-btn {
+  padding: 10px 18px;
+  background: var(--secondary-color);
+  color: var(--white);
+  font-weight: 600;
+  border: 2px solid var(--secondary-color);
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
 
+.donate-btn:hover, .donate-btn.active-donate {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
 
-/* ✅ Fix: Navbar Tabs Hover Effect in Desktop */
-@media (min-width: 769px) {
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  @media (max-width: 1100px) {
+    .donate-btn {
+      margin: 0;
+      padding: 4px 15px;
+      border-radius: 20px;
+
+    }
+  }
+  
+  
+
+/* ================= Modern Mobile Burger Menu ================= */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: var(--white);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  z-index: 10000;
+  padding: 10px 30px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: var(--primary-color);
+  transition: background 0.3s;
+  
+}
+
+.menu-toggle.active {
+  background: var(--primary-color);
+  border-radius: 20px;
+}
+
+.menu-toggle.active span {
+  background: var(--white);
+}
+
+@media (max-width: 1100px) {
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+  
+@media (max-width: 1100px) {
     .nav-links {
-        display: flex !important;
-        position: relative;
-    }
-
-    .nav-links li {
-        padding: 0 15px;
-    }
-
-    .nav-links li a {
-        text-decoration: none;
-        color: #144b44 !important;
-        font-size: 18px;
-        font-weight: 600;
-        transition: color 0.3s ease-in-out; /* ✅ Smooth transition */
-    }
-
-    .nav-links li a:hover {
-        color: #bbbf4d !important; /* ✅ Only text color changes */
-    }
-}
-
-/* ✅ Fix: Dropdown Menu for Mobile */
-@media (max-width: 768px) {
-    .nav-links {
-      margin-left: 0 !important;
-      display: none;
-      position: fixed;
-      left: 50%;
-      top: 90px; /* Adjust based on your header height */
-      transform: translateX(-50%) translateY(-10px); /* Centers it */
-      width: 80%; /* Leaves space on both sides */
-      background: white;
-      border-radius: 12px;
       flex-direction: column;
-      text-align: center;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-      padding: 12px 0;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      z-index: 9999;
-
-      
-     
-
-      
+      position: fixed;
+      top: 62px;
+      right: 0;
+      width: 250px;
+      background: var(--primary-color);
+      padding: 60px 20px;
+      gap: 20px;
+      transition: transform 0.3s ease;
+      z-index: -1;
+      display: flex;
+      height: auto;
+      border-radius: 10px;
+      transform: translateX(100%);
     }
   
     .nav-links.active {
-      display: flex;
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  
-    .nav-links li {
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-      width: 100%;
-    }
-  
-    .nav-links li:last-child {
-      border-bottom: none;
+      transform: translateX(0);
     }
   
     .nav-links li a {
-      font-size: 18px;
-      color: #144b44;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-block;
-      padding: 8px 12px;
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 500;
     }
   
     .nav-links li a:hover {
-      color: #bbbf4d;
+      color: var(--accent-color);
     }
   }
   
+
+/* ================= Hero Section ================= */
+.hero {
+  background: url('../images/women.jpg') no-repeat center/cover;
+  height: 90vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  color: var(--white);
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0) 70%);
+  z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin-top: 125px;
+    margin-left: 100px;
+    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 👈 Adds clean spacing */
+}
   
-/* ✅ Fix: Ensure "menu" is Only Visible on Mobile */
 
-.menu-toggle {
-    display: none;
-    font-size: 28px;
-    font-weight: bold;
-    color: #144b44;
-    cursor: pointer;
+.hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+}
+
+.hero-content p {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  font-family: 'Merriweather', serif;
+}
+
+.hero-content .btn {
+    padding: 9px 30px;
     background: transparent;
+    color: var(--white);
+    font-weight: 600;
+    border: 2px solid var(--white);
+    border-radius: 2%;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+    display: inline-block; /* 👈 prevents it from stretching */
+    width: auto; /* 👈 ensures natural button width */
+    align-self: flex-start; /* 👈 keeps it aligned to left, matching text */
+    font-size: 25px;
+  }
+  
+  
+  
 
-    position: absolute;
-    top: 25%;
-    transform: translateY(-50%);
-    transform: translateX(250%);
-    display: flex;
+.hero-content .btn:hover {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: 2px solid var(--secondary-color)
+}
+
+@media (max-width: 1100px) {
+    .hero {
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .hero-content {
+      margin-right: 150px;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .hero-content h1 {
+      font-size: 4rem;
+      margin-bottom: 10px;
+    }
+  
+    .hero-content p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+  
+    .hero-content .btn {
+      align-self: center;
+      font-size: 1rem;
+      padding: 14px 24px;
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    .hero {
+      height: 100vh;
+    }
+  
+    .hero-content h1 {
+      font-size: 3rem;
+    }
+  
+    .hero-content p {
+      font-size: 15px;
+    }
+  
+    .hero-content .btn {
+      font-size: 0.9rem;
+      padding: 7px 18px;
+      align-self: center;
+    }
+  }
+
+/* ================= Scroll Behavior ================= */
+body.hide-top-bar .top-nav {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+body.hide-top-bar header {
+  top: 0;
+}
+
+/* ================= Slogan Section & Rest ================= */
+/* (Same, intact and optimized as before) */
+.motto-section {
+    background: var(--white);
+    padding: 60px 20px;
+  }
+  
+  .motto-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
     align-items: center;
-    gap: 5px;
-}
-
-/* ✅ Replace Caret Symbol with Triangle ▼ */
-.menu-arrow {
-    display: inline-block;
-    font-size: 18px;
-    transition: transform 0.3s ease-in-out;
-    line-height: 1;
-    content: "▼"; /* Default is downward triangle */
-}
-
-/* ✅ Flip Triangle ▲ When Menu is Open */
-.menu-toggle.active .menu-arrow {
-    content: "▲"; /* Upward triangle when active */
-    transform: rotate(0deg); /* No rotation needed */
-}
-
-/* ✅ Hide "menu" on Large Screens */
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none !important;
-    }
-}
-
-/* ✅ Default Downward Triangle */
-.menu-arrow {
-    display: inline-block;
-    font-size: 18px;
-    transition: transform 0.3s ease-in-out; /* ✅ Smooth animation */
-}
-
-/* ✅ Flip Triangle When Menu is Active */
-.menu-toggle.active .menu-arrow {
-    transform: rotate(180deg); /* ✅ Rotates the triangle */
-}
-
-
-
-/* ✅ Prevent Navbar Links from Wrapping */
-.nav-links li {
-    white-space: nowrap; /* Prevents text from wrapping */
-}
-
-/* ✅ Reduce Spacing Between Tabs When Window Shrinks */
-@media (max-width: 900px) {
-    .nav-links {
-        gap: 10px; /* Reduces space between tabs */
-    }
-}
-
-/* ✅ Reduce Font Size Slightly for Small Screens */
-@media (max-width: 768px) {
-    .nav-links li a {
-        font-size: 16px; /* Slightly smaller text */
-    }
-}
-/* Gallery Section */
-.gallery {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-    padding-top: 20px; /* ✅ Adjusts top padding of gallery */
-    margin-top: 0; /* ✅ Ensures no unwanted space */
-}
-
-.gallery-container {
+  }
+  
+  .motto-left {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-}
-
-.gallery-item {
-    max-width: 300px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.gallery-item img {
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-}
-
-.gallery-caption {
-    font-size: 14px;
-    color: #555;
-    margin-top: 5px;
-}
-/* ✅ Gallery Layout */
-.gallery-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .motto-images {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-.gallery-img {
+    gap: 20px;
+  }
+  
+  .motto-image {
     width: 200px;
-    height: 150px;
-    object-fit: cover;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.gallery-img:hover {
+    height: auto;
+    transition: transform 0.3s ease;
+    z-index: 1;
+  }
+  
+  .motto-image:hover {
     transform: scale(1.05);
-}
+  }
+  
+  .motto-text p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 2;
+    text-align: left;
+  }
+  
+  .motto-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .motto-main-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+  
+  @media (max-width: 768px) {
+    .motto-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  
+    .motto-left {
+      align-items: center;
+    }
+  
+    .motto-images {
+      justify-content: center;
+    }
+  
+    .motto-text p {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
 
-/* ✅ Lightbox Styling */
-.lightbox {
-    display: none;
-    position: fixed;
+    
+  @media (max-width: 400px) {
+    .motto-image {
+        width: 100px;
+        height: auto;
+        transition: transform 0.3s ease;
+        z-index: 1;
+      }
+    }
+  
+  
+  
+  /* ================= About Section ================= */
+  .about-hero {
+    background: url('../images/about-hero.jpg') no-repeat center/cover;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .about-hero-overlay {
+    content: "";
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0) 70%);
+    z-index: 1;
+  }
+
+  .about-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 80px;
+  }
+  
+  .about-hero-logo {
+    max-width: 500px;
+    height: auto;
+    padding-top: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-hero {
+        height: 70vh;
+    }
+    .about-hero-content {
+      justify-content: center;
+      padding-left: 0;
+    }
+  
+    .about-hero-logo {
+      max-width: 250px;
+    }
+  }
+  
+  
+  .about-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 60px 20px;
+  }
+  
+  .about-image img {
+    width: 100%;
+  }
+  
+  @media (max-width: 900px) {
+    .about-intro {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+  
+  /* ================= Timeline ================= */
+  .sdg-goals {
+    background: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .sdg-image {
+    width: 100px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .sdg-image {
+      max-width: 300px;
+    }
+  }
+  
+  
+  .timeline {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .timeline-item {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+  }
+  
+  .timeline-item .year {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: var(--font-lg);
+  }
+  
+  .vision-section {
+    position: relative;
+    background: url('../images/test.jpeg') no-repeat center/cover;
+    color: var(--white);
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+  .vision-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(20, 75, 68, 0.9), rgba(20, 75, 68, 0.6));
+    z-index: 1;
+  }
+  
+  .vision-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .vision-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .vision-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .core-values {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .core-values li {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .vision-content h2 {
+      font-size: 2rem;
+    }
+  
+    .vision-content p {
+      font-size: 1rem;
+    }
+  
+    .core-values {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  /* ================= Gallery ================= */
+  
+  .gallery-section {
+    background: var(--light-bg);
+    padding: 60px 20px;
+
+  }
+  
+  .gallery-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+  }
+  
+  .gallery-hero {
+    position: relative;
+    height: 60vh;
+    background: url('../images/gallery-hero.jpeg') no-repeat center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-align: center;
+  }
+  
+  .gallery-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(20, 75, 68, 0.47), rgba(20, 75, 68, 0.6));
+    z-index: 1;
+  }
+  
+  .gallery-hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .gallery-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .gallery-description {
+    max-width: 800px;
+    margin: auto;
+    color: var(--white);
+  }
+  
+  .gallery-section {
+    padding: 60px 20px;
+  }
+  
+  .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .gallery-item {
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
     background: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
     flex-direction: column;
     z-index: 9999;
-}
-
-.lightbox-img {
-    max-width: 90%;
-    max-height: 80vh;
-    border-radius: 5px;
-}
-
-.close {
+  }
+  
+  .lightbox-controls {
+    margin-top: 10px;
+    color: var(--white);
+    font-size: 1.5rem;
+  }
+  
+  .close {
     position: absolute;
     top: 20px;
     right: 30px;
-    font-size: 30px;
-    color: white;
+    color: var(--white);
+    font-size: 2rem;
     cursor: pointer;
-}
-
-/* ✅ Navigation Arrows */
-.lightbox-controls {
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.prev, .next {
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    padding: 10px;
-}
-
-.prev {
-    position: absolute;
-    left: 20px;
-}
-
-.next {
-    position: absolute;
-    right: 20px;
-}
-
-/* ✅ Image Counter */
-.image-counter {
-    color: white;
-    font-size: 18px;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.see-more-container {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.see-more-link {
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    color: #144b44; /* ✅ Matches site theme */
-    transition: color 0.3s;
-}
-
-.see-more-link:hover {
-    color: #bbbf4d; /* ✅ Changes color on hover */
-}
-
-/* ✅ About Page Hero Section */
-.about-hero {
-    background: url("../images/about-hero-bg.jpg") no-repeat center center/cover;
-    text-align: center;
-    padding: 100px 20px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 250px; /* ✅ Pushes content down to clear the navbar */
-}
-
-.about-hero-content {
-    max-width: 800px;
-    background: rgba(0, 0, 0, 0.6); /* ✅ Subtle overlay for readability */
-    padding: 30px;
-    border-radius: 10px;
-}
-
-.about-hero h1 {
-    font-size: 3em;
-    font-weight: bold;
-}
-
-/* ✅ Who We Are & Mission Section */
-.about-intro {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 80px 10%;
-    gap: 40px;
-    padding: 80px 10%; /* ✅ Ensures space on both sides */
-    max-width: 1200px; /* ✅ Prevents it from going too wide */
-    margin: 0 auto; /* ✅ Centers it properly */
-}
-
-.about-intro-content {
-    flex: 1;
-}
-
-.about-image img {
-    max-width: 450px;
-    border-radius: 10px;
-    width: 100%; /* ✅ Ensures image does not overflow */
-}
-
-/* ✅ SDG Timeline Section */
-.sdg-goals {
-    background: #f9f9f9;
-    padding: 80px 10%;
-    text-align: center;
-    max-width: 1200px; /* ✅ Prevents overflow */
-    margin: 0 auto; /* ✅ Centers it properly */
-}
-
-.sdg-goals h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-}
-
-.timeline {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 30px;
-    flex-wrap: wrap; /* ✅ Ensures responsiveness */
-}
-
-.timeline-item {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    flex: 1;
-    min-width: 250px; /* ✅ Ensures items don’t shrink too much */
-    max-width: 320px; /* ✅ Prevents items from stretching too wide */
-}
-
-.timeline-item .year {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #bbbf4d;
-}
-
-/* ✅ Vision & Values Section */
-/* ✅ Full-width background with image */
-.vision-values {
-    width: 100vw; /* ✅ Ensures full viewport width */
-    max-width: 100%; /* ✅ Prevents any unwanted margins */
-    margin: 0 auto;
-    padding: 80px 20px; /* ✅ Keeps padding for spacing */
-    text-align: center;
-    background: linear-gradient(rgba(20, 75, 68, 0.6), rgba(20, 75, 68, 0.6)), 
-                url('../images/vision-bg.jpg') center/cover no-repeat; /* ✅ Adds image with tint */
-    color: white; /* ✅ Ensures text is readable */
-}
-
-/* ✅ Individual Vision & Value Cards */
-.vision-values .value-card {
-    background: rgba(255, 255, 255, 0.15); /* ✅ Adds subtle transparency effect */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 15px;
-}
-
-/* ✅ Responsive Fix for Mobile */
-@media (max-width: 768px) {
-    .vision-values {
-        padding: 50px 15px; /* ✅ Adjust padding for smaller screens */
-    }
-
-    .vision-values .value-card {
-        margin: 10px auto; /* ✅ Centers value cards properly */
-    }
-}
-.vision, .values {
-    flex: 1;
-}
-
-
-.values ul {
-    list-style: none;
-    padding: 0;
-}
-
-.values li {
-    margin-bottom: 10px;
-    font-size: 1.1em;
-}
-
-.values li::before {
-    content: "✔ ";
-    color: #bbbf4d;
-    font-weight: bold;
-}
-
-@media (max-width: 768px) {
-    .about-hero {
-        padding: 150px 20px 60px; /* ✅ Extra padding for mobile */
-    }
-}
-/* ✅ Responsive Fix for Mobile & Tablets */
-@media (max-width: 900px) {
-    .about-intro {
-        flex-direction: column; /* ✅ Stack content on mobile */
-        text-align: center;
-        padding: 60px 5%; /* ✅ Reduces side padding for smaller screens */
-    }
-
-    .about-image {
-        order: -1; /* ✅ Moves the image to the top on mobile */
-    }
-
-    .about-image img {
-        max-width: 80%; /* ✅ Keeps image at good size */
-        margin: 0 auto; /* ✅ Centers image */
-    }
-
-    .sdg-goals {
-        padding: 60px 5%; /* ✅ Adjusts padding for mobile */
-    }
-
-    .timeline {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .timeline-item {
-        max-width: 100%; /* ✅ Ensures it doesn't shrink too much */
-    }
-}
-
-.contact-page {
-    padding: 100px 20px;
-    background: url('../images/test.png') center; /* ✅ Adds image with tint */
-    font-family: 'Poppins', sans-serif;
-    padding-top: 160px; /* adjust depending on your navbar height */
-    padding-bottom: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 60px;
-    flex-wrap: wrap;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .contact-wrapper {
-    display: flex;
-    max-width: 1100px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    flex-wrap: wrap;
   }
   
-  .contact-info {
-    flex: 1;
-    background: #144b44;
-    color: white;
-    padding: 40px;
-    min-width: 300px;
+  .image-counter {
+    margin: 0 15px;
   }
   
-  .contact-info h2 {
-    font-size: 2em;
+  
+  .see-more-container {
+    text-align: center;
+    margin-top: 20px;
+   
+  }
+  
+  .see-more-link {
+    font-weight: 600;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
     margin-bottom: 20px;
   }
   
-  .contact-info p {
-    margin-bottom: 25px;
-    line-height: 1.6;
+  .see-more-link:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    
   }
   
-  .contact-info ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 30px;
+
+  /* ================= Contact Page ================= */
+  .contact-page {
+    padding: 100px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
   }
   
-  .contact-info li {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+  .contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    max-width: 1100px;
+  }
+  
+  .contact-info, .contact-form {
+    flex: 1 1 300px;
+    padding: 40px;
+  }
+  
+  .contact-info {
+    background: var(--primary-color);
+    color: var(--white);
   }
   
   .contact-info a {
-    color: #bbbf4d;
-    text-decoration: none;
+    color: var(--accent-color);
   }
   
-  .contact-info .social-links {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .social-icon {
-    font-size: 24px;
-    color: white;
-    transition: color 0.3s ease;
-  }
-  
-  .social-icon:hover {
-    color: #bbbf4d;
-  }
-  
-  .contact-form {
-    flex: 1;
-    padding: 40px;
-    min-width: 300px;
-  }
-  
-  .contact-form form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    padding: 15px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: inherit;
-  }
-  
-  .contact-form button.btn {
-    background-color: #bbbf4d;
-    color: #221b11;
-    padding: 14px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .contact-form button.btn:hover {
-    background-color: #5eae7c;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .contact-wrapper {
-      flex-direction: column;
-    }
-  
-    .contact-info,
-    .contact-form {
-      padding: 30px 20px;
-    }
-  }
-  .form-feedback {
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  .form-feedback.success { color: green; }
-  .form-feedback.error { color: red; }
-  
-  .donation-hero {
-    background: linear-gradient(rgba(20, 75, 68, 0.7), rgba(20, 75, 68, 0.7));
-    color: white;
-    text-align: center;
-    padding: 120px 20px 80px;
-}
-
-.donation-hero-content h1 {
-    font-size: 3em;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.donation-hero-content p {
-    font-size: 1.2em;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.donation-section {
-    background-color: #f9f9f9;
-    padding: 60px 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.donation-form-container {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.donation-form-container h2 {
-    font-size: 2em;
-    margin-bottom: 25px;
-    color: #144b44;
-    text-align: center;
-}
-
-.donation-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-}
-
-.donation-form input,
-.donation-form textarea {
+  .contact-form input, .contact-form textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1em;
-}
-
-.btn-donate {
-    background-color: #bbbf4d;
-    color: #221b11;
-    padding: 14px 25px;
+    border-radius: var(--radius);
+  }
+  
+  .contact-form button.btn {
+    background: var(--accent-color);
+    color: var(--text-color);
+    padding: 12px;
     border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .contact-form button.btn:hover {
+    background: var(--secondary-color);
+    color: var(--white);
+  }
+  
+  /* ================= Donation ================= */
+  .donation-form-container {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .donation-form-container h2 {
+    color: var(--primary-color);
+  }
+  
+  .btn-donate {
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 14px 25px;
+    border-radius: var(--radius);
     font-weight: bold;
-    font-size: 1.1em;
-    border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
-    width: 100%;
-}
-
-.btn-donate:hover {
-    background-color: #5eae7c;
-    color: white;
-}
-
-.gallery-hero {
-    text-align: center;
-    padding: 80px 20px 40px;
-    background-color: #f9f9f9;
-}
-
-.gallery-hero h1 {
-    font-size: 3em;
-    color: #144b44;
-    margin-bottom: 10px;
-}
-
-.gallery-hero p {
-    font-size: 1.1em;
-    color: #555;
-}
-
-.gallery-section {
-    padding: 40px 20px;
-    background: white;
-}
-
-.gallery-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.gallery-item {
-    max-width: 280px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.gallery-item img {
-    width: 100%;
+  }
+  
+  .btn-donate:hover {
+    background: var(--secondary-color);
+    color: var(--white);
+  }
+  .desktop-donate {
     display: block;
-}
+  }
+  
+  .mobile-donate {
+    display: none;
+  }
+  
+  @media (max-width: 1100px) {
+    .desktop-donate {
+      display: none;
+    }
+    .mobile-donate {
+      display: inline-block;
+    }
+  }
+  
+  }
+  
+  
+  /* ================= Events ================= */
 
-.gallery-caption {
-    text-align: center;
-    padding: 10px;
-    font-size: 0.95em;
-    color: #444;
-}
-.events-section {
-    padding: 60px 20px;
-    background: #f7f7f7;
-}
-
-.events-section h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #144b44;
-}
-
-.events-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .events-grid {
+    display: grid;
     gap: 30px;
-}
-
-.event-card {
-    background: white;
-    border-radius: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 60px 20px;
+  }
+  
+  .event-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     padding: 20px;
-    width: 300px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     text-align: center;
     transition: transform 0.2s;
-}
-
-.event-card:hover {
+  }
+  
+  .event-card:hover {
     transform: translateY(-5px);
-}
-
-.event-card img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.event-date {
-    font-weight: bold;
-    color: #5eae7c;
-    margin-bottom: 10px;
-}
+  }
   
-/* ✅ Footer Styling */
-/* ✅ Pre-Footer Donate Section */
-/* ✅ Full-Width Pre-Footer Section */
-.pre-footer {
-    background: #144b44;
-    color: white;
-    text-align: center;
-    padding: 10px 20px; /* ✅ Increased padding for better spacing */
+  .event-date {
+    color: var(--secondary-color);
+    font-weight: bold;
+  }
+  
+  /* ================= Footer ================= */
+  footer {
+    background: var(--dark-bg);
+    color: var(--white);
+    padding: 60px 20px;
+  }
+  
+  .footer-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+    align-items: start;
+  }
+  .footer-left,
+  .footer-center {
     display: flex;
-    justify-content: left; /* ✅ Centers content */
-    align-items: center;
-    width: 100vw; /* ✅ Ensures it spans the full width */
+    flex-direction: column;
+    gap: 20px;
+}
+.footer-right {
     max-width: 100%;
-    gap: 250px;
-
-}
-
-/* ✅ Larger Title */
-.pre-footer h2 {
-    font-size: 40px; /* ✅ Increased size */
-    font-weight: bold;
-    flex: none;
-    text-align: center;
-    margin-left: 250px;
-
-}
-
-/* ✅ Larger Donate Button & Centered */
-.pre-footer .btn-donate {
-    background: none;
-    border: 3px solid white; /* ✅ Thicker border */
-    color: white;
-    padding: 15px 30px; /* ✅ Increased padding for a bigger button */
-    font-size: 20px; /* ✅ Larger text */
-    text-decoration: none;
-    border-radius: 8px; /* ✅ Softer corners */
-    transition: background 0.3s, color 0.3s;
-    max-width: 15%;
-
-
-}
-
-.pre-footer .btn-donate:hover {
-    background: white;
-    color: #144b44;
-}
-
-@media (max-width: 768px) {
-    .pre-footer {
-      flex-direction: column;
-      text-align: center;
-      gap: 15px;
-      padding: 20px 10px;
-      align-items: center; /* ✅ Ensures child elements are centered */
-    }
-  
-    .pre-footer h2 {
-      font-size: 26px;
-      text-align: center;
-      margin: 0 auto; /* ✅ Centers the heading */
-    }
-  
-    .pre-footer .btn-donate {
-      font-size: 18px;
-      padding: 12px 25px;
-      margin-top: 10px;
-    }
+    width: 300px; /* Make image bigger */
+    height: auto;
+    margin-left: auto;
   }
 
 
-/* ✅ Footer Styling */
-footer {
-    background: #030202;
-    color: white;
-    padding: 60px 40px;
-    text-align: center;
-    position: relative;
-}
-
-/* ✅ Footer Container (More Space Between Left & Right) */
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 20px;
-    gap: 80px;
-    position: relative; /* ✅ Ensures the image is positioned correctly */
-    padding-right: 0;
-    margin-right: 0;
-}
-
-
-/* ✅ Left Section (About & Newsletter) */
-.footer-left {
-    flex: 1;
-    min-width: 350px;
-    text-align: left;
-}
-
-/* ✅ Right Section (Quick Links, Contacts, Social Media) */
-.footer-right {
-    flex: 1;
-    min-width: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 25px; /* ✅ Space between Quick Links, Contact Info & Social Media */
-}
-.footer-image {
-    position: absolute;
-    right: -40px; /* ✅ Pushes image fully to the right */
-    bottom: 0;
-    height: 100%; /* ✅ Ensures it spans the full footer height */
-    display: flex;
-    align-items: center; /* ✅ Keeps it vertically centered */
-    padding-right: 0;
-    margin-right: 0;
-    justify-content: flex-end;
-
-}
-
-.footer-image img {
-    height: 450px; /* ✅ Ensures it fills the footer height */
-    width: auto; /* ✅ Maintains aspect ratio */
-    object-fit: contain; /* ✅ Ensures it fits without distortion */
-    padding-bottom: 40px;
-}
-
-@media (max-width: 900px) {
-    .footer-image {
-        display: none !important; /* ✅ Hides the image on mobile & tablets */
-    }
-}
-
-
-
-
-/* ✅ Make Responsive */
-@media (max-width: 900px) {
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-image {
-        justify-content: center; /* ✅ Centers image on mobile */
-        margin-top: 20px;
-    }
-
-    .footer-image img {
-        max-width: 140px; /* ✅ Smaller on mobile */
-    }
-}
-/* ✅ Titles in Footer Are Now Larger */
-.footer-container h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    font-weight: bold;
-}
-
-/* ✅ Quick Links (Evenly Spaced in Two Rows) */
-.quick-links-row {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 5px;
-}
-.quick-links ul {
-    display: flex;
-    flex-wrap: wrap; /* ✅ Allows wrapping when screen is smaller */
-    gap: 20px; /* ✅ Adds space between links */
+  
+  .footer-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-.quick-links li {
-    display: inline-block;
-    text-align: center;
-    flex: 1 1 30%; /* ✅ Keeps them in 2 columns on smaller screens */
-}
-
-/* ✅ Stack them properly on mobile */
-@media (max-width: 600px) {
-    .quick-links ul {
-        flex-direction: column;
-        align-items: center; /* ✅ Centers links when stacked */
-    }
-
-    .quick-links li {
-        width: 100%; /* ✅ Ensures full width for smaller screens */
-    }
-}
-
-
-
-
-
-.footer-links ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-
-.footer-links ul li a:hover {
-    color: #bbbf4d;
-}
-
-/* ✅ Contact Info */
-.footer-contact {
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.footer-contact p {
-    margin: 5px 0;
-}
-
-.footer-contact a {
-    color: #bbbf4d;
+  }
+  
+  .footer-links ul li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-links ul li a {
+    color: var(--accent-color);
     text-decoration: none;
     transition: color 0.3s;
-}
-
-.footer-contact a:hover {
-    color: #5eae7c;
-}
-
-/* ✅ Newsletter Subscription (More Space Below) */
-.footer-newsletter {
-    margin-top: 25px;
-    margin-bottom: 30px;
-}
-
-.footer-newsletter input {
-    width: 80%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.footer-newsletter button {
-    background: #bbbf4d;
-    color: #221b11;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.footer-newsletter button:hover {
-    background: #5eae7c;
-}
-
-/* ✅ Social Media Icons */
-.footer-social .social-icons {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-}
-
-.footer-social .social-icon {
-    font-size: 22px;
-    color: white;
-    transition: color 0.3s;
-}
-
-.footer-social .social-icon:hover {
-    color: #bbbf4d;
-}
-
-/* ✅ Copyright Section */
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 15px;
-    font-size: 14px;
-    margin-top: 20px;
-}
-
-/* ✅ Responsive Footer */
-@media (max-width: 768px) {
-    .pre-footer {
-        text-align: center; /* ✅ Centers text */
-        flex-direction: column; /* ✅ Stacks elements */
-        gap: 15px; /* ✅ Adds spacing */
-        padding: 20px 10px; /* ✅ Adjusts padding */
-    }
-
-    .pre-footer .donate-btn {
-        margin-top: 10px; /* ✅ Adds spacing between text & button */
-    }
-
-    .pre-footer h2 {
-        text-align: center;
-        padding: 0;
-        gap: 0;
-    }
-
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 30px;
   }
-
-  .footer-left {
-    text-align: center;
-    padding: 0 20px;
-    width: auto; /* ✅ Keeps it centered */
+  
+  .footer-links ul li a:hover {
+    color: var(--secondary-color);
   }
-
-  .footer-right {
-    width: 100%;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .quick-links ul {
-    justify-content: center;
-    text-align: center;
-    padding-left: 0;
-  }
-
-  .quick-links li {
-    flex: none;
-    width: auto;
-  }
-
   .footer-contact {
+    margin-top: 10px;
+  }
+  
+  .footer-contact a {
+    color: var(--accent-color);
+    transition: color 0.3s;
+  }
+  
+  .footer-contact a:hover {
+    color: var(--secondary-color);
+  }
+  
+  @media (max-width: 900px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  
+    .footer-right img {
+      margin: 0 auto;
+      max-width: 300px;
+    }
+  }
+  
+  .footer-contact a, .footer-links a {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover, .footer-contact a:hover {
+    color: var(--secondary-color);
+  }
+  
+  .footer-bottom {
     text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: var(--font-sm);
+  }
+
+  .quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .footer-newsletter form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-newsletter input[type="email"] {
+    padding: 10px;
+    border-radius: var(--radius);
+    border: none;
+    max-width: 250px; /* Reduced width */
+  }
+  
+  .footer-newsletter button {
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.3s;
+    max-width: 250px;
+  }
+  
+  .footer-newsletter button:hover {
+    background: var(--secondary-color);
+    color: var(--white);
+  }
+  
+  .footer-image img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
   }
 
   .footer-social .social-icons {
-    justify-content: center;
-  }
-}
-
-.social-icons {
     display: flex;
-    gap: 15px; /* ✅ Spacing between icons */
-}
-
-.social-link {
-    font-size: 24px; /* ✅ Icon size */
-    color: white; /* ✅ Default white */
-    transition: color 0.3s ease-in-out;
-}
-
-.social-link:hover {
-    color: var(--hover-color); /* ✅ Change to their respective colors */
-}
-
-/* ✅ Custom Hover Colors */
-.social-link:nth-child(1):hover { color: #1877F2; } /* Facebook */
-.social-link:nth-child(2):hover { color: #d2d2d2; } /* Twitter/X */
-.social-link:nth-child(3):hover { color: #E4405F; } /* Instagram */
-.social-link:nth-child(4):hover { color: #0077B5; } /* LinkedIn */
-.social-link:nth-child(5):hover { color: #BD081C; } /* Pinterest */
-.social-link:nth-child(6):hover { color: #FF0000; } /* YouTube */
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .footer-social .social-link i {
+    font-size: 22px; /* 👈 Increase size */
+    color: var(--white);
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .footer-social .social-link:hover i {
+    color: var(--accent-color);
+    transform: scale(1.2);
+  }
+  
+  @media (max-width: 768px) {
+    .footer-newsletter form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-newsletter input {
+      width: 80%;
+      max-width: 300px;
+      margin-bottom: 5px;
+    }
+  
+    .footer-newsletter button {
+      width: 300px;
+    }
+  
+    .footer-social .social-icons {
+      justify-content: center;
+      margin-top: 20px;
+    }
+  }
+  
+  
+  .pre-footer {
+    background: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 30px 20px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  
+  .pre-footer h2 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  
+  .pre-footer .btn-donate {
+    max-width: 200px;
+    padding: 12px 20px;
+    border-radius: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .pre-footer {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  
+  /* ================= Dark Mode Toggle ================= */
+  .toggle-theme {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 10px 15px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    z-index: 9999;
+  }
+  
+  .toggle-theme:hover {
+    background: var(--secondary-color);
+  }
+  
+  /* ================= Utilities ================= */
+  .btn {
+    background: var(--accent-color);
+    color: var(--text-color);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .btn:hover {
+    background: var(--secondary-color);
+    color: var(--white);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+  }
+  
+  .section {
+    padding: 60px 0;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
