@@ -27,3 +27,14 @@ if os.environ.get("CREATE_SUPERUSER", "false") == "true":
             print("✅ Superuser created successfully!")
     except Exception as e:
         print(f"Superuser creation failed: {e}")
+
+if os.environ.get("RESET_SUPERUSER", "false") == "true":
+    from django.contrib.auth import get_user_model
+    try:
+        User = get_user_model()
+        user = User.objects.get(username="admin")
+        user.set_password("3981haniwai")  # or whatever you want
+        user.save()
+        print("✅ Superuser password reset successfully")
+    except User.DoesNotExist:
+        print("❌ Superuser does not exist")
