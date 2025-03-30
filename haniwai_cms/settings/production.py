@@ -2,28 +2,30 @@ from .base import *
 import dj_database_url
 
 INSTALLED_APPS += [
-    'cloudinary',
-    'cloudinary_storage',
+    "cloudinary",
+    "cloudinary_storage",
 ]
 
-# Cloudinary Storage Settings
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
-# Static files
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Media files (not needed because Cloudinary manages them)
-MEDIA_URL = ""
+# No MEDIA_URL needed (Cloudinary handles media)
 
-# Database
 DATABASES = {
     "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
