@@ -3,13 +3,6 @@ import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import os
-from django.contrib.auth import get_user_model
-
-if os.environ.get("CREATE_SUPERUSER", "false") == "true":
-    User = get_user_model()
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser("admin", "fmyoung96@gmail.com", "3981haniwai")
 
 
 INSTALLED_APPS += [
