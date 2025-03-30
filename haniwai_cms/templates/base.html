@@ -9,6 +9,9 @@
     <title>{% block title %}Haniwai NGO{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Glide.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+
 </head>
 <body>
 
@@ -19,7 +22,7 @@
                 <a href="/partners">Partners</a> | <a href="/faqs">FAQs</a>
             </div>
             <div class="top-nav-right">
-                <span>Email: info@haniwai.org</span> | <span>Phone: +123-456-7890</span>
+                <span>Email: info@haniwai.org</span> | <span>Phone: (+675) 7206 7138 / 7873 0275</span>
             </div>
         </div>
     </div>
@@ -41,8 +44,7 @@
                 </div>
 
                 <div class="nav-actions">
-                    <a href="/donate-now/" class="donate-btn mobile-donate {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart">♥</span></a>
-                    <div class="menu-toggle">
+                  <a href="/donate-now/" class="donate-btn mobile-only {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart">♥</span></a>                    <div class="menu-toggle">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -71,10 +73,13 @@
     </main>
 
     <!-- ✅ Pre-Footer Donate Section -->
+    {% block prefooter %}
     <section class="pre-footer">
         <h2>Help Us Reach Our Goals</h2>
-        <a href="/donate-now/" class="btn-donate">DONATE</a>
+        <a href="/donate-now/" class="footer-donate-btn">DONATE</a>
     </section>
+    {% endblock %}
+    
 
     <!-- ✅ Footer -->
     <footer>
@@ -182,6 +187,55 @@
     </script>
 
     <script src="{% static 'js/script.js' %}"></script>
+
+    <!-- Glide.js JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new Glide('.glide', {
+        type: 'carousel',
+        perView: 1,
+        autoplay: 3000,
+        hoverpause: true,
+        animationDuration: 800,
+      }).mount();
+    });
+  </script>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const message = document.getElementById("form-message");
+  
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const formData = new FormData(form);
+  
+      fetch("https://formspree.io/f/xyzedndw", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            message.textContent = "✅ Message sent successfully!";
+            message.style.color = "green";
+            form.reset();
+          } else {
+            message.textContent = "❌ Oops! Something went wrong.";
+            message.style.color = "red";
+          }
+        })
+        .catch(() => {
+          message.textContent = "❌ Could not send message.";
+          message.style.color = "red";
+        });
+    });
+  </script>
+  
+  
 
 </body>
 </html>

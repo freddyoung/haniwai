@@ -31,11 +31,34 @@ class HomePage(Page):
         ], heading="Gallery Section"),
     ]
 
-    def get_context(self, request):
-        """✅ Pass the GalleryPage object to the template"""
-        context = super().get_context(request)
-        context["gallery_page"] = self.gallery_page  # ✅ Ensure it's available in the template
-        return context
+from django.core.paginator import Paginator
+from django.db.models import Q
+
+def get_context(self, request):
+    context = super().get_context(request)
+
+    homepage = HomePage.objects.first()
+    images = homepage.gallery_images.all()
+
+    # Search Logic
+    query = request.GET.get("q")
+    if query:
+        images = images.filter(
+            Q(image__title__icontains=query) |
+            Q(image__tags__name__icontains=query) |
+            Q(image__description__icontains=query)
+        ).distinct()
+
+    # Pagination
+    paginator = Paginator(images, 20)  # 20 per page
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    context["gallery_images"] = page_obj
+    context["query"] = query
+
+    return context
+
 
 
 class GalleryImage(models.Model):
@@ -67,7 +90,14 @@ class GalleryPage(Page):
 
         # Get gallery images from HomePage (assumes only one homepage)
         homepage = HomePage.objects.first()
-        context["gallery_images"] = homepage.gallery_images.all()
+        images = homepage.gallery_images.select_related('image').all()
+        search_query = request.GET.get('q')
+        if search_query:
+            images = images.filter(
+                models.Q(image__title__icontains=search_query) |
+                models.Q(caption__icontains=search_query)
+            )
+        context["gallery_images"] = images
 
         return context
 

@@ -7,60 +7,35 @@
   <div class="contact-wrapper">
     <!-- Contact Info -->
     <div class="contact-info">
-      <h2>Contact Us</h2>
-      <p>Have questions or want to get involved? We'd love to hear from you.</p>
-      
+      <h2>We Would Love To Hear From You!</h2>
+      <p>Have questions, suggestions, or want to get involved? We'd love to hear from you. Please fill in your details and shoot messege us, we'll get back to you shortly.</p>
+
       <ul>
-        <li><strong>📍 Address:</strong> 123 Greenway Avenue, Eco City, Earth</li>
+        <li><strong>📍 Address:</strong> 123 Greenway Avenue, Port Moresby, PNG</li>
         <li><strong>📞 Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></li>
         <li><strong>✉️ Email:</strong> <a href="mailto:info@haniwai.org">info@haniwai.org</a></li>
       </ul>
 
       <div class="social-links">
-        <a href="#" class="social-icon">🌐</a>
-        <a href="#" class="social-icon">📘</a>
-        <a href="#" class="social-icon">📸</a>
+        <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
       </div>
+      
     </div>
 
     <!-- Contact Form -->
     <div class="contact-form">
-      <form action="/contact/" method="POST">
-        {% csrf_token %}
-
-        {% if messages %}
-          {% for message in messages %}
-            <p class="form-feedback {{ message.tags }}">{{ message }}</p>
-          {% endfor %}
-        {% endif %}
-        {% if messages %}
-        {% for message in messages %}
-            <p class="form-feedback {{ message.tags }}">{{ message }}</p>
-        {% endfor %}
-        {% endif %}
-
-
+      <form id="contact-form">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit" class="btn">Send Message</button>
+        <p id="form-message" class="form-feedback"></p>
       </form>
+      <p class="form-privacy">Your information will only be used to respond to your message.</p>
     </div>
-  </div>
-</section>
+    
 
-<div class="map-container">
-    <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126082.30744264849!2d147.061645!3d-9.4433805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x686cfb8b0b2074e3%3A0x7c8716a0bfae47b1!2sPort%20Moresby!5e0!3m2!1sen!2spg!4v1711012345678"
-    width="100%"
-    height="400"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-  ></iframe>
-  
-  </div>
-  
 
 {% endblock %}

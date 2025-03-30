@@ -3,31 +3,48 @@
 {% block title %}Donate Now - Haniwai NGO{% endblock %}
 
 {% block content %}
-<section class="donation-hero">
-    <div class="donation-hero-content">
-        <h1>Support Our Mission</h1>
-        <p>Your donation helps us preserve, protect, and transform lives across Papua New Guinea.</p>
-    </div>
-</section>
 
 <section class="donation-section">
-    <div class="donation-form-container">
-        <h2>Make a Donation</h2>
-        <form action="#" method="POST" class="donation-form">
-            <label for="amount">Donation Amount (PGK)</label>
-            <input type="number" name="amount" id="amount" placeholder="Enter amount" required>
-
-            <label for="name">Full Name</label>
-            <input type="text" name="name" id="name" placeholder="Your name" required>
-
-            <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" placeholder="Your email" required>
-
-            <label for="message">Optional Message</label>
-            <textarea name="message" id="message" rows="4" placeholder="Leave a message..."></textarea>
-
-            <button type="submit" class="btn-donate">Proceed to Payment</button>
-        </form>
+  <div class="donation-info-container">
+    <h2>Your Donation Means the World</h2>
+    <p>Your generous support helps us continue providing shelter, protection, and empowerment to women and marginalized communities in Papua New Guinea.</p>
+  
+    <div class="bank-details">
+      <h3>📄 Bank Transfer Information</h3>
+      <ul>
+        <li><strong>Bank Name:</strong> PNG National Bank</li>
+        <li><strong>Account Name:</strong> Humanity & Nature Indigenous Women's Association</li>
+        <li><strong>BSB:</strong> 123-456</li>
+        <li><strong>Account Number:</strong> 987654321</li>
+        <li><strong>SWIFT Code:</strong> PNGNPGPM</li>
+      </ul>
+      <p>Please include your name as reference when donating.</p>
     </div>
+  
+    <div class="donation-note">
+      <p>Once you've made your donation, kindly email us at <a href="mailto:info@haniwai.org">info@haniwai.org</a> so we can acknowledge your support and send you a receipt.</p>
+    </div>
+  </div>
+  
 </section>
+
+<section class="donation-impact">
+  <h2>Where Your Donations Go</h2>
+  <div class="impact-items">
+    <div class="impact-item">
+      <h3>🏠 Safe Shelters</h3>
+      <p>We provide secure accommodation and care for women and children escaping violence and unsafe conditions.</p>
+    </div>
+    <div class="impact-item">
+      <h3>🍲 Food & Essentials</h3>
+      <p>Your donation helps provide daily meals, clothing, and basic necessities to families in need.</p>
+    </div>
+    <div class="impact-item">
+      <h3>📚 Education & Advocacy</h3>
+      <p>We offer training programs, education, and legal advocacy to empower women and marginalized communities.</p>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
+{% block prefooter %}{% endblock %}

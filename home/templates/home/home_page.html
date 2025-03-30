@@ -29,7 +29,7 @@
       </div>
   
       <div class="motto-right">
-        <img src="{% static 'images/motto.png' %}" alt="Motto Image" class="motto-main-image">
+        <img src="{% static 'images/trad-women.jpeg' %}" alt="Motto Image" class="motto-main-image">
       </div>
     </div>
   </section>
@@ -37,41 +37,33 @@
 
   <section class="gallery-section">
     <div class="container">
-        <h2 class="text-center">Our Gallery</h2>
-
-        <div class="gallery-container">
-            {% for image in page.gallery_images.all|slice:":8" %}
-                <div class="gallery-item">
-                    <img src="{{ image.image.file.url }}" 
-                         alt="{{ image.caption }}" 
-                         class="gallery-img"
-                         data-index="{{ forloop.counter0 }}">
-                </div>
+      <h2 class="text-center">Gallery</h2>
+      <div class="glide homepage-glide">
+      <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides">
+            {% for image in page.gallery_images.all|slice:":3" %}
+              <li class="glide__slide">
+                <img src="{{ image.image.file.url }}" alt="{{ image.caption }}">
+              </li>
             {% endfor %}
+          </ul>
         </div>
-
-        <div class="see-more-container">
-            {% if page.gallery_page %}
-                <a href="{% pageurl page.gallery_page %}" class="see-more-link">See More →</a>
-            {% endif %}
+  
+        <div class="glide__bullets" data-glide-el="controls[nav]">
+          <button class="glide__bullet" data-glide-dir="=0"></button>
+          <button class="glide__bullet" data-glide-dir="=1"></button>
+          <button class="glide__bullet" data-glide-dir="=2"></button>
         </div>
-
-        <!-- ✅ Lightbox Modal -->
-        <div id="lightbox" class="lightbox">
-            <span class="close">&times;</span>
-            <img id="lightbox-img" class="lightbox-img" src="" alt="">
-            <div class="lightbox-controls">
-                <span class="prev">&lt;</span>
-                <span id="image-counter" class="image-counter"></span>
-                <span class="next">&gt;</span>
-            </div>
-        </div>
-        <div class="see-more-container">
-            <a href="/gallery/" class="see-more-link">See More →</a>
-        </div>
+      </div>
     </div>
-
-</section>
+  
+      <div class="see-more-container">
+        <a href="/gallery/" class="see-more-link">See More →</a>
+      </div>
+    </div>
+  </section>
+  
 
 
 <script>
