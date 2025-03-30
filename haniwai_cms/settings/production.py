@@ -10,9 +10,9 @@ INSTALLED_APPS += [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('dnjriqqg6'),
-    'API_KEY': os.getenv('838562369428849'),
-    'API_SECRET': os.getenv('EYKWNAX4WXir_BkgE7HumndFzYc'),
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
     'SECURE': True, 
     'UPLOAD_PREFIX': 'haniwai',
 }
@@ -20,7 +20,8 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = 'https://res.cloudinary.com/{}/'.format(os.getenv('CLOUDINARY_CLOUD_NAME'))
+MEDIA_URL = f"https://res.cloudinary.com/{os.getenv('CLOUDINARY_CLOUD_NAME')}/"
+
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 
