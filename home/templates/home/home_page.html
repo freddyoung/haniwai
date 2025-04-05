@@ -1,69 +1,204 @@
 {% extends "base.html" %}
 {% load static %} 
 {% block title %}Home - Haniwai NGO{% endblock %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 <section class="hero">
     <div class="hero-content">
-        <h1>Join Us In Making A Difference</h1>
-        <p>Together, we can create a safe world for our indigenous sisters and a sustainable environment for all.</p>
-        <a href="/donate-now/" class="btn"><b>DONATE</b></a>
+        <h1>Empowering Indigenous Women, Preserving Our Land.</h1>
+        <p>HANIWAI drives indigenous-led solutions for gender equality, cultural preservation, and sustainable development across Papua New Guinea.
+          and the broader Pacific. Together, we can create a safe world for our indigenous sisters and a sustainable environment for all.
+        </p>
+        <a href="/about/" class="btn"><b>LEARN MORE</b></a>
     </div>
 </section>
 
+<section class="values-section">
+  <div class="values-container">
+    
+    <!-- Preserve -->
+    <div class="value-box fade-in-up" 
+         data-title="Preserve Our Heritage"
+         data-subtitle="Cultural and Environmental Stewardship"
+         data-description="We work to safeguard ancestral lands, traditional knowledge, and biodiversity. 
+By preserving our stories, languages, and ecosystems, we ensure resilience for future generations. 
+Let’s honor and protect what sustains us."
+         data-icon="{% static 'images/leaf-heart.png' %}">
+      <div class="icon-wrapper">
+        <img src="{% static 'images/icon-3.png' %}" alt="Icon" class="value-icon icon-default">
+        <img src="{% static 'images/icon-1.png' %}" alt="Icon Hover" class="value-icon icon-hover">
+      </div>
+      <span>Preserve<p>OUR ENVIRONMENT</p></span>
+    </div>
+
+    <!-- Protect -->
+    <div class="value-box fade-in-up" 
+         data-title="Protect Indigenous Women"
+         data-subtitle="Safety, Advocacy, and Empowerment"
+         data-description="We create safe spaces and amplify indigenous women’s voices in decision-making. 
+Through community advocacy and legal support, we defend against violence and marginalization. 
+Protection is a human right — not a privilege."
+         data-icon="{% static 'images/shield-plus.png' %}">
+      <div class="icon-wrapper">
+        <img src="{% static 'images/icon-3.png' %}" alt="Icon" class="value-icon icon-default">
+        <img src="{% static 'images/icon-1.png' %}" alt="Icon Hover" class="value-icon icon-hover">
+      </div>
+      <span>Protect<p>OUR INDIGENOUS WOMEN</p></span>
+    </div>
+
+    <!-- Transform -->
+    <div class="value-box fade-in-up" 
+         data-title="Transform Our Communities"
+         data-subtitle="Growth, Innovation, and Healing"
+         data-description="We invest in sustainable livelihoods, leadership, and education. 
+Transformation means empowering people to shape their own futures. 
+Together, we’re building strong, equitable, and thriving communities."
+         data-icon="{% static 'images/heart-hand.png' %}">
+      <div class="icon-wrapper">
+        <img src="{% static 'images/icon-3.png' %}" alt="Icon" class="value-icon icon-default">
+        <img src="{% static 'images/icon-1.png' %}" alt="Icon Hover" class="value-icon icon-hover">
+      </div>
+      <span>Transform<p>OUR COMMUNITIES</p></span>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<div class="value-lightbox hidden">
+  <div class="value-lightbox-content">
+    <div class="lightbox-icon-wrapper">
+      <img src="" alt="Icon" class="lightbox-icon"> <!-- leave empty -->
+    </div>
+    <span class="close-lightbox">&times;</span>
+    <h3 class="lightbox-title"></h3>
+    <h4 class="lightbox-subtitle"></h4>
+    <p class="value-description"></p>
+  </div>
+</div>
+
+
 
 <section class="motto-section">
-    <div class="motto-container">
-      <div class="motto-left">
-        <div class="motto-images">
-          <img src="{% static 'images/preserve.png' %}" alt="Preserve" class="motto-image">
-          <img src="{% static 'images/protect.png' %}" alt="Protect" class="motto-image">
-          <img src="{% static 'images/transform.png' %}" alt="Transform" class="motto-image">
-        </div>
-        <div class="motto-text">
-          <p>
-            At Haniwai, we are dedicated to preserving indigenous culture and heritage, protecting the rights of indigenous women, marginalized communities, and our environment, and transforming lives and communities for a sustainable and equitable future.
-          </p>
-        </div>
-      </div>
-  
-      <div class="motto-right">
-        <img src="{% static 'images/trad-women.jpeg' %}" alt="Motto Image" class="motto-main-image">
-      </div>
+  <div class="motto-container">
+    <div class="motto-left">
+      <h2>Human and Nature Indigenous Women's Association Inc.</h2>
+      <p>
+        At Haniwai, we are dedicated to preserving indigenous culture and heritage, protecting the rights of indigenous women, marginalized communities, and our environment, and transforming lives and communities for a sustainable and equitable future.
+      </p>
+      <a href="/about/" class="learn-more-link fade-in-up">More About Us </a>
     </div>
-  </section>
-  
 
-  <section class="gallery-section">
-    <div class="container">
-      <h2 class="text-center">Gallery</h2>
-      <div class="glide homepage-glide">
-      <div class="glide">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides">
-            {% for image in page.gallery_images.all|slice:":3" %}
-              <li class="glide__slide">
-                <img src="{{ image.image.file.url }}" alt="{{ image.caption }}">
-              </li>
-            {% endfor %}
-          </ul>
+    <div class="motto-right">
+      <div class="motto-image-wrapper">
+        <img src="{% static 'images/trad-women.jpeg' %}" alt="Motto Image" class="motto-main-image">
+        <div class="motto-overlay"></div>
+        <img src="{% static 'images/haniwa_logo.png' %}" alt="NGO Logo" class="motto-logo-overlay">
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section class="goals-section">
+  <div class="goals-overlay">
+    <div class="goals-content">
+      <h2 class="fade-in-up">Our Goals</h2>
+      <p class="fade-in-down">We are working towards a future where women, culture, and the land thrive together.</p>      
+      <div class="goals-list">
+        <div class="goal-item fade-in-left">
+          <img src="{% static 'images/edu-icon.png' %}" alt="Education Icon" class="goal-icon">
+          <div>
+            <h3>Empower Through Education</h3>
+            <p>Deliver culturally-relevant education and leadership opportunities for indigenous women and youth.</p>
+          </div>
         </div>
-  
-        <div class="glide__bullets" data-glide-el="controls[nav]">
-          <button class="glide__bullet" data-glide-dir="=0"></button>
-          <button class="glide__bullet" data-glide-dir="=1"></button>
-          <button class="glide__bullet" data-glide-dir="=2"></button>
+        <div class="goal-item fade-in-left">
+          <img src="{% static 'images/indi-icon.png' %}" alt="Rights Icon" class="goal-icon">
+          <div>
+            <h3>Protect Indigenous Rights</h3>
+            <p>Strengthen legal advocacy and safety initiatives to ensure gender equity and indigenous justice.</p>
+          </div>
+        </div>
+        <div class="goal-item fade-in-left">
+          <img src="{% static 'images/env-icon.png' %}" alt="Environment Icon" class="goal-icon">
+          <div>
+            <h3>Preserve Land & Heritage</h3>
+            <p>Support sustainable land stewardship rooted in ancestral knowledge and ecological balance.</p>
+          </div>
         </div>
       </div>
     </div>
-  
-      <div class="see-more-container">
-        <a href="/gallery/" class="see-more-link">See More →</a>
+  </div>
+</section>
+
+
+
+<section class="home-news">
+  <h2 class="section-heading fade-in-up">Latest news and events</h2>
+  <div class="news-preview-grid fade-in-up">
+    {% for post in latest_news %}
+      <div class="news-preview-card">
+        <a href="{{ post.url }}">
+          {% if post.image %}
+            <div class="news-preview-img">
+              {% image post.image fill-400x200 %}
+              <div class="news-type-label">
+                {{ post.category|title }}
+              </div>
+            </div>
+          {% endif %}
+          <div class="news-preview-info">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.intro }}</p>
+            <span class="news-preview-date">{{ post.date }}</span>
+          </div>
+        </a>
       </div>
+    {% endfor %}
+  </div>
+
+  <div class="see-more-container fade-in-up">
+    <a href="/events/" class="see-more-link">More Updates</a>
+  </div>
+</section>
+
+
+
+<section class="custom-gallery-section">
+  <div class="gallery-scroll-wrapper">
+    <div class="image-track">
+      {% for image in page.gallery_images.all|slice:":10" %}
+        <div class="gallery-slide">
+          <img src="{{ image.image.file.url }}" alt="{{ image.caption }}" />
+        </div>
+      {% endfor %}
+
+      <!-- ✅ Duplicate images for smooth loop -->
+      {% for image in page.gallery_images.all|slice:":10" %}
+        <div class="gallery-slide clone">
+          <img src="{{ image.image.file.url }}" alt="{{ image.caption }}" />
+        </div>
+      {% endfor %}
     </div>
-  </section>
-  
+  </div>
+
+  <div class="gallery-side-link">
+    <a href="/gallery/">
+      <h3>The Journey.</h3>
+    </a>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="gallery-lightbox hidden">
+  <span class="gallery-lightbox-close">&times;</span>
+  <img class="gallery-lightbox-img" src="" alt="Gallery Full View" />
+</div>
+
 
 
 <script>
@@ -88,3 +223,114 @@
 
 
 {% endblock %}
+{% block extra_js %}
+<script>
+  const lightbox = document.querySelector('.value-lightbox');
+  const lightboxDescription = document.querySelector('.value-description');
+  const lightboxTitle = document.querySelector('.lightbox-title');      // New
+  const lightboxSubtitle = document.querySelector('.lightbox-subtitle'); // New
+  const lightboxIcon = document.querySelector('.lightbox-icon');
+  const closeLightbox = document.querySelector('.close-lightbox');
+
+  const boxes = document.querySelectorAll('.value-box');
+
+  boxes.forEach(box => {
+    box.addEventListener('click', () => {
+      const desc = box.getAttribute('data-description');
+      const iconSrc = box.getAttribute('data-icon');
+      const title = box.getAttribute('data-title');           // New
+      const subtitle = box.getAttribute('data-subtitle');     // New
+
+      lightboxDescription.textContent = desc;
+      lightboxTitle.textContent = title;                      // New
+      lightboxSubtitle.textContent = subtitle;                // New
+      lightboxIcon.setAttribute('src', iconSrc);
+
+      // 💥 Reset animation
+      const content = document.querySelector('.value-lightbox-content');
+      content.classList.remove('animate');
+      void content.offsetWidth; // Trigger reflow
+      content.classList.add('animate');
+
+      lightbox.classList.remove('hidden');
+    });
+  });
+
+  closeLightbox.addEventListener('click', () => {
+    lightbox.classList.add('hidden');
+    lightboxIcon.setAttribute('src', '');
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add('hidden');
+      lightboxIcon.setAttribute('src', '');
+    }
+  });
+</script>
+
+<script>
+  const track = document.querySelector('.image-track');
+  const wrapper = document.querySelector('.gallery-scroll-wrapper');
+
+  // Pause on hover
+  wrapper.addEventListener('mouseenter', () => {
+    track.style.animationPlayState = 'paused';
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    track.style.animationPlayState = 'running';
+  });
+
+  // Lightbox functionality
+  const images = document.querySelectorAll('.gallery-slide img');
+  const lightbox = document.querySelector('.gallery-lightbox');
+  const lightboxImg = document.querySelector('.gallery-lightbox-img');
+  const closeBtn = document.querySelector('.gallery-lightbox-close');
+
+  images.forEach((img) => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.remove('hidden');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.classList.add('hidden');
+    lightboxImg.src = '';
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add('hidden');
+      lightboxImg.src = '';
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const animatedItems = document.querySelectorAll(".fade-in-up, .fade-in-down, .fade-in-left, .goal-item");
+
+    function animateOnScroll() {
+      animatedItems.forEach(item => {
+        const itemTop = item.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+
+        if (itemTop < screenHeight - 100) {
+          item.classList.add("visible");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", animateOnScroll);
+    animateOnScroll(); // Initial run
+  });
+</script>
+
+
+
+
+
+{% endblock %}
+

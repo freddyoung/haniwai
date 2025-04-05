@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Glide.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="icon" href="{% static 'images/haniwa_logo.ico' %}" type="image/x-icon">
+
 
 </head>
 <body>
@@ -26,6 +28,7 @@
             </div>
         </div>
     </div>
+    <div class="menu-backdrop"></div>
 
     <!-- ✅ Main Navbar -->
     <header>
@@ -44,7 +47,7 @@
                 </div>
 
                 <div class="nav-actions">
-                  <a href="/donate-now/" class="donate-btn mobile-only {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart">♥</span></a>                    <div class="menu-toggle">
+                  <a href="/donate-now/" class="donate-btn mobile-only {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart"></span></a>                    <div class="menu-toggle">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -56,11 +59,12 @@
             
                 <ul class="nav-links">
                     <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                    <li><a href="/about-us/" class="{% if request.path == '/about-us/' %}active{% endif %}">About Us</a></li>
-                    <li><a href="/gallery/" class="{% if request.path == '/gallery/' %}active{% endif %}">Our Gallery</a></li>
+                    <li><a href="/about-us/" class="{% if request.path == '/about-us/' %}active{% endif %}">Who We Are</a></li>
+                    <li><a href="/gallery/" class="{% if request.path == '/gallery/' %}active{% endif %}">Gallery</a></li>
                     <li><a href="/events/" class="{% if request.path == '/events/' %}active{% endif %}">News & Events</a></li>
-                    <li><a href="/contact/" class="{% if request.path == '/contact/' %}active{% endif %}">Contact Us</a></li>
-                    <li class="desktop-donate"><a href="/donate-now/" class="donate-btn {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart">♥</span></a></li>                    <li class="mobile-only"><a href="/partners">Partners</a></li>
+                    <li><a href="/contact/" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
+                    <li class="desktop-donate"><a href="/donate-now/" class="donate-btn {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart"></span></a></li>                    
+                    <li class="mobile-only"><a href="/partners">Partners</a></li>
                     <li class="mobile-only"><a href="/faqs">FAQs</a></li>  
                 </ul>
             </div>
@@ -105,7 +109,7 @@
               <div class="quick-links-grid">
                 <ul>
                     <li><a href="/faqs/">FAQs</a></li>
-                  <li><a href="/about-us/">About Us</a></li>
+                  <li><a href="/about-us/">Who We Are</a></li>
                   <li><a href="/gallery/">Gallery</a></li>
                 </ul>
                 <ul>
@@ -118,7 +122,7 @@
       
             <div class="footer-contact">
               <p>Email: <a href="mailto:info@haniwai.org">info@haniwai.org</a></p>
-              <p>Phone: <a href="tel:+1234567890">+123-456-7890</a></p>
+              <p>Phone: <a href="tel:+67572067138">(+675) 7206 7138 / 7872 0275</a></p>
             </div>
       
             <div class="footer-social">
@@ -188,29 +192,17 @@
 
     <script src="{% static 'js/script.js' %}"></script>
 
-    <!-- Glide.js JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      new Glide('.glide', {
-        type: 'carousel',
-        perView: 1,
-        autoplay: 3000,
-        hoverpause: true,
-        animationDuration: 800,
-      }).mount();
-    });
-  </script>
+
 
   <script>
     const form = document.getElementById("contact-form");
     const message = document.getElementById("form-message");
-  
+    
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-  
+    
       const formData = new FormData(form);
-  
+    
       fetch("https://formspree.io/f/xyzedndw", {
         method: "POST",
         body: formData,
@@ -220,22 +212,58 @@
       })
         .then((response) => {
           if (response.ok) {
-            message.textContent = "✅ Message sent successfully!";
-            message.style.color = "green";
+            message.textContent = "✅ Message sent successfully! We'll get back to you shortly.";
+            message.className = "form-feedback success";
             form.reset();
           } else {
-            message.textContent = "❌ Oops! Something went wrong.";
-            message.style.color = "red";
+            message.textContent = "❌ Oops! Something went wrong. Please check any missing input";
+            message.className = "form-feedback error";
           }
         })
         .catch(() => {
           message.textContent = "❌ Could not send message.";
-          message.style.color = "red";
+          message.className = "form-feedback error";
         });
     });
+    
   </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const faders = document.querySelectorAll('.fade-in-up');
+  
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Optional: remove observer after first trigger
+          }
+        });
+      }, {
+        threshold: 0.3
+      });
+  
+      faders.forEach(fader => {
+        observer.observe(fader);
+      });
+    });
+  </script>
+  <script>
+    const burger = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+      burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      document.body.classList.toggle('menu-open'); // ✅ triggers the backdrop
+    });
+  </script>
+
   
   
+  
+
+{% block extra_js %}{% endblock %}
 
 </body>
 </html>

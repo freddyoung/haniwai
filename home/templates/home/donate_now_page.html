@@ -4,47 +4,66 @@
 
 {% block content %}
 
-<section class="donation-section">
-  <div class="donation-info-container">
-    <h2>Your Donation Means the World</h2>
-    <p>Your generous support helps us continue providing shelter, protection, and empowerment to women and marginalized communities in Papua New Guinea.</p>
-  
-    <div class="bank-details">
-      <h3>📄 Bank Transfer Information</h3>
-      <ul>
-        <li><strong>Bank Name:</strong> PNG National Bank</li>
-        <li><strong>Account Name:</strong> Humanity & Nature Indigenous Women's Association</li>
-        <li><strong>BSB:</strong> 123-456</li>
-        <li><strong>Account Number:</strong> 987654321</li>
-        <li><strong>SWIFT Code:</strong> PNGNPGPM</li>
-      </ul>
-      <p>Please include your name as reference when donating.</p>
-    </div>
-  
-    <div class="donation-note">
-      <p>Once you've made your donation, kindly email us at <a href="mailto:info@haniwai.org">info@haniwai.org</a> so we can acknowledge your support and send you a receipt.</p>
-    </div>
+<!-- ✅ Hero Banner -->
+<section class="donate-hero">
+  <div class="hero-overlay">
+    <h1 class="hero-title">Make a Difference</h1>
   </div>
-  
 </section>
 
+<!-- ✅ Donation Info Section -->
+<section class="donation-modern">
+  <div class="container">
+
+    <div class="donation-intro">
+      <h2>Your Donation Means the World</h2>
+      <p>Your generous support helps us continue providing shelter, protection, and empowerment to women and marginalized communities in Papua New Guinea.</p>
+    </div>
+
+    <div class="donation-boxes">
+      <div class="donation-card">
+        <h3>📄 Bank Transfer Information</h3>
+        <ul>
+          <li><strong>Bank Name:</strong> PNG National Bank</li>
+          <li><strong>Account Name:</strong> Humanity & Nature Indigenous Women's Association</li>
+          <li><strong>BSB:</strong> 123-456</li>
+          <li><strong>Account Number:</strong> 987654321</li>
+          <li><strong>SWIFT Code:</strong> PNGNPGPM</li>
+        </ul>
+        <p><em>Please include your name as reference when donating.</em></p>
+      </div>
+
+      <div class="donation-card email-card">
+        <h3>📧 Confirmation</h3>
+        <p>Once you've donated, kindly email us at<br>
+          <a href="mailto:info@haniwai.org">info@haniwai.org</a><br>
+          so we can thank you and send a receipt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Impact Section -->
 <section class="donation-impact">
-  <h2>Where Your Donations Go</h2>
-  <div class="impact-items">
-    <div class="impact-item">
-      <h3>🏠 Safe Shelters</h3>
-      <p>We provide secure accommodation and care for women and children escaping violence and unsafe conditions.</p>
-    </div>
-    <div class="impact-item">
-      <h3>🍲 Food & Essentials</h3>
-      <p>Your donation helps provide daily meals, clothing, and basic necessities to families in need.</p>
-    </div>
-    <div class="impact-item">
-      <h3>📚 Education & Advocacy</h3>
-      <p>We offer training programs, education, and legal advocacy to empower women and marginalized communities.</p>
+  <div class="container">
+    <h2>Where Your Donations Go</h2>
+    <div class="impact-grid">
+      <div class="impact-item">
+        <h3>🏠 Safe Shelters</h3>
+        <p>We provide secure accommodation and care for women and children escaping violence and unsafe conditions.</p>
+      </div>
+      <div class="impact-item">
+        <h3>🍲 Food & Essentials</h3>
+        <p>Your donation helps us supply food, clothes, hygiene products and basic necessities to those in need.</p>
+      </div>
+      <div class="impact-item">
+        <h3>📚 Education & Empowerment</h3>
+        <p>We run workshops and training to equip women with the knowledge and skills to reclaim their future.</p>
+      </div>
     </div>
   </div>
 </section>
 
 {% endblock %}
+
 {% block prefooter %}{% endblock %}

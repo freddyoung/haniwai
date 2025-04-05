@@ -4,17 +4,20 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel, PageC
 from wagtail.fields import RichTextField
 from wagtail.images.models import Image
 from modelcluster.fields import ParentalKey
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.apps import apps
 
 
-
-
+# =======================
+# HOME PAGE
+# =======================
 
 class HomePage(Page):
-    """Custom Home Page"""
+    """Custom Home Page with gallery and news/events preview."""
     template = "home/home_page.html"
     welcome_text = models.CharField(max_length=255, default="Welcome to Our NGO")
 
-    # ✅ NEW: Links to the Gallery Page
     gallery_page = models.ForeignKey(
         "home.GalleryPage",
         on_delete=models.SET_NULL,
@@ -25,40 +28,37 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("welcome_text"),
-        PageChooserPanel("gallery_page"),  # ✅ Allows linking to the gallery page
+        PageChooserPanel("gallery_page"),
         MultiFieldPanel([
             InlinePanel("gallery_images", label="Gallery Images"),
         ], heading="Gallery Section"),
     ]
 
-from django.core.paginator import Paginator
-from django.db.models import Q
+    def get_context(self, request):
+        context = super().get_context(request)
 
-def get_context(self, request):
-    context = super().get_context(request)
+        # Gallery filtering & pagination
+        images = self.gallery_images.all()
+        query = request.GET.get("q")
+        if query:
+            images = images.filter(
+                Q(image__title__icontains=query) |
+                Q(image__tags__name__icontains=query) |
+                Q(image__description__icontains=query)
+            ).distinct()
 
-    homepage = HomePage.objects.first()
-    images = homepage.gallery_images.all()
+        paginator = Paginator(images, 20)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
 
-    # Search Logic
-    query = request.GET.get("q")
-    if query:
-        images = images.filter(
-            Q(image__title__icontains=query) |
-            Q(image__tags__name__icontains=query) |
-            Q(image__description__icontains=query)
-        ).distinct()
+        context["gallery_images"] = page_obj
+        context["query"] = query
 
-    # Pagination
-    paginator = Paginator(images, 20)  # 20 per page
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+        # Show 3 latest event/news previews
+        EventDetailPage = apps.get_model("home", "EventDetailPage")
+        context["latest_news"] = EventDetailPage.objects.live().order_by('-date')[:3]
 
-    context["gallery_images"] = page_obj
-    context["query"] = query
-
-    return context
-
+        return context
 
 
 class GalleryImage(models.Model):
@@ -76,6 +76,10 @@ class GalleryImage(models.Model):
         return self.caption if self.caption else "Gallery Image"
 
 
+# =======================
+# GALLERY PAGE
+# =======================
+
 class GalleryPage(Page):
     """Gallery Page - Displays All Images"""
     template = "home/gallery_page.html"
@@ -87,8 +91,6 @@ class GalleryPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-
-        # Get gallery images from HomePage (assumes only one homepage)
         homepage = HomePage.objects.first()
         images = homepage.gallery_images.select_related('image').all()
         search_query = request.GET.get('q')
@@ -98,12 +100,14 @@ class GalleryPage(Page):
                 models.Q(caption__icontains=search_query)
             )
         context["gallery_images"] = images
-
         return context
 
 
+# =======================
+# ABOUT PAGE
+# =======================
+
 class AboutPage(Page):
-    """About Us Page"""
     template = "home/about_page.html"
     description = RichTextField()
 
@@ -112,61 +116,68 @@ class AboutPage(Page):
     ]
 
 
-class EventsPage(Page):
-    """Events Page"""
-    template = "home/events_page.html"
-    events_description = RichTextField()
+# =======================
+# EVENTS HUB PAGE
+# =======================
 
-    content_panels = Page.content_panels + [
-        FieldPanel("events_description"),
-    ]
 class EventsPage(Page):
-    """Main Events Page"""
+    """Hub page for listing EventDetailPages"""
     template = "home/events_page.html"
     intro_text = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("intro_text"),
-        InlinePanel("event_items", label="Event Items"),
     ]
 
 
-class EventItem(models.Model):
-    """Repeatable event items shown on the EventsPage"""
-    page = ParentalKey(EventsPage, on_delete=models.CASCADE, related_name="event_items")
-    title = models.CharField(max_length=200)
-    date = models.DateField()
-    description = RichTextField()
-    image = models.ForeignKey(
-        Image,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="+"
+# =======================
+# EVENT / NEWS DETAIL PAGE
+# =======================
+
+class EventDetailPage(Page):
+    """Individual Event or News Article"""
+
+    CONTENT_TYPE_CHOICES = [
+        ('news', 'News'),
+        ('event', 'Event'),
+    ]
+
+    category = models.CharField(
+        max_length=10,
+        choices=CONTENT_TYPE_CHOICES,
+        default='news',
+        help_text="Is this a News or Event item?"
     )
 
-    panels = [
-        FieldPanel("title"),
-        FieldPanel("date"),
-        FieldPanel("description"),
-
-    ]
-
-    def __str__(self):
-        return self.title
-
-class BlogPage(Page):
-    """Blog Page"""
-    template = "home/blog_page.html"
-    blog_intro = RichTextField()
+    date = models.DateField("Event Date")
+    intro = models.CharField(max_length=250, help_text="Short summary for preview cards")
+    body = RichTextField()
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = Page.content_panels + [
-        FieldPanel("blog_intro"),
+        FieldPanel("category"),
+        FieldPanel("date"),
+        FieldPanel("intro"),
+        FieldPanel("body"),
+        FieldPanel("image"),
     ]
 
+    def is_previewable(self):
+        return True  # Optional, avoids Wagtail admin preview error
+
+
+
+# =======================
+# CONTACT PAGE
+# =======================
 
 class ContactPage(Page):
-    """Contact Page"""
     template = "home/contact_page.html"
     contact_info = RichTextField()
 
@@ -175,8 +186,11 @@ class ContactPage(Page):
     ]
 
 
+# =======================
+# DONATE PAGE
+# =======================
+
 class DonatePage(Page):
-    """Donate Now Page"""
     template = "home/donate_now_page.html"
     donation_info = RichTextField()
 
