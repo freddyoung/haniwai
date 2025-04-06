@@ -1,7 +1,59 @@
 {% extends "base.html" %}
+
+{% block extra_head %}
+  {{ block.super }}
+  <script type="application/ld+json">
+    {{ page.get_event_schema|json_script:"event-schema" }}
+  </script>
+{% endblock %}
+
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block title %}{{ page.title }}{% endblock %}
+{% block meta %}
+  <meta name="description" content="{{ page.intro|striptags|truncatechars:160 }}">
+  <meta name="keywords" content="HANIWAI Events, {{ page.title }}, PNG NGO, Indigenous Advocacy, Community Projects, Empowerment, {{ page.category|title }}">
+
+  <link rel="canonical" href="https://www.haniwai.org{{ page.url }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.intro|striptags|truncatechars:160 }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.haniwai.org{{ page.url }}">
+  {% if page.image %}
+    <meta property="og:image" content="{{ page.image.file.url }}">
+  {% else %}
+    <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+  {% endif %}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }}">
+  <meta name="twitter:description" content="{{ page.intro|striptags|truncatechars:160 }}">
+  <meta name="twitter:image" content="{% if page.image %}{{ page.image.file.url }}{% else %}https://www.haniwai.org/static/images/social-preview.jpeg{% endif %}">
+
+  <!-- Schema.org Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "{{ page.title|escapejs }}",
+    "startDate": "{{ page.date|date:'c' }}",
+    "description": "{{ page.intro|striptags|truncatechars:180 }}",
+    "url": "https://www.haniwai.org{{ page.url }}",
+    {% if page.image %}
+    "image": "{{ page.image.file.url }}",
+    {% endif %}
+    "organizer": {
+      "@type": "Organization",
+      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
+      "url": "https://www.haniwai.org"
+    }
+  }
+  </script>
+{% endblock %}
+
 
 {% block content %}
 

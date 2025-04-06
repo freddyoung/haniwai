@@ -3,18 +3,83 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Haniwai NGO{% endblock %}</title>
+    
+    <title>{% firstof self.seo_title self.title %} | HANIWAI</title>
+
+    <meta name="description" content="{% firstof self.search_description 'HANIWAI is a Papua New Guinea-based nonprofit empowering indigenous women, promoting gender equality, and advocating for environmental sustainability.' %}">
+    <meta name="keywords" content="HANIWAI, Indigenous Women PNG, Gender Equality, Environmental Advocacy, Women Rights PNG, Humanitarian NGO, Climate Change Papua New Guinea">
+    <link rel="canonical" href="https://www.haniwai.org{{ request.path }}" />
+    <link rel="alternate" hreflang="en" href="https://www.haniwai.org{{ request.path }}" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% firstof self.seo_title self.title %} | HANIWAI">
+    <meta property="og:description" content="{% firstof self.search_description 'Empowering women and protecting nature in PNG.' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.haniwai.org{{ request.path }}">
+    <meta property="og:image" content="{% if self.og_image %}{{ self.og_image.url }}{% else %}https://www.haniwai.org/static/images/social-preview.jpeg{% endif %}">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% firstof self.seo_title self.title %} | HANIWAI">
+    <meta name="twitter:description" content="{% firstof self.search_description 'Join us in preserving indigenous culture, empowering women, and protecting our natural world.' %}">
+    <meta name="twitter:image" content="{% if self.og_image %}{{ self.og_image.url }}{% else %}https://www.haniwai.org/static/images/social-preview.jpeg{% endif %}">
+    
+    {% if self.no_index %}
+      <meta name="robots" content="noindex, nofollow">
+    {% else %}
+      <meta name="robots" content="index, follow">
+    {% endif %}
+
+  
+    <!-- JSON-LD Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NonProfitOrganization",
+      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
+      "url": "https://www.haniwai.org",
+      "logo": "https://www.haniwai.org/static/images/haniwa_logo.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Maryanne Rimbao"
+      },
+      "foundingDate": "2023",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Port Moresby",
+        "addressRegion": "NCD",
+        "addressCountry": "Papua New Guinea"
+      },
+      "email": "info@haniwai.org",
+      "telephone": "+67572067138",
+      "sameAs": [
+        "https://facebook.com",
+        "https://twitter.com",
+        "https://instagram.com",
+        "https://linkedin.com"
+      ]
+    }
+    </script>
+  
+    <!-- Styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Glide.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
-    <link rel="icon" href="{% static 'images/haniwa_logo.ico' %}" type="image/x-icon">
 
+    {% block extra_head %}
+      {{ block.super }}
+      {% if self.get_structured_data %}
+        <script type="application/ld+json">
+          {{ self.get_structured_data|safe|json_script:"structured-data" }}
+        </script>
+      {% endif %}
+    {% endblock %}
 
-</head>
+  </head>
+  
 <body>
 
     <!-- ✅ Fixed Top Navbar -->

@@ -1,6 +1,45 @@
 {% extends "base.html" %}
 {% load static %} 
-{% block title %}Home - Haniwai NGO{% endblock %}
+{% block title %}HANIWAI | Empowering Indigenous Women & Protecting Our Planet{% endblock %}
+{% block meta %}
+  <meta name="description" content="HANIWAI is a grassroots nonprofit organization in Papua New Guinea, dedicated to empowering indigenous women, preserving cultural heritage, and promoting sustainable development.">
+  <meta name="keywords" content="HANIWAI, Indigenous Women PNG, NGO Papua New Guinea, Environmental Advocacy, Gender Equality, Cultural Preservation, Sustainable Development">
+
+  <link rel="canonical" href="https://www.haniwai.org/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HANIWAI | Empowering Indigenous Women & Protecting Our Planet">
+  <meta property="og:description" content="Support indigenous-led advocacy and environmental protection efforts in Papua New Guinea.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.haniwai.org/">
+  <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HANIWAI | Empowering Indigenous Women & Protecting Our Planet">
+  <meta name="twitter:description" content="Join HANIWAI’s mission to uplift indigenous women and protect the environment in Papua New Guinea.">
+  <meta name="twitter:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "HANIWAI",
+    "url": "https://www.haniwai.org/",
+    "description": "HANIWAI is a grassroots nonprofit organization in Papua New Guinea, dedicated to empowering indigenous women, preserving cultural heritage, and promoting sustainable development.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.haniwai.org/static/images/haniwa_logo.png"
+      }
+    }
+  }
+  </script>
+{% endblock %}
+
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}

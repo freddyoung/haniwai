@@ -394,7 +394,7 @@ color: var(--accent-color);
 
 /* ================= Hero Section ================= */
 .hero {
-background: url('../images/motto1.jpg') no-repeat center/cover;
+background: url('../images/motto1.webp') no-repeat center/cover;
 height: 85vh;
 display: flex;
 align-items: center;
@@ -931,7 +931,7 @@ max-width: 200px;
 /* ====== SDG Banner Section (Text on LEFT) ====== */
 .goals-section {
 position: relative;
-background: url('/static/images/trad.jpg') no-repeat center/cover;
+background: url('/static/images/traditional-bilas.webp') no-repeat center/cover;
 min-height:90vh;
 height: auto;
 overflow: hidden;
@@ -1121,7 +1121,7 @@ text-align: center;
 
 /* ================= About Section ================= */
 .about-hero {
-background: url('../images/about-hero.jpg') no-repeat center/cover;
+background: url('../images/haniwai-women-march.webp') no-repeat center/cover;
 height: 60vh;
 position: relative;
 }
@@ -1561,7 +1561,7 @@ display: none !important;
 .gallery-hero {
 position: relative;
 height: 60vh;
-background: url('../images/test.jpeg') no-repeat center/cover;
+background: url('../images/papua-landscape.webp') no-repeat center/cover;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -1922,7 +1922,7 @@ color: var(--white);
 .contact-hero {
   position: relative;
   height: 60vh;
-  background: url('/static/images/contact.jpg') center center / cover no-repeat;
+  background: url('/static/images/contact.webp') center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2099,15 +2099,6 @@ pointer-events: none;
 z-index: -1;
 }
 
-.donation-section::before {
-left: 0;
-background-image: url('/static/images/dono-bg-left.png');
-}
-
-.donation-section::after {
-right: 0;
-background-image: url('/static/images/dono-bg-right.png');
-}
 
 
 .donation-info-container {
@@ -2379,7 +2370,7 @@ font-weight: bold;
 .page-hero {
   position: relative;
   height: 60vh;
-  background: url('/static/images/women.jpg') center center / cover no-repeat;
+  background: url('/static/images/pacific-women.webp') center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

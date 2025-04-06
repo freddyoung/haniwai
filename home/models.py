@@ -7,14 +7,47 @@ from modelcluster.fields import ParentalKey
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.apps import apps
+from django.utils.html import strip_tags
+from django.utils.text import Truncator
+
+
+# =======================
+# SEO Mixin
+# =======================
+
+class SeoMixin(models.Model):
+    og_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Image used when sharing this page on social media."
+    )
+    no_index = models.BooleanField(
+        default=False,
+        help_text="Prevent search engines from indexing this page."
+    )
+
+    class Meta:
+        abstract = True
+
+    def get_seo_title(self):
+        return self.seo_title or self.title
+
+    def get_seo_description(self):
+        return self.search_description or ""
+
+    def get_og_image_url(self):
+        return self.og_image.file.url if self.og_image else None
+
 
 
 # =======================
 # HOME PAGE
 # =======================
 
-class HomePage(Page):
-    """Custom Home Page with gallery and news/events preview."""
+class HomePage(SeoMixin, Page):
     template = "home/home_page.html"
     welcome_text = models.CharField(max_length=255, default="Welcome to Our NGO")
 
@@ -32,12 +65,16 @@ class HomePage(Page):
         MultiFieldPanel([
             InlinePanel("gallery_images", label="Gallery Images"),
         ], heading="Gallery Section"),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+            FieldPanel("no_index"),
+        ], heading="SEO Settings"),
     ]
 
     def get_context(self, request):
         context = super().get_context(request)
-
-        # Gallery filtering & pagination
         images = self.gallery_images.all()
         query = request.GET.get("q")
         if query:
@@ -54,15 +91,37 @@ class HomePage(Page):
         context["gallery_images"] = page_obj
         context["query"] = query
 
-        # Show 3 latest event/news previews
         EventDetailPage = apps.get_model("home", "EventDetailPage")
         context["latest_news"] = EventDetailPage.objects.live().order_by('-date')[:3]
 
         return context
 
+    def get_structured_data(self):
+        """Injects event data only for EventDetailPage. Extendable."""
+        if hasattr(self, 'date'):
+            return {
+                "@context": "https://schema.org",
+                "@type": "Event",
+                "name": self.title,
+                "startDate": self.date.isoformat(),
+                "description": self.search_description or self.intro,
+                "url": self.full_url,
+                "image": self.get_og_image_url(),
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {
+                    "@type": "Place",
+                    "name": "Papua New Guinea",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressCountry": "PG"
+                    }
+                }
+            }
+        return None
+
 
 class GalleryImage(models.Model):
-    """Gallery Images for HomePage"""
     page = ParentalKey("home.HomePage", on_delete=models.CASCADE, related_name="gallery_images")
     image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="+")
     caption = models.CharField(max_length=255, blank=True, null=True)
@@ -80,13 +139,17 @@ class GalleryImage(models.Model):
 # GALLERY PAGE
 # =======================
 
-class GalleryPage(Page):
-    """Gallery Page - Displays All Images"""
+class GalleryPage(SeoMixin, Page):
     template = "home/gallery_page.html"
     description = RichTextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("description"),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+        ], heading="SEO Settings"),
     ]
 
     def get_context(self, request):
@@ -107,12 +170,17 @@ class GalleryPage(Page):
 # ABOUT PAGE
 # =======================
 
-class AboutPage(Page):
+class AboutPage(SeoMixin, Page):
     template = "home/about_page.html"
     description = RichTextField()
 
     content_panels = Page.content_panels + [
         FieldPanel("description"),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+        ], heading="SEO Settings"),
     ]
 
 
@@ -120,13 +188,17 @@ class AboutPage(Page):
 # EVENTS HUB PAGE
 # =======================
 
-class EventsPage(Page):
-    """Hub page for listing EventDetailPages"""
+class EventsPage(SeoMixin, Page):
     template = "home/events_page.html"
     intro_text = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("intro_text"),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+        ], heading="SEO Settings"),
     ]
 
 
@@ -134,9 +206,7 @@ class EventsPage(Page):
 # EVENT / NEWS DETAIL PAGE
 # =======================
 
-class EventDetailPage(Page):
-    """Individual Event or News Article"""
-
+class EventDetailPage(SeoMixin, Page):
     CONTENT_TYPE_CHOICES = [
         ('news', 'News'),
         ('event', 'Event'),
@@ -166,10 +236,51 @@ class EventDetailPage(Page):
         FieldPanel("intro"),
         FieldPanel("body"),
         FieldPanel("image"),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+        ], heading="SEO Settings"),
     ]
 
     def is_previewable(self):
-        return True  # Optional, avoids Wagtail admin preview error
+        return True
+    
+def get_event_schema(self):
+    base_schema = {
+        "@context": "https://schema.org",
+        "@type": "Event" if self.category == "event" else "NewsArticle",
+        "name": self.seo_title or self.title,
+        "description": Truncator(strip_tags(self.body)).chars(200),
+        "url": self.full_url,
+        "image": [self.image.file.url] if self.image else ["https://www.haniwai.org/static/images/social-preview.jpeg"],
+        "publisher": {
+            "@type": "Organization",
+            "name": "HANIWAI",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.haniwai.org/static/images/haniwa_logo.png"
+            }
+        }
+    }
+
+    # Add Event-specific details if it's an event
+    if self.category == "event":
+        base_schema.update({
+            "startDate": self.date.isoformat(),
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "location": {
+                "@type": "Place",
+                "name": "Papua New Guinea",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "PG"
+                }
+            }
+        })
+
+    return base_schema
 
 
 
@@ -177,12 +288,17 @@ class EventDetailPage(Page):
 # CONTACT PAGE
 # =======================
 
-class ContactPage(Page):
+class ContactPage(SeoMixin, Page):
     template = "home/contact_page.html"
     contact_info = RichTextField()
 
     content_panels = Page.content_panels + [
         FieldPanel("contact_info"),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+        ], heading="SEO Settings"),
     ]
 
 
@@ -190,10 +306,17 @@ class ContactPage(Page):
 # DONATE PAGE
 # =======================
 
-class DonatePage(Page):
+class DonatePage(SeoMixin, Page):
     template = "home/donate_now_page.html"
     donation_info = RichTextField()
 
     content_panels = Page.content_panels + [
         FieldPanel("donation_info"),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+        ], heading="SEO Settings"),
     ]
+
+

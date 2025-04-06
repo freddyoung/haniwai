@@ -2,6 +2,46 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block title %}Events - Haniwai NGO{% endblock %}
+{% block meta %}
+  <meta name="description" content="Stay up to date with HANIWAI’s latest events, advocacy campaigns, cultural programs, and community outreach across Papua New Guinea.">
+  <meta name="keywords" content="HANIWAI News, PNG NGO Events, Indigenous Women Updates, Community Empowerment, Advocacy Campaigns, Papua New Guinea NGO News">
+
+  <link rel="canonical" href="https://www.haniwai.org/events/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HANIWAI | Latest News & Events from the Field">
+  <meta property="og:description" content="Explore HANIWAI’s recent initiatives: from women’s empowerment and climate action to cultural preservation programs across PNG.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.haniwai.org/events/">
+  <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HANIWAI | Latest News & Events from the Field">
+  <meta name="twitter:description" content="Get the latest updates from our grassroots work empowering women and communities across Papua New Guinea.">
+  <meta name="twitter:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+
+  <!-- Optional JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "News & Events - HANIWAI",
+    "url": "https://www.haniwai.org/events/",
+    "description": "HANIWAI’s latest events, community work, and indigenous-led initiatives across Papua New Guinea.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
+      "url": "https://www.haniwai.org",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.haniwai.org/static/images/haniwa_logo.png"
+      }
+    }
+  }
+  </script>
+{% endblock %}
+
 
 {% block content %}
 
