@@ -3,17 +3,17 @@ from wagtail.models import Page
 from django.utils import timezone
 from django.conf import settings  # Import settings to access SITE_URL
 
-
 class CustomWagtailSitemap(Sitemap):
     def items(self):
         return Page.objects.live().public().specific()
 
     def location(self, item):
+        # Use SITE_URL to generate the full URL dynamically
         try:
-            # Ensure the full URL uses the correct domain (https://haniwai.org)
-            return f"{settings.SITE_URL}{item.url}"
+            protocol = 'https' if settings.USE_HTTPS else 'http'  # Use https if the setting is True
+            domain = settings.SITE_URL  # Use SITE_URL defined in settings
+            return f"{protocol}://{domain}{item.url}"  # Create full URL
         except Exception as e:
-            # If for some reason the URL is not available, return None
             return None
 
     def lastmod(self, item):
