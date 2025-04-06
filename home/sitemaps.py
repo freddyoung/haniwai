@@ -9,12 +9,8 @@ class CustomWagtailSitemap(Sitemap):
         return Page.objects.live().public().specific()
 
     def location(self, item):
-        try:
-            # Ensure the full URL uses the correct domain (https://haniwai.org)
-            return f"{settings.SITE_URL}{item.url}"
-        except Exception as e:
-            # If for some reason the URL is not available, return None
-            return None
+        # Ensure the URL is generated correctly based on the domain
+        return item.full_url if item.full_url else "https://haniwai.org" + item.get_url()
 
     def lastmod(self, item):
         return getattr(item, 'last_published_at', timezone.now())
@@ -31,3 +27,4 @@ class CustomWagtailSitemap(Sitemap):
         elif hasattr(item, "gallery_images"):
             return [img.image.file.url for img in item.gallery_images.all() if img.image]
         return []
+
