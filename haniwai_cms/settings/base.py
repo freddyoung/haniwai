@@ -13,7 +13,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: v.split(','))
 
 # settings.py
 SITE_URL = 'haniwai.org'  # or 'www.haniwai.org' if you prefer that version
-
+USE_HTTPS = True  # If you are using HTTPS
 
 INSTALLED_APPS = [
     "home",
