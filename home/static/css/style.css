@@ -1606,7 +1606,6 @@ color: var(--white);
     
 padding: 1px 20px;
 height: auto;
-background: url('/static/images/green-bg.png') no-repeat center/cover;
 }
 
 .gallery-container {
