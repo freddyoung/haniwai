@@ -86,7 +86,7 @@
     <div class="top-nav">
         <div class="top-nav-container">
             <div class="top-nav-left">
-                <a href="/partners">Partners</a> | <a href="/faqs">FAQs</a>
+                <a href="/partners">Resources</a> | <a href="/faqs">FAQs</a>
             </div>
             <div class="top-nav-right">
                 <span>Email: info@haniwai.org</span> | <span>Phone: (+675) 7206 7138 / 7873 0275</span>
@@ -129,7 +129,7 @@
                     <li><a href="/events/" class="{% if request.path == '/events/' %}active{% endif %}">News & Events</a></li>
                     <li><a href="/contact/" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
                     <li class="desktop-donate"><a href="/donate-now/" class="donate-btn {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart"></span></a></li>                    
-                    <li class="mobile-only"><a href="/partners">Partners</a></li>
+                    <li class="mobile-only"><a href="/partners">Resources</a></li>
                     <li class="mobile-only"><a href="/faqs">FAQs</a></li>  
                 </ul>
             </div>
@@ -325,10 +325,56 @@
   </script>
 
   
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the button element
+      const backToTopButton = document.getElementById('back-to-top');
   
+      // Define the scroll distance (in pixels) after which the button appears
+      // window.innerHeight is the height of the viewport. You can use a fixed value too (e.g., 400).
+      const showOnPx = window.innerHeight * 0.6; // Show after scrolling 60% of the viewport height
+  
+      // Function to toggle button visibility based on scroll position
+      const scrollContainer = () => {
+        return document.documentElement || document.body;
+      };
+  
+      const checkScrollPosition = () => {
+        if (scrollContainer().scrollTop > showOnPx) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      };
+  
+      // Function to smoothly scroll back to the top
+      const goToTop = (event) => {
+          event.preventDefault(); // Prevent the default anchor link behavior (#)
+          // Use smooth scrolling native browser API
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
+  
+          // Fallback for older browsers (less common now)
+          // document.body.scrollTop = 0; // For Safari
+          // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      };
+  
+      // Add event listeners
+      document.addEventListener('scroll', checkScrollPosition); // Check visibility on scroll
+      backToTopButton.addEventListener('click', goToTop);      // Scroll to top on click
+  
+      // Initial check in case the page loads already scrolled down
+      checkScrollPosition();
+    });
+  </script>
   
 
 {% block extra_js %}{% endblock %}
+
+<a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Back to top" title="Back to Top">
+  <i class="fas fa-arrow-up"></i> </a>
 
 </body>
 </html>

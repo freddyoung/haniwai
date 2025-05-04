@@ -1118,6 +1118,166 @@ text-align: center;
 }
 }
 
+/* ============================= */
+/* Partnerships Section (Refined) */
+/* ============================= */
+.partnerships-section {
+  padding: 70px 20px; /* Generous padding for whitespace */
+  background-color: white; /* Subtle background color to distinguish the section */
+  margin: 0px auto; /* Vertical margin for separation, centered horizontally */
+  overflow: hidden; /* Contain content */
+}
+
+.partnerships-container {
+  max-width: 1100px; /* Standard content width */
+  margin: 0 auto; /* Center container */
+  text-align: center; /* Center-align text elements by default */
+  
+}
+
+/* --- Styling the Section Heading --- */
+/* Apply styles consistent with other h2.section-heading elements */
+/* Adjust font-family, font-size, font-weight etc. to match your site's design */
+.partnerships-section .section-heading {
+  color: var(--primary-color); /* Use your primary color */
+  /* ===>>> MATCH THESE to your other headings <<<=== */
+  font-family: 'Merriweather', serif; /* Example: Assuming Merriweather is your heading font */
+  font-size: 3rem;                /* Example: Adjust size */
+  font-weight: 700;                 /* Example: Adjust weight */
+  /* ===>>> END MATCHING <<<=== */
+  margin-bottom: 25px; /* Space below heading */
+  text-align: center; /* Ensure it's centered */
+}
+
+/* --- Styling the Introductory Text --- */
+.partners-intro {
+  max-width: 750px; /* Limit width for better readability */
+  margin: 0 auto 50px auto; /* Center horizontally, add space below */
+  color: var(--text-color);
+  font-size: 1.05rem; /* Comfortable reading size */
+  line-height: 1.7;
+  font-family: 'Inter', sans-serif; /* Use your standard paragraph font */
+}
+
+/* --- Styling the Logo Grid --- */
+.partners-logos-grid {
+  display: flex;
+  justify-content: center; /* Center the logos horizontally */
+  align-items: center;    /* Vertically align logos */
+  flex-wrap: wrap;        /* Allow logos to wrap onto next line */
+  gap: 40px 60px; /* Vertical gap, Horizontal gap (adjust as needed) */
+}
+
+/* --- Styling Individual Logo Container --- */
+.partner-logo-item {
+  /* Define a flexible base size, allowing shrinking but not growing */
+  flex: 0 1 200px;
+  display: flex; /* Use flex to easily center the content (the link/image) */
+  justify-content: center;
+  align-items: center;
+  /* Add padding if you want more space around each logo within its 'cell' */
+   /* padding: 10px; */
+}
+
+/* --- Styling the Logo Link --- */
+.partner-logo-item a {
+  display: inline-block; /* Necessary for transforms and proper spacing */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* --- Styling the Logo Image --- */
+.partner-logo {
+  display: block; /* Treat image as a block element */
+  /* *** KEY: Control Logo Size *** */
+  max-height: 300px; /* Set a consistent max height */
+  max-width: 300px; /* Set a consistent max width */
+  width: auto;      /* Allow browser to scale width based on height/aspect ratio */
+  height: auto;     /* Allow browser to scale height based on width/aspect ratio */
+  object-fit: contain; /* Scale the image while preserving aspect ratio */
+
+  /* --- Optional: Grayscale effect for a professional look --- */
+  filter: grayscale(100%);
+  opacity: 0.7; /* Make them slightly less prominent initially */
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  /* --------------------------------------------------------- */
+}
+
+/* --- Optional: Hover effects for link/logo --- */
+.partner-logo-item a:hover {
+  transform: scale(1.07); /* Slightly larger zoom effect */
+  /* opacity: 1; Remove this if using filter hover effect */
+}
+
+.partner-logo-item a:hover .partner-logo {
+  filter: grayscale(0%); /* Reveal color on hover */
+  opacity: 1.0;         /* Full opacity on hover */
+}
+/* ------------------------------------------- */
+
+
+/* === Responsive Adjustments === */
+
+@media (max-width: 992px) {
+  .partnerships-section {
+      padding: 60px 20px;
+  }
+  .partnerships-section .section-heading {
+      font-size: 2.1rem; /* Slightly smaller heading */
+  }
+   .partners-intro {
+      font-size: 1rem;
+      margin-bottom: 40px;
+  }
+  .partners-logos-grid {
+      gap: 35px 50px;
+  }
+  .partner-logo {
+      max-height: 60px;
+      max-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .partner-logo-item {
+       flex: 0 1 180px; /* Adjust flex basis */
+  }
+   .partners-logos-grid {
+      gap: 30px 40px;
+  }
+}
+
+@media (max-width: 600px) {
+   .partnerships-section {
+      padding: 50px 15px;
+       margin: 40px auto; /* Adjust margins */
+  }
+   .partnerships-section .section-heading {
+      font-size: 1.9rem; /* Further reduce heading size */
+  }
+   .partners-intro {
+      font-size: 0.95rem;
+      margin-bottom: 35px;
+  }
+   .partners-logos-grid {
+       /* Stack logos vertically */
+       flex-direction: column;
+       gap: 35px; /* Adjust gap for vertical stacking */
+       align-items: center; /* Center items when stacked */
+  }
+   .partner-logo-item {
+       flex-basis: auto; /* Reset basis for column layout */
+       width: 80%; /* Control width when stacked */
+       max-width: 200px; /* Max width for a single stacked logo item */
+       padding: 0;
+  }
+   .partner-logo {
+      max-height: 55px; /* Slightly smaller logos on mobile */
+      max-width: 150px;
+      /* Keep grayscale/opacity for consistency or remove for mobile */
+       /* filter: grayscale(0%); */
+       /* opacity: 1; */
+  }
+}
 
 /* ================= About Section ================= */
 .about-hero {
@@ -2805,4 +2965,67 @@ display: flex;
 align-items: center;
 justify-content: center;
 gap: 20px;
+}
+
+/* ============================= */
+/* Back to Top Button */
+/* ============================= */
+.back-to-top-btn {
+  position: fixed;   /* Keeps it fixed relative to the viewport */
+  bottom: 25px;      /* Distance from the bottom edge */
+  right: 25px;       /* Distance from the right edge */
+  z-index: 999;      /* High z-index to stay on top of most elements */
+
+  /* Appearance */
+  background-color: var(--primary-color); /* Use your primary color */
+  color: var(--white);                /* Arrow color */
+  width: 45px;                        /* Button width */
+  height: 45px;                       /* Button height */
+  border-radius: 50%;                 /* Make it circular */
+  display: flex;                      /* Use flexbox for centering icon */
+  justify-content: center;            /* Center icon horizontally */
+  align-items: center;                /* Center icon vertically */
+  font-size: 1.1rem;                  /* Icon size */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  text-decoration: none;              /* Remove underline from link */
+
+  /* Initial State: Hidden & Ready for Transition */
+  opacity: 0;                         /* Start fully transparent */
+  visibility: hidden;                 /* Hide from accessibility tree */
+  transform: translateY(15px);        /* Start slightly lower for a subtle slide-up */
+
+  /* Smooth transition for appearance/disappearance */
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.4s ease-in-out, background-color 0.3s ease;
+}
+
+/* State when button should be visible */
+.back-to-top-btn.visible {
+  opacity: 1;                         /* Fully visible */
+  visibility: visible;                /* Make it accessible */
+  transform: translateY(0);           /* Slide up to final position */
+}
+
+/* Hover effect */
+.back-to-top-btn:hover {
+  background-color: var(--accent-color); /* Use your accent color on hover */
+  color: var(--white);                   /* Keep icon color or change if desired */
+  cursor: pointer;                       /* Indicate it's clickable */
+}
+
+/* Ensure icon itself doesn't have underline if nested differently */
+.back-to-top-btn i {
+  text-decoration: none;
+  line-height: 1; /* Prevent potential line-height issues */
+}
+
+
+/* Optional: Slightly smaller on smaller screens */
+@media (max-width: 768px) {
+  .back-to-top-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+      bottom: 20px;
+      right: 20px;
+  }
 }

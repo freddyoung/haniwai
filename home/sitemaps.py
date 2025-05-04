@@ -8,13 +8,9 @@ class CustomWagtailSitemap(Sitemap):
         return Page.objects.live().public().specific()
 
     def location(self, item):
-        # Use SITE_URL to generate the full URL dynamically
-        try:
-            protocol = 'https' if settings.USE_HTTPS else 'http'  # Use https if the setting is True
-            domain = settings.SITE_URL  # Use SITE_URL defined in settings
-            return f"{protocol}://{domain}{item.url}"  # Create full URL
-        except Exception as e:
-            return None
+        # Always use https
+        return f"https://haniwai.org{item.url}"
+
 
     def lastmod(self, item):
         return getattr(item, 'last_published_at', timezone.now())
@@ -31,3 +27,4 @@ class CustomWagtailSitemap(Sitemap):
         elif hasattr(item, "gallery_images"):
             return [img.image.file.url for img in item.gallery_images.all() if img.image]
         return []
+    
