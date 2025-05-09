@@ -1249,11 +1249,13 @@ text-align: center;
 @media (max-width: 600px) {
    .partnerships-section {
       padding: 50px 15px;
-       margin: 40px auto; /* Adjust margins */
   }
    .partnerships-section .section-heading {
       font-size: 1.9rem; /* Further reduce heading size */
   }
+   .partners-intro {
+      display: none;
+   }
    .partners-intro {
       font-size: 0.95rem;
       margin-bottom: 35px;
@@ -1268,11 +1270,12 @@ text-align: center;
        flex-basis: auto; /* Reset basis for column layout */
        width: 80%; /* Control width when stacked */
        max-width: 200px; /* Max width for a single stacked logo item */
-       padding: 0;
+       padding: 10px;
   }
    .partner-logo {
-      max-height: 55px; /* Slightly smaller logos on mobile */
-      max-width: 150px;
+      max-height: 150px; /* Slightly smaller logos on mobile */
+      max-width: 200px;
+      filter: grayscale(0%);
       /* Keep grayscale/opacity for consistency or remove for mobile */
        /* filter: grayscale(0%); */
        /* opacity: 1; */
