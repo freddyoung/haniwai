@@ -1122,7 +1122,7 @@ text-align: center;
 /* Partnerships Section (Refined) */
 /* ============================= */
 .partnerships-section {
-  padding: 70px 20px; /* Generous padding for whitespace */
+  padding: 35px 20px; /* Generous padding for whitespace */
   background-color: white; /* Subtle background color to distinguish the section */
   margin: 0px auto; /* Vertical margin for separation, centered horizontally */
   overflow: hidden; /* Contain content */
@@ -1151,7 +1151,7 @@ text-align: center;
 
 /* --- Styling the Introductory Text --- */
 .partners-intro {
-  max-width: 750px; /* Limit width for better readability */
+  max-width: 1000px; /* Limit width for better readability */
   margin: 0 auto 50px auto; /* Center horizontally, add space below */
   color: var(--text-color);
   font-size: 1.05rem; /* Comfortable reading size */
