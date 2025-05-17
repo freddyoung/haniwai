@@ -118,12 +118,11 @@
                         <span></span>
                     </div>    
                 </div>
-                
 
                 <!-- ✅ Nav Links -->
             
                 <ul class="nav-links">
-                    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="/" class="nav-home-icon {% if request.path == '/' %}active{% endif %}" aria-label="Home"></a></li>
                     <li><a href="/about-us/" class="{% if request.path == '/about-us/' %}active{% endif %}">Who We Are</a></li>
                     <li><a href="/gallery/" class="{% if request.path == '/gallery/' %}active{% endif %}">Gallery</a></li>
                     <li><a href="/events/" class="{% if request.path == '/events/' %}active{% endif %}">News & Events</a></li>
