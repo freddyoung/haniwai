@@ -69,6 +69,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/haniwa_logo.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/haniwa_logo.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/haniwa_logo.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/haniwa_logo.ico' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}"> {# Optional: for Progressive Web Apps #}
+    <meta name="theme-color" content="#ffffff"> {# Optional: sets theme color for some browsers #}
+
     {% block extra_head %}
       {{ block.super }}
       {% if self.get_structured_data %}
