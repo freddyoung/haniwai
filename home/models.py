@@ -395,9 +395,10 @@ class ResourcePage(SeoMixin, Page):
     ]
 
     parent_page_types = ['ResourcesIndexPage']
-
+    
     def get_other_resources(self):
-        return self.get_siblings().exclude(id=self.id).live().order_by('-date')[:5]
+        return ResourcePage.objects.live().sibling_of(self).exclude(id=self.id).order_by('-date')[:5]
+
 
     class Meta:
         verbose_name = 'Resource Page'

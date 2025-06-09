@@ -67,7 +67,7 @@
       <aside class="sidebar fade-in-right">
         <h3>More Resources</h3>
         <ul>
-          {% for res in page.get_siblings.not_current.live.order_by('-date')|slice:":5" %} {# Show up to 5 other recent resources #}
+          {% for res in page.get_other_resources %}
             <li><a href="{{ res.url }}">{{ res.title }} ({{ res.date|date:"Y" }})</a></li>
           {% empty %}
             <li>No other resources available.</li>
