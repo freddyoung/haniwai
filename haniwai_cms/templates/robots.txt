@@ -1,6 +1,4 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /cms/
-Allow: /
+Disallow:
 
-Sitemap: https://www.haniwai.org/sitemap.xml
+Sitemap: https://haniwai.org/sitemap.xml
