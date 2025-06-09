@@ -78,7 +78,7 @@ class HomePage(SeoMixin, Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        images = self.gallery_images.all()
+        images = self.gallery_images.all().order_by('id')
         query = request.GET.get("q")
         if query:
             images = images.filter(
