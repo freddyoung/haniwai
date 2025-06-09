@@ -28,3 +28,6 @@ try:
     from .local import *
 except ImportError:
     pass
+
+
+SITE_URL = 'https://www.haniwai.org'
