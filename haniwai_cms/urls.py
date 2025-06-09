@@ -8,10 +8,10 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 from django.contrib.sitemaps.views import sitemap
-from home.sitemaps import CustomWagtailSitemap
+from home.sitemaps import FinalHaniwaiSitemap
 
 sitemaps = {
-    'wagtail' : CustomWagtailSitemap,
+    'wagtail' : FinalHaniwaiSitemap,
 }
 
 urlpatterns = [
@@ -20,7 +20,7 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
-    path("sitemap.xml", sitemap, {'sitemaps': sitemaps}, name="sitemap"),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
     
     ]
 
