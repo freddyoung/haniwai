@@ -10,6 +10,9 @@ from django.apps import apps
 from django.utils.html import strip_tags
 from django.utils.text import Truncator
 
+from wagtail import blocks
+from wagtail.documents.models import Document
+
 
 # =======================
 # SEO Mixin
@@ -93,6 +96,9 @@ class HomePage(SeoMixin, Page):
 
         EventDetailPage = apps.get_model("home", "EventDetailPage")
         context["latest_news"] = EventDetailPage.objects.live().order_by('-date')[:3]
+
+        # Add the latest resource to the context
+        context["latest_resource"] = ResourcePage.objects.live().order_by('-date').first()
 
         return context
 
@@ -320,3 +326,79 @@ class DonatePage(SeoMixin, Page):
     ]
 
 
+# =======================
+# RESOURCES PAGE (NEW)
+# =======================
+
+class ResourcesIndexPage(SeoMixin, Page):
+    template = 'home/resources_page.html'
+    intro = RichTextField(blank=True, help_text='Text to describe the resources section.')
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+            FieldPanel('og_image'),
+        ], heading='SEO Settings'),
+    ]
+
+    subpage_types = ['ResourcePage']
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        all_resources = ResourcePage.objects.live().descendant_of(self).order_by('-date')
+
+        # Pagination for resources
+        paginator = Paginator(all_resources, 6)  # Adjust per page as needed
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['resources'] = page_obj
+        return context
+
+    class Meta:
+        verbose_name = 'Resources Index Page'
+        verbose_name_plural = 'Resources Index Pages'
+
+
+class ResourcePage(SeoMixin, Page):
+    template = 'home/resource_detail_page.html'
+    date = models.DateField('Publication Date', help_text='Date the resource was published.')
+    intro = RichTextField(blank=True, help_text='A short introduction or summary of the resource.')
+    resource_file = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Upload the newsletter or annual report PDF/document.'
+    )
+    resource_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text='Image to represent the resource (e.g., cover of newsletter).'
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('date'),
+        FieldPanel('intro'),
+        FieldPanel('resource_image'),
+        FieldPanel('resource_file'),
+        MultiFieldPanel([
+            FieldPanel('seo_title'),
+            FieldPanel('search_description'),
+            FieldPanel('og_image'),
+        ], heading='SEO Settings'),
+    ]
+
+    parent_page_types = ['ResourcesIndexPage']
+
+    def get_other_resources(self):
+        return self.get_siblings().exclude(id=self.id).live().order_by('-date')[:5]
+
+    class Meta:
+        verbose_name = 'Resource Page'
+        verbose_name_plural = 'Resource Pages'

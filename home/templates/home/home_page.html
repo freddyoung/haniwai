@@ -248,7 +248,35 @@ Together, we’re building strong, equitable, and thriving communities."
   </div>
 </section>
 
-
+{% if latest_resource %}
+    <section class="latest-resource-section content-section bg-light-grey">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Latest Resource</h2>
+            <div class="resource-preview-card fade-in-up">
+                <a href="{% pageurl latest_resource %}" aria-label="View Latest Resource: {{ latest_resource.title }}">
+                    <div class="resource-preview-image-wrapper">
+                        {% if latest_resource.resource_image %}
+                            {% image latest_resource.resource_image fill-500x300 alt=latest_resource.title %}
+                        {% else %}
+                            <img src="{% static 'images/placeholder-resource.jpg' %}" alt="Placeholder resource image" class="placeholder-image">
+                        {% endif %}
+                    </div>
+                    <div class="resource-preview-content">
+                        <h3>{{ latest_resource.title }}</h3>
+                        <p class="resource-preview-date">{{ latest_resource.date|date:"F j, Y" }}</p>
+                        <p>{{ latest_resource.intro|striptags|truncatechars:200 }}</p>
+                        <span class="button button-secondary">More Resources</span>
+                    </div>
+                </a>
+            </div>
+            <div class="text-center fade-in-up">
+                {% if resources_index_page %}
+                    <a href="{% pageurl resources_index_page %}" class="button button-primary">View All Resources</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endif %}
 
 <section class="custom-gallery-section">
   <div class="gallery-scroll-wrapper">
@@ -415,4 +443,3 @@ Together, we’re building strong, equitable, and thriving communities."
 
 
 {% endblock %}
-

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{ page.title }} - HANIWAI Resources{% endblock %}
+{% block meta %}
+  <meta name="description" content="{{ page.intro|striptags|truncatechars:160 }}">
+  <meta name="keywords" content="HANIWAI, {{ page.title }}, Newsletter, Annual Report, Indigenous Women, PNG NGO, {{ page.date|date:"Y" }} Report">
+
+  <link rel="canonical" href="[https://www.haniwai.org](https://www.haniwai.org){{ page.url }}" />
+
+  <meta property="og:title" content="{{ page.title }} | HANIWAI Resources">
+  <meta property="og:description" content="{{ page.intro|striptags|truncatechars:160 }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="[https://www.haniwai.org](https://www.haniwai.org){{ page.url }}">
+  {% if page.resource_image %}
+    <meta property="og:image" content="{{ page.resource_image.file.url }}">
+  {% else %}
+    <meta property="og:image" content="[https://www.haniwai.org/static/images/social-preview.jpeg](https://www.haniwai.org/static/images/social-preview.jpeg)"> {# Fallback #}
+  {% endif %}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title }} | HANIWAI Resources">
+  <meta name="twitter:description" content="{{ page.intro|striptags|truncatechars:160 }}">
+  <meta name="twitter:image" content="{% if page.resource_image %}{{ page.resource_image.file.url }}{% else %}[https://www.haniwai.org/static/images/social-preview.jpeg](https://www.haniwai.org/static/images/social-preview.jpeg){% endif %}">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="hero-overlay">
+    <h1 class="hero-title">{{ page.title }}</h1>
+    <p class="hero-subtitle">{{ page.date|date:"F j, Y" }}</p>
+  </div>
+</section>
+
+<section class="resource-detail-section content-section">
+  <div class="container">
+    <div class="resource-detail-grid">
+      <div class="resource-main-content">
+        {% if page.resource_image %}
+          <figure class="resource-detail-image fade-in-up">
+            {% image page.resource_image fill-800x500 alt=page.title %}
+            {% if page.resource_image.caption %}
+                <figcaption>{{ page.resource_image.caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% endif %}
+
+        <div class="resource-intro fade-in-up">
+          {{ page.intro|richtext }}
+        </div>
+
+        {% if page.resource_file %}
+          <div class="resource-download-section fade-in-up">
+            <p>Download the full document:</p>
+            <a href="{{ page.resource_file.file.url }}" target="_blank" class="button button-primary large-button">
+              <i class="fas fa-file-download"></i> Download {{ page.resource_file.file.extension|upper }} ({{ page.resource_file.file.size|filesizeformat }})
+            </a>
+          </div>
+        {% endif %}
+
+        {# Add more content here if needed, e.g., a StreamField for full body content #}
+        {# {% if page.body %}{{ page.body }}{% endif %} #}
+
+      </div>
+      <aside class="sidebar fade-in-right">
+        <h3>More Resources</h3>
+        <ul>
+          {% for res in page.get_siblings.not_current.live.order_by('-date')|slice:":5" %} {# Show up to 5 other recent resources #}
+            <li><a href="{{ res.url }}">{{ res.title }} ({{ res.date|date:"Y" }})</a></li>
+          {% empty %}
+            <li>No other resources available.</li>
+          {% endfor %}
+          <li><a href="{{ page.get_parent.url }}" class="button button-secondary button-small">View All Resources</a></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

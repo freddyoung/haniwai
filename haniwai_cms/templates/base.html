@@ -93,7 +93,7 @@
     <div class="top-nav">
         <div class="top-nav-container">
             <div class="top-nav-left">
-                <a href="/partners">Resources</a> | <a href="/faqs">FAQs</a>
+                <a href="/resources">Resources</a> | <a href="/faqs">FAQs</a>
             </div>
             <div class="top-nav-right">
                 <span>Email: info@haniwai.org</span> | <span>Phone: (+675) 7206 7138 / 7873 0275</span>
@@ -135,7 +135,9 @@
                     <li><a href="/events/" class="{% if request.path == '/events/' %}active{% endif %}">News & Events</a></li>
                     <li><a href="/contact/" class="{% if request.path == '/contact/' %}active{% endif %}">Contact</a></li>
                     <li class="desktop-donate"><a href="/donate-now/" class="donate-btn {% if request.path == '/donate-now/' %}active-donate{% endif %}">DONATE <span class="heart"></span></a></li>                    
-                    <li class="mobile-only"><a href="/partners">Resources</a></li>
+                    {% if resources_index_page %} 
+                      <li> <a href="{% pageurl resources_index_page %}" class="{% if '/resources/' in request.path %}active{% endif %} mobile-only">Resources</a> </li> 
+                    {% endif %}
                     <li class="mobile-only"><a href="/faqs">FAQs</a></li>  
                 </ul>
             </div>

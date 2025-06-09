@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}Resources - HANIWAI{% endblock %}
+{% block meta %}
+  <meta name="description" content="Explore HANIWAI's collection of newsletters, annual reports, and other resources empowering indigenous women and promoting environmental causes in Papua New Guinea.">
+  <meta name="keywords" content="HANIWAI Resources, Newsletters, Annual Reports, Indigenous Women Publications, PNG NGO Documents, Environmental Reports, HANIWAI Publications">
+
+  <link rel="canonical" href="[https://www.haniwai.org](https://www.haniwai.org){{ page.url }}" />
+
+  <meta property="og:title" content="HANIWAI Resources | Newsletters & Annual Reports">
+  <meta property="og:description" content="Access HANIWAI's official documents, including our latest newsletters and comprehensive annual reports on our impact.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="[https://www.haniwai.org](https://www.haniwai.org){{ page.url }}">
+  <meta property="og:image" content="[https://www.haniwai.org/static/images/social-preview.jpeg](https://www.haniwai.org/static/images/social-preview.jpeg)"> {# Consider setting a specific OG image for this page in Wagtail admin #}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HANIWAI Resources | Newsletters & Annual Reports">
+  <meta name="twitter:description" content="Download HANIWAI's newsletters and annual reports to learn about our work and impact in Papua New Guinea.">
+  <meta name="twitter:image" content="[https://www.haniwai.org/static/images/social-preview.jpeg](https://www.haniwai.org/static/images/social-preview.jpeg)"> {# Consider setting a specific Twitter image for this page in Wagtail admin #}
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="hero-overlay">
+    <h1 class="hero-title">Our Resources</h1>
+  </div>
+</section>
+
+<section class="resources-section">
+  <div class="container">
+    {% if page.intro %}
+      <div class="page-intro-text fade-in-up">
+        {{ page.intro|richtext }}
+      </div>
+    {% endif %}
+
+    <div class="resources-grid">
+      {% for resource in resources %} {# 'resources' is the context variable from ResourcesIndexPage.get_context #}
+        <div class="resource-card fade-in-up">
+          <a href="{{ resource.url }}" aria-label="View {{ resource.title }}">
+            <div class="resource-image-wrapper">
+              {% if resource.resource_image %}
+                {% image resource.resource_image fill-400x250 alt=resource.title %}
+              {% else %}
+                <img src="{% static 'images/placeholder-resource.jpg' %}" alt="Placeholder resource image" class="placeholder-image">
+              {% endif %}
+            </div>
+            <div class="resource-content">
+              <span class="resource-label">{{ resource.date|date:"F Y" }}</span> {# Display month and year #}
+              <h3>{{ resource.title }}</h3>
+              <p>{{ resource.intro|striptags|truncatechars:150 }}</p>
+              {% if resource.resource_file %}
+                <a href="{{ resource.resource_file.file.url }}" target="_blank" class="button button-primary">Download {{ resource.resource_file.file.extension|upper }}</a>
+              {% else %}
+                <a href="{{ resource.url }}" class="button button-secondary">Read More</a>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+      {% empty %}
+        <p class="no-resources-message fade-in-up">No resources available yet. Please check back soon!</p>
+      {% endfor %}
+    </div>
+
+    {# Pagination for resources #}
+    {% if resources.has_other_pages %}
+      <div class="pagination fade-in-up">
+        {% if resources.has_previous %}
+          <a href="?page={{ resources.previous_page_number }}" class="pagination-link">&laquo; Previous</a>
+        {% endif %}
+        <span class="current-page">
+          Page {{ resources.number }} of {{ resources.paginator.num_pages }}
+        </span>
+        {% if resources.has_next %}
+          <a href="?page={{ resources.next_page_number }}" class="pagination-link">Next &raquo;</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
