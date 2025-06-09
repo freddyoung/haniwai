@@ -1,7 +1,5 @@
-from wagtail.contrib.sitemaps.sitemap import Sitemap
+from wagtail.contrib.sitemaps import Sitemap 
 from django.conf import settings
-
-
 class FinalHaniwaiSitemap(Sitemap):
     def get_urls(self, site=None, **kwargs):
         urls = super().get_urls(site=site, **kwargs)
