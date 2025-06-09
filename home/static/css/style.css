@@ -2167,7 +2167,7 @@ color: var(--white);
     position: relative;
     width: 100%;
     height: 350px; /* Adjust height as needed */
-    background: url('../images/hero-default.jpg') no-repeat center center/cover; /* Default hero image */
+    /* background: url('../images/hero-default.jpg') no-repeat center center/cover;  Default hero image */
     display: flex;
     align-items: center;
     justify-content: center;
