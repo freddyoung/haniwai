@@ -41,5 +41,11 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 
+USE_HTTPS = True
+WHITENOISE_AUTOREFRESH = True  # TEMPORARY for debugging
+
+
 SITE_URL = "https://www.haniwai.org"
+
+
 
