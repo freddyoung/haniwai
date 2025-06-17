@@ -462,7 +462,7 @@ color: var(--accent-color);
 /* ================= Hero Section ================= */
 .hero {
 background: url('../images/motto1.webp') no-repeat center/cover;
-height: 85vh;
+height: 80vh;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -478,7 +478,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: rgba(0, 0, 0, 0.35); /* ✅ Full overlay */
+background: rgba(0, 0, 0, 0.40); /* ✅ Full overlay */
 z-index: 1;
 }
 
@@ -852,7 +852,7 @@ animation: fadeInFromTop 0.6s ease-out;
 background: var(--white);
 padding-top: 220px;
 padding-bottom: 75px;
-background-image: url('/static/images/background.png'); /* ⭐️ your background image */
+background-image: url('/static/images/background-alt2.png'); /* ⭐️ your background image */
 background-size: cover; /* or 'contain' depending on effect */
 background-position: center;
 background-repeat: no-repeat;
@@ -2142,6 +2142,138 @@ color: var(--white);
   .home-news h2 {
     font-size: 2rem;
   }
+}
+
+/* =============================
+   FAQ Page Specific Styles
+   ============================= */
+
+/* Hero section for FAQs - consistent with other pages */
+.faq-hero {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    background: url('../images/png-women.webp') no-repeat center center/cover; /* Default hero image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    overflow: hidden; /* Important for parallax or overlay effects */
+}
+
+/* FAQ Section Styling */
+.faq-section {
+    padding: 4rem 1rem;
+    background-color: var(--light-bg);
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-small); /* Reusing a subtle shadow */
+    margin-bottom: 1.5rem;
+    overflow: hidden; /* Ensures content respects border-radius */
+    transition: all 0.3s ease; /* Smooth transition for hover/active states */
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow on hover */
+}
+
+.faq-question {
+    font-size: 1.35rem;
+    color: var(--primary-color);
+    padding: 1.5rem 2rem;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Merriweather', serif; /* Consistent with other headings */
+}
+
+.faq-question::after {
+    content: '+';
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    content: '-';
+    transform: rotate(0deg); /* Reset rotation for minus sign */
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out; /* Smooth slide effect */
+    padding: 0 2rem; /* Consistent horizontal padding */
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Adjust based on expected max content height */
+    padding-bottom: 1.5rem; /* Add padding when open */
+}
+
+.faq-answer p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+    margin-bottom: 0; /* Remove default paragraph margin */
+}
+
+.faq-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.faq-link:hover {
+    color: var(--accent-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .faq-question {
+        font-size: 1.15rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .faq-answer {
+        padding: 0 1.5rem;
+    }
+
+    .faq-item.active .faq-answer {
+        padding-bottom: 1rem;
+    }
+
+    .faq-answer p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-question {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .faq-question::after {
+        font-size: 1.5rem;
+    }
+
+    .faq-answer {
+        padding: 0 1rem;
+    }
 }
 
 /* ============================= */

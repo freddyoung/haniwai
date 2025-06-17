@@ -403,3 +403,39 @@ class ResourcePage(SeoMixin, Page):
     class Meta:
         verbose_name = 'Resource Page'
         verbose_name_plural = 'Resource Pages'
+
+
+class FaqPage(SeoMixin, Page):
+    """
+    A Wagtail Page type for displaying Frequently Asked Questions.
+    Content will be structured as an accordion in the template.
+    """
+    template = "home/faqs.html" # This points to the HTML template you created
+
+    # Optional: You could add an intro field if you want general text
+    # above the FAQs section. For now, the template handles all text.
+    intro = RichTextField(
+        blank=True,
+        null=True,
+        help_text="Optional introductory text for the FAQ page."
+    )
+
+    # Panels for the Wagtail Admin interface
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+        MultiFieldPanel([
+            FieldPanel("seo_title"),
+            FieldPanel("search_description"),
+            FieldPanel("og_image"),
+            FieldPanel("no_index"), # Include no_index for SEO control
+        ], heading="SEO Settings"),
+    ]
+
+    # You can specify parent page types if you want to restrict where
+    # FAQ pages can be created in the Wagtail page tree.
+    # For example, to allow it only under HomePage:
+    # parent_page_types = ['HomePage']
+
+    class Meta:
+        verbose_name = "FAQ Page"
+        verbose_name_plural = "FAQ Pages"

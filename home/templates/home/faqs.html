@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %} {# IMPORTANT: Ensure this is present at the top of faqs.html #}
+
+{% block title %}FAQs - Haniwai NGO{% endblock %}
+{% block meta %}
+  <meta name="description" content="Frequently asked questions about HANIWAI, an Indigenous women-led NGO in Papua New Guinea. Learn about our mission, services, and how to get involved.">
+  <meta name="keywords" content="HANIWAI FAQs, About HANIWAI, Indigenous Women PNG, Women-led NGO, Papua New Guinea Nonprofit, Gender Equality, Safe Spaces, Climate Action, Donations, Volunteer">
+
+  <link rel="canonical" href="https://www.haniwai.org/faqs/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="FAQs | HANIWAI - Indigenous Women-Led NGO in Papua New Guinea">
+  <meta property="og:description" content="Find answers to common questions about HANIWAI's work, mission, and how you can support Indigenous women and communities in PNG.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.haniwai.org/faqs/">
+  <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FAQs | HANIWAI - Indigenous Women-Led NGO in Papua New Guinea">
+  <meta name="twitter:description" content="Get answers to your questions about HANIWAI's dedication to empowering Indigenous women and protecting culture and environment in PNG.">
+  <meta name="twitter:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+
+  <!-- Optional JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does HANIWAI stand for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HANIWAI stands for Humanity & Nature Indigenous Women’s Association. We are an Indigenous women-led organization based in Papua New Guinea, committed to protecting ancestral wisdom and empowering marginalized communities across PNG and the Pacific."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who does HANIWAI serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We support Indigenous women, children, and other vulnerable groups affected by domestic violence, displacement, climate crises, sorcery-related accusations, and tribal conflict. This includes widows, orphans, LGBTQ+ individuals, persons with disabilities, and those facing systemic injustice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is HANIWAI a registered organization?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we are a registered non-profit organization operating in accordance with Papua New Guinea's legal and community-based frameworks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I get involved?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We welcome supporters in many forms—volunteers, collaborators, donors, and advocates. You can join community events, contribute skills, help amplify our work, or support us financially. [Add a link to your contact or support page here]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are donations used?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All donations go directly toward HANIWAI's mission: providing safe shelters, trauma counseling, community workshops, climate justice advocacy, and empowerment programs for Indigenous communities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work outside of Papua New Guinea?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While our roots are in PNG, our advocacy and partnerships extend across the Pacific. We work with regional allies to address shared challenges like climate-induced displacement and gender-based violence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I contact HANIWAI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can reach us via our [Contact Page] or by emailing [insert email address here]. We’re always ready to listen, collaborate, and build community together."
+        }
+      }
+    ]
+  }
+  </script>
+{% endblock %}
+
+{% block content %}
+
+<!-- FAQ Hero Section -->
+<section class="faq-hero">
+    <div class="hero-overlay">
+        <h1 class="hero-title fade-in-up">Frequently Asked Questions</h1>
+    </div>
+</section>
+
+<!-- FAQ Content Section -->
+<section class="faq-section">
+    <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item fade-in-up">
+            <h3 class="faq-question">What does HANIWAI stand for?</h3>
+            <div class="faq-answer">
+                <p>HANIWAI stands for Humanity & Nature Indigenous Women’s Association. We are an Indigenous women-led organization based in Papua New Guinea, committed to protecting ancestral wisdom and empowering marginalized communities across PNG and the Pacific.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item fade-in-up">
+            <h3 class="faq-question">Who does HANIWAI serve?</h3>
+            <div class="faq-answer">
+                <p>We support Indigenous women, children, and other vulnerable groups affected by domestic violence, displacement, climate crises, sorcery-related accusations, and tribal conflict. This includes widows, orphans, LGBTQ+ individuals, persons with disabilities, and those facing systemic injustice.</p>
+            </p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item fade-in-up">
+            <h3 class="faq-question">Is HANIWAI a registered organization?</h3>
+            <div class="faq-answer">
+                <p>Yes, we are a registered non-profit organization operating in accordance with Papua New Guinea's legal and community-based frameworks.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item fade-in-up">
+            <h3 class="faq-question">How can I get involved?</h3>
+            <div class="faq-answer">
+                <p>We welcome supporters in many forms—volunteers, collaborators, donors, and advocates. You can join community events, contribute skills, help amplify our work, or support us financially.
+                {% if contact_page %}<a href="{% pageurl contact_page %}" class="faq-link">Visit our Contact Page</a>{% else %}Visit our Contact Page{% endif %} or
+                {% if donate_page %}<a href="{% pageurl donate_page %}" class="faq-link">Donate here</a>{% else %}Donate here{% endif %} to get involved!</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item fade-in-up">
+            <h3 class="faq-question">How are donations used?</h3>
+            <div class="faq-answer">
+                <p>All donations go directly toward HANIWAI's mission: providing safe shelters, trauma counseling, community workshops, climate justice advocacy, and empowerment programs for Indigenous communities.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item fade-in-up">
+            <h3 class="faq-question">Do you work outside of Papua New Guinea?</h3>
+            <div class="faq-answer">
+                <p>While our roots are in PNG, our advocacy and partnerships extend across the Pacific. We work with regional allies to address shared challenges like climate-induced displacement and gender-based violence.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 7 -->
+        <div class="faq-item fade-in-up">
+            <h3 class="faq-question">How can I contact HANIWAI?</h3>
+            <div class="faq-answer">
+                <p>You can reach us via our
+                {% if contact_page %}<a href="{% pageurl contact_page %}" class="faq-link">Contact Page</a>{% else %}Contact Page{% endif %} or by emailing
+                <a href="mailto:info@haniwai.org" class="faq-link">info@haniwai.org</a>. We’re always ready to listen, collaborate, and build community together.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Toggle 'active' class on the clicked item
+                item.classList.toggle('active');
+
+                // Close other open FAQ items (optional, but good for UX)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // The fade-in-up Intersection Observer logic is likely duplicated here.
+        // It's recommended to move this to your site-wide script.js file.
+        // For now, it won't break anything, but it's redundant.
+        const faders = document.querySelectorAll('.fade-in-up');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    });
+</script>
+{% endblock %}
