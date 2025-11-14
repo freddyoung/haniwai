@@ -1256,12 +1256,14 @@ text-align: center;
 .partner-logo {
   display: block; /* Treat image as a block element */
   /* *** KEY: Control Logo Size *** */
-  max-height: 300px; /* Set a consistent max height */
-  max-width: 300px; /* Set a consistent max width */
-  width: auto;      /* Allow browser to scale width based on height/aspect ratio */
-  height: auto;     /* Allow browser to scale height based on width/aspect ratio */
+    /* Allow browser to scale height based on width/aspect ratio */
   object-fit: contain; /* Scale the image while preserving aspect ratio */
 
+  width: 150px; 
+  height: auto; /* This keeps the aspect ratio correct */
+
+  /* You can also use max-width to make it responsive */
+  max-width: 100%;
   /* --- Optional: Grayscale effect for a professional look --- */
   filter: grayscale(100%);
   opacity: 0.7; /* Make them slightly less prominent initially */
