@@ -77,6 +77,32 @@ class HomePage(SeoMixin, Page):
             context["latest_resource"] = None
 
         return context
+    
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        
+        # This gives the HTML the "Missions" it needs for the Alpine.js modal
+        # Without this, hero.html may be looking for variables that don't exist
+        context['missions'] = [
+            {
+                'id': 'women',
+                'title': 'Women Empowerment',
+                'iconImg': '/static/images/women-icon.png', # Ensure these exist!
+                'description': 'Supporting indigenous women through advocacy and leadership.'
+            },
+            {
+                'id': 'nature',
+                'title': 'Nature Protection',
+                'iconImg': '/static/images/nature-icon.png',
+                'description': 'Protecting our forests and traditional lands.'
+            }
+        ]
+        
+        # Ensure News and Resources don't crash the other sections
+        context['news_items'] = apps.get_model('home', 'NewsPage').objects.live().order_by('-date')[:3]
+        context['resources'] = apps.get_model('home', 'ResourcePage').objects.live().order_by('-date')[:3]
+        
+        return context
 
 
 # =======================
