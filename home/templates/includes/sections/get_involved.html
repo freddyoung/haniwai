@@ -1,0 +1,84 @@
+{% load static %}
+
+<section id="get-involved" class="py-24 bg-white overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+        
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-heading font-bold text-4xl md:text-5xl mb-4 text-[#004d4d]">Get Involved</h2>
+            <div class="w-24 h-1 bg-[#004d4d] mx-auto mb-6"></div>
+            <p class="text-xl text-gray-800 max-w-3xl mx-auto font-body">
+                Join us in creating lasting change for indigenous women and communities
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto reveal">
+            
+            <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#004d4d] to-[#003333] opacity-95"></div>
+                
+                <div class="relative p-10 text-white flex flex-col h-full">
+                    <div class="mb-8 flex justify-center">
+                        <div class="w-24 h-24 bg-white/10 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center p-5">
+                            <img src="{% static 'images/volunteering.png' %}" 
+                                 alt="Volunteer Icon" 
+                                 class="w-full h-full object-contain brightness-0 invert" 
+                                 style="filter: brightness(0) invert(1);">
+                        </div>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-4 text-center">Volunteer</h3>
+                    <p class="text-white/90 mb-8 text-center leading-relaxed flex-grow font-light">
+                        Share your skills and time to directly support our programs and empower indigenous communities.
+                    </p>
+                    <button class="w-full py-4 bg-white text-[#004d4d] rounded-lg font-bold hover:bg-gray-100 transition-colors uppercase tracking-widest text-xs">
+                        Apply to Volunteer
+                    </button>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#4da6a6] to-[#3a8585] opacity-95"></div>
+                
+                <div class="relative p-10 text-white flex flex-col h-full">
+                    <div class="mb-8 flex justify-center">
+                        <div class="w-24 h-24 bg-white/10 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center p-5">
+                            <img src="{% static 'images/partner.png' %}" 
+                                 alt="Partner Icon" 
+                                 class="w-full h-full object-contain brightness-0 invert"
+                                 style="filter: brightness(0) invert(1);">
+                        </div>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-4 text-center">Partner</h3>
+                    <p class="text-white/90 mb-8 text-center leading-relaxed flex-grow font-light">
+                        Collaborate with us to amplify our impact through strategic partnerships and community initiatives.
+                    </p>
+                    <button class="w-full py-4 bg-white text-[#4da6a6] rounded-lg font-bold hover:bg-gray-100 transition-colors uppercase tracking-widest text-xs">
+                        Become a Partner
+                    </button>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#e15b8d] to-[#c13d6f] opacity-95"></div>
+                
+                <div class="relative p-10 text-white flex flex-col h-full">
+                    <div class="mb-8 flex justify-center">
+                        <div class="w-24 h-24 bg-white/10 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center p-5">
+                            <img src="{% static 'images/donation.png' %}" 
+                                 alt="Donate Icon" 
+                                 class="w-full h-full object-contain brightness-0 invert"
+                                 style="filter: brightness(0) invert(1);">
+                        </div>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-4 text-center">Donate</h3>
+                    <p class="text-white/90 mb-8 text-center leading-relaxed flex-grow font-light">
+                        Your generous contribution directly funds our programs and transforms lives across Papua New Guinea.
+                    </p>
+                    <button class="w-full py-4 bg-white text-[#e15b8d] rounded-lg font-bold hover:bg-gray-100 transition-colors uppercase tracking-widest text-xs">
+                        Make a Donation
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

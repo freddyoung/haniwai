@@ -1,79 +1,129 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
-{% block title %}Events - Haniwai NGO{% endblock %}
-{% block meta %}
-  <meta name="description" content="Stay up to date with HANIWAI’s latest events, advocacy campaigns, cultural programs, and community outreach across Papua New Guinea.">
-  <meta name="keywords" content="HANIWAI News, PNG NGO Events, Indigenous Women Updates, Community Empowerment, Advocacy Campaigns, Papua New Guinea NGO News">
-
-  <link rel="canonical" href="https://www.haniwai.org/events/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="HANIWAI | Latest News & Events from the Field">
-  <meta property="og:description" content="Explore HANIWAI’s recent initiatives: from women’s empowerment and climate action to cultural preservation programs across PNG.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.haniwai.org/events/">
-  <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="HANIWAI | Latest News & Events from the Field">
-  <meta name="twitter:description" content="Get the latest updates from our grassroots work empowering women and communities across Papua New Guinea.">
-  <meta name="twitter:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
-
-  <!-- Optional JSON-LD Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "News & Events - HANIWAI",
-    "url": "https://www.haniwai.org/events/",
-    "description": "HANIWAI’s latest events, community work, and indigenous-led initiatives across Papua New Guinea.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
-      "url": "https://www.haniwai.org",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.haniwai.org/static/images/haniwa_logo.png"
-      }
-    }
-  }
-  </script>
-{% endblock %}
-
+{% block title %}News & Events | HANIWAI{% endblock %}
 
 {% block content %}
 
-<!-- ✅ Hero Section -->
-<section class="page-hero">
-  <div class="hero-overlay">
-    <h1 class="hero-title">News & Events</h1>
-  </div>
-</section>
-
-<!-- ✅ News/Event Previews -->
-<section class="events-section">
-  <div class="container">
-    <div class="events-grid">
-      {% for event in page.get_children.live.specific|dictsortreversed:"date" %}
-        <div class="news-card">
-          <a href="{{ event.url }}">
-            <div class="news-image-wrapper">
-              {% image event.image fill-400x250 %}
-              <span class="news-label">{{ event.category|title }}</span>
-            </div>
-            <div class="news-content">
-              <p class="news-date">{{ event.date }}</p>
-              <h3 class="news-title">{{ event.title }}</h3>
-              <p class="news-snippet">{{ event.intro }}</p>
-            </div>
-          </a>
+    {# 1. HERO SECTION #}
+    <section class="relative py-24 bg-deep-teal overflow-hidden">
+        <div class="topography-bg bg-white opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center text-white">
+            <h1 class="font-heading font-bold text-5xl md:text-6xl mb-6">News & Events</h1>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto font-light">
+                Follow our journey, community stories, and upcoming grassroots activities across Papua New Guinea.
+            </p>
         </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
+    </section>
+
+    {# 2. FILTER & SEARCH BAR #}
+    <section class="py-12 bg-gray-50 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 max-w-6xl mx-auto">
+                
+                {# Tabs #}
+                <div class="flex p-1 bg-gray-200 rounded-xl w-full md:w-auto">
+                    <button onclick="filterPosts('all')" class="filter-tab active px-6 py-2 rounded-lg font-bold text-sm transition-all" data-filter="all">All</button>
+                    <button onclick="filterPosts('news')" class="filter-tab px-6 py-2 rounded-lg font-bold text-sm transition-all" data-filter="news">News</button>
+                    <button onclick="filterPosts('event')" class="filter-tab px-6 py-2 rounded-lg font-bold text-sm transition-all" data-filter="event">Events</button>
+                </div>
+
+                {# Search #}
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="news-search" placeholder="Search stories..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-river-blue focus:outline-none">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 3. STORIES GRID #}
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                {% for event in page.get_children.live.specific %}
+                <div class="post-card group flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden" data-category="{{ event.category }}">
+                    
+                    {# Image: Now Wrapped in a Link #}
+                    <a href="{% pageurl event %}" class="aspect-video relative overflow-hidden bg-gray-100 block">
+                        {% if event.image %}
+                            {% image event.image fill-800x450 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" %}
+                        {% endif %}
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-md {% if event.category == 'event' %}bg-involved-pink/20 text-involved-pink border border-involved-pink/30{% else %}bg-river-blue/20 text-river-blue border border-river-blue/30{% endif %}">
+                            {{ event.category|title }}
+                        </span>
+                    </a>
+
+                    {# Content #}
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                            {{ event.date|date:"F d, Y" }}
+                        </div>
+
+                        {# Title: Now Wrapped in a Link #}
+                        <h3 class="font-heading font-bold text-xl text-deep-teal mb-4 group-hover:text-river-blue transition-colors leading-tight">
+                            <a href="{% pageurl event %}">
+                                {{ event.title }}
+                            </a>
+                        </h3>
+
+                        <p class="text-gray-500 text-sm font-light leading-relaxed mb-6 line-clamp-3">
+                            {{ event.intro|striptags }}
+                        </p>
+
+                        <div class="mt-auto pt-6 border-t border-gray-50">
+                            <a href="{% pageurl event %}" class="inline-flex items-center gap-2 text-river-blue font-bold text-xs uppercase tracking-widest group/link">
+                                Read Story
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="col-span-full text-center text-gray-400 italic py-20">No stories found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .filter-tab.active { background: white; color: #004d4d; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .filter-tab:not(.active) { color: #64748b; }
+    </style>
+
+    <script>
+        function filterPosts(category) {
+            const posts = document.querySelectorAll('.post-card');
+            const tabs = document.querySelectorAll('.filter-tab');
+            
+            tabs.forEach(tab => {
+                tab.classList.toggle('active', tab.getAttribute('data-filter') === category);
+            });
+
+            posts.forEach(post => {
+                if (category === 'all' || post.getAttribute('data-category') === category) {
+                    post.style.display = 'flex';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+
+        // Live Search Logic
+        document.getElementById('news-search').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const posts = document.querySelectorAll('.post-card');
+            
+            posts.forEach(post => {
+                const title = post.querySelector('h3').innerText.toLowerCase();
+                if (title.includes(term)) {
+                    post.style.display = 'flex';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
 {% endblock %}
-

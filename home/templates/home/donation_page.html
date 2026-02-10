@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block title %}Support Our Mission | HANIWAI{% endblock %}
+
+{% block content %}
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .donation-input:focus {
+            border-color: #e15b8d;
+            box-shadow: 0 0 0 2px rgba(225, 91, 141, 0.2);
+        }
+
+        /* Impact Icon Classes - Preserved from previous version */
+        .impact-icon-pink { @apply text-involved-pink bg-involved-pink/10; }
+        .impact-icon-blue { @apply text-river-blue bg-river-blue/10; }
+        .impact-icon-teal { @apply text-teal-400 bg-teal-400/10; }
+
+        /* Smooth overlay for hero image clarity */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 43, 43, 0.7) 0%, rgba(0, 43, 43, 0.9) 100%);
+        }
+    </style>
+
+    {# 1. HERO & ACTION SECTION - Updated with Background Image & Direct Link #}
+    <section class="relative pt-48 pb-36 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            {# Replace 'images/donation-hero.jpg' with your actual image path #}
+            <img src="{% static 'images/contact.webp' %}" alt="Donation Hero Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="absolute inset-0 opacity-[0.05] pointer-events-none">
+                <div class="topography-bg bg-white h-full w-full"></div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="inline-block px-4 py-1 rounded-full border border-river-blue/30 text-river-blue text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
+                    Join the movement
+                </span>
+                <h1 class="font-heading font-bold text-5xl md:text-7xl text-white mb-10 leading-tight">
+                    Every contribution <span class="text-involved-pink">counts.</span>
+                </h1>
+                
+                {# Updated Call-to-Action: Direct External PayPal Link #}
+                <div class="flex flex-col items-center gap-10">
+                    <a href="https://www.paypal.com/ncp/payment/QCS5N8BLVDH98" 
+                       target="_blank" 
+                       rel="noopener"
+                       class="inline-flex items-center gap-4 bg-involved-pink hover:bg-[#d6417a] text-white font-bold px-12 py-6 rounded-2xl text-xl transition-all transform hover:scale-[1.05] active:scale-95 shadow-2xl shadow-involved-pink/30 group">
+                        <span>Make Your Donation Here</span>
+                        <i data-lucide="external-link" class="w-6 h-6 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+                    </a>
+
+                    <div class="flex items-center justify-center gap-6 opacity-60">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-river-blue"></i>
+                        <span class="text-[10px] text-white font-bold uppercase tracking-[0.2em]">Secure External Payment Gateway</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 2. IMPACT AREAS - Maintained layout #}
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <div class="space-y-6 group">
+                    <div class="impact-icon-blue w-16 h-16 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500">
+                        <i data-lucide="home" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-deep-teal">Safe Housing</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Providing immediate shelter and safety for women and children in crisis across the region.
+                    </p>
+                </div>
+
+                <div class="space-y-6 group">
+                    <div class="impact-icon-pink w-16 h-16 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500">
+                        <i data-lucide="users" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-deep-teal">Advocacy Workshops</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Equipping community leaders with the legal and organizational tools to drive grassroots change.
+                    </p>
+                </div>
+
+                <div class="space-y-6 group">
+                    <div class="impact-icon-teal w-16 h-16 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500">
+                        <i data-lucide="leaf" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl text-deep-teal">Land Protection</h3>
+                    <p class="text-gray-500 leading-relaxed">
+                        Supporting the indigenous-led conservation of PNG's biodiversity and ancestral land rights.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {# 3. FINAL TRUST BANNER #}
+    <section class="py-20 bg-gray-50 border-t border-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-heading font-bold text-3xl text-deep-teal mb-4">Transparency is our promise.</h2>
+            <p class="text-gray-500 max-w-xl mx-auto mb-10">
+                Your contribution goes directly to field programs. We maintain a zero-waste policy to ensure maximum community impact.
+            </p>
+            <a href="{% slugurl 'resources' %}" class="inline-flex items-center gap-3 text-involved-pink font-bold text-xs uppercase tracking-widest hover:gap-5 transition-all">
+                View Impact Reports <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+{% endblock %}

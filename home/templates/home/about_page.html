@@ -1,121 +1,400 @@
 {% extends "base.html" %}
-{% load static %} 
+{% load static %}
 
-{% block title %}About Us - Haniwai NGO{% endblock %}
+{% block title %}About Us | HANIWAI{% endblock %}
+
 {% block meta %}
-  <meta name="description" content="HANIWAI is an Indigenous women-led NGO in Papua New Guinea, creating safe spaces, advocating for justice, and driving sustainable change across the Pacific.">
-  <meta name="keywords" content="HANIWAI, About HANIWAI, Indigenous Women PNG, Women-led NGO, Papua New Guinea Nonprofit, Gender Equality, Safe Spaces, Climate Action">
-
+  <meta name="description" content="HANIWAI is an Indigenous women-led NGO in Papua New Guinea, dedicated to empowering communities and protecting our biodiversity.">
   <link rel="canonical" href="https://www.haniwai.org/about-us/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="About HANIWAI | Indigenous Women-Led NGO in Papua New Guinea">
-  <meta property="og:description" content="Learn more about HANIWAI’s mission to empower Indigenous women, protect culture, and lead environmental justice in PNG and the Pacific.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.haniwai.org/about-us/">
-  <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About HANIWAI | Indigenous Women-Led NGO in Papua New Guinea">
-  <meta name="twitter:description" content="Our mission is to empower women, preserve culture, and promote sustainability. Learn more about our work across PNG.">
-  <meta name="twitter:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
-
-  <!-- Optional JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About HANIWAI",
-    "url": "https://www.haniwai.org/about-us/",
-    "description": "HANIWAI is an Indigenous women-led NGO creating safe spaces and promoting equity, sustainability, and cultural protection across Papua New Guinea.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
-      "url": "https://www.haniwai.org",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.haniwai.org/static/images/haniwa_logo.png"
-      }
-    }
-  }
-  </script>
+  <meta property="og:title" content="About HANIWAI | Indigenous Women-Led NGO">
+  <meta property="og:image" content="{% static 'images/social-preview.jpeg' %}">
 {% endblock %}
-
 
 {% block content %}
 
-<!-- ✅ Hero Banner -->
-<section class="about-hero">
-    <div class="about-hero-overlay"></div>
-</section>
+    <style>
+        /* Bento Grid Styles */
+        .bento-card {
+            background: white;
+            border: 1px solid rgba(0, 77, 77, 0.05);
+            box-shadow: 0 10px 40px -10px rgba(0, 77, 77, 0.05);
+            transition: all 0.4s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px -10px rgba(0, 77, 77, 0.1);
+            border-color: rgba(77, 166, 166, 0.2);
+        }
 
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 15px 30px rgba(0, 77, 77, 0.1);
+        }
 
-<!-- ✅ Who We Are / Mission - Fresh Modern Layout -->
-<!-- ✅ Who We Are / Mission - Centered Layout -->
-<section class="about-highlight-section">
-  <div class="about-text-centered">
-    <h2 class="highlight-heading fade-in-up">What is HANIWAI?</h2>
-    <p>
-      The Humanity and Nature Indigenous Women’s Association Inc. (HANIWAI) is an Indigenous women-led non-profit organization based in Papua New Guinea. Our mission is to empower marginalized communities and protect ancestral knowledge throughout PNG and the Pacific.    </p>
-    <p>
-      We provide safe spaces, shelter, counseling, and support for Indigenous women and children affected by domestic violence, sorcery-related accusations, homelessness, tribal conflict, climate-induced displacement, and other forms of injustice and trauma. We stand with widows, orphans, LGBTQ+ individuals, people with disabilities, forcibly displaced women and young girls (including those internally displaced by environmental crises and conflict), and other outcast or vulnerable members of society.    </p>
-    <p>
-      Through community workshops, awareness campaigns, protest marches, and cultural education, we work to break cycles of violence and discrimination while advocating for climate justice and sustainable resilience in Indigenous communities. At HANIWAI, we believe in healing, solidarity, and reclaiming dignity — together, and live by our motto to <b>Preserve, Protect, and Transform.</b></p>
-  </div>
-</section>
+        /* Topography Background Utility */
+        .topography-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url("{% static 'images/topography.svg' %}");
+            mask-image: linear-gradient(to bottom, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+            opacity: 0.05;
+            pointer-events: none;
+        }
 
-  
+        .year-label {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #e15b8d;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            margin-top: 1rem;
+            display: block;
+        }
+        
+        /* Team Card Styling */
+        .team-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        .team-img-container {
+            overflow: hidden;
+            border-radius: 9999px;
+            border: 4px solid white;
+            box-shadow: 0 10px 25px -5px rgba(0, 77, 77, 0.2);
+        }
+    </style>
 
-<!-- ✅ Modern SDG Goals Section -->
-<section class="sdg-modern">
-  <div class="container">
-    
-    <div class="sdg-logo-wrapper">
-      <img src="{% static 'images/sdg.png' %}" alt="SDG Goals" class="sdg-image fade-in-up">
-    </div>
-    <h2 class="section-title fade-in-up">Our Commitment to the SDG30</h2>
+    {# 1. HERO SECTION #}
+    <section class="relative py-32 md:py-40 flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="{% static 'images/motto1.webp' %}" alt="Papua New Guinea Landscape" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#003333] via-[#004d4d]/80 to-transparent"></div>
+        </div>
 
+        <div class="relative z-10 container mx-auto px-4 lg:px-12">
+            <div class="max-w-3xl reveal">
+                <div class="inline-flex items-center space-x-2 mb-6 border-l-2 border-[#e15b8d] pl-4">
+                    <span class="text-[#4da6a6] font-bold tracking-[0.2em] uppercase text-xs">Who We Are</span>
+                </div>
+                <h1 class="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-white mb-8 leading-tight">
+                    Guardians of <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#4da6a6] to-[#e15b8d]">Culture & Nature</span>
+                </h1>
+                <p class="text-xl text-white/90 font-light leading-relaxed max-w-2xl">
+                    A grassroots movement dedicated to uplifting indigenous women and preserving the natural heritage of Papua New Guinea.
+                </p>
+            </div>
+        </div>
+    </section>
 
-    <div class="sdg-grid fade-in-up">
-      <div class="sdg-card">
-        <div class="sdg-icon">🎓</div>
-        <h3>Quality Education</h3>
-        <p>Ensure inclusive and equitable education for marginalized communities across PNG and the Pacific.</p>
-        <span class="year-label">2025</span>
-      </div>
-      <div class="sdg-card">
-        <div class="sdg-icon">♀️</div>
-        <h3>Gender Equality</h3>
-        <p>Empower women and girls through leadership, protection, and policy change.</p>
-        <span class="year-label">2027</span>
-      </div>
-      <div class="sdg-card">
-        <div class="sdg-icon">🌱</div>
-        <h3>Climate Action</h3>
-        <p>Lead grassroots environmental programs rooted in ancestral knowledge and sustainability.</p>
-        <span class="year-label">2030</span>
-      </div>
-    </div>
-  </div>
-</section>
+    {# 2. THE STORY #}
+    <section class="py-24 bg-white relative">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="relative reveal order-2 lg:order-1">
+                    <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative">
+                        <img src="{% static 'images/about-mission.jpg' %}" alt="Community Meeting" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-[#004d4d]/10"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-full h-full border-2 border-[#e15b8d]/20 rounded-3xl -z-10"></div>
+                </div>
 
-<section class="vision-section">
-    <div class="vision-overlay"></div>
-    <div class="vision-content fade-in-up">
-      <h2>Our Vision & Core Values</h2>
-      <p>
-        Our vision is to empower indigenous women and marginalized communities in Papua New Guinea through sustainable development, cultural preservation, and environmental protection. We believe in equity, dignity, and a future where humanity and nature thrive together.
-      </p>
-      <ul class="core-values fade-in-up">
-        <li>🌱 Empowerment</li>
-        <li>🌍 Sustainability</li>
-        <li>🤝 Inclusiveness</li>
-        <li>🌸 Dignity & Respect</li>
-        <li>💪 Cultural & Environmental Protection</li>
-      </ul>
-    </div>
-  </section>
-  
+                <div class="reveal order-1 lg:order-2">
+                    <h2 class="font-heading font-bold text-4xl text-[#004d4d] mb-6">
+                        Rooted in Ancestral Wisdom
+                    </h2>
+                    <div class="space-y-6 text-lg text-gray-600 font-light leading-relaxed">
+                        <p>HANIWAI was born from a simple truth: the people closest to the land are best positioned to protect it.</p>
+                        <p>In Papua New Guinea, women are the backbone of the community and the primary custodians of biodiversity. Yet, their voices are often sidelined in decision-making. We exist to change that narrative.</p>
+                        <p>By combining modern sustainable development practices with thousands of years of indigenous knowledge, we are building a future where humanity and nature thrive together.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 3. MISSION & VISION #}
+    <section class="py-24 bg-gray-50 relative overflow-hidden">
+        <div class="topography-bg"></div>
+
+        <div class="container mx-auto px-4 lg:px-12 relative z-10">
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                {# Mission Card #}
+                <div class="bento-card p-10 rounded-[2.5rem] reveal">
+                    <div class="w-16 h-16 bg-[#004d4d]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="crosshair" class="w-8 h-8 text-[#004d4d]"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-3xl text-[#004d4d] mb-4">Our Mission</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        To empower indigenous women and marginalized communities in Papua New Guinea through sustainable development, cultural preservation, and environmental protection.
+                    </p>
+                </div>
+
+                {# Vision Card #}
+                <div class="bento-card p-10 rounded-[2.5rem] reveal delay-100 relative overflow-hidden group">
+
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-[#4da6a6]/10 rounded-2xl flex items-center justify-center mb-8">
+                            <i data-lucide="eye" class="w-8 h-8 text-[#4da6a6]"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-3xl text-[#004d4d] mb-4">Our Vision</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            We envision a future where humanity and nature thrive together, driven by equity, dignity, and the enduring wisdom of our ancestors.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {# 4. CORE VALUES #}
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#004d4d 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-[#4da6a6] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">What Drives Us</span>
+                <h2 class="font-heading font-bold text-4xl text-[#004d4d]">Our Core Values</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-8 rounded-2xl reveal">
+                    <div class="w-12 h-12 bg-[#004d4d] text-white rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Compassion</h3>
+                    <p class="text-gray-600 text-sm">Leading with empathy in all our interactions with communities.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl reveal delay-100">
+                    <div class="w-12 h-12 bg-[#4da6a6] text-white rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Community</h3>
+                    <p class="text-gray-600 text-sm">Collective strength guides every decision we make.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl reveal delay-200">
+                    <div class="w-12 h-12 bg-[#e15b8d] text-white rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="shield" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Integrity</h3>
+                    <p class="text-gray-600 text-sm">Transparency and accountability in our operations.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl reveal delay-300">
+                    <div class="w-12 h-12 bg-[#003333] text-white rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Excellence</h3>
+                    <p class="text-gray-600 text-sm">Delivering high-quality support services that last.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 5. SDG 2030 COMMITMENT (SCROLL LINKED + ORIGINAL LOGO) #}
+    <section id="sdg-section" class="relative py-32 bg-[#002a2a] overflow-hidden">
+        <div class="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
+            <img src="{% static 'images/village.jpg' %}" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="container mx-auto px-4 lg:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-8 mb-16">
+                
+                {# SDG LOGO: ORIGINAL COLORS (Removed filter) #}
+                <div class="flex-shrink-0">
+                    <img src="{% static 'images/sdg.png' %}" alt="SDG Logo" class="h-28 md:h-32 w-auto"> 
+                </div>
+
+                <div class="max-w-xl text-center md:text-left">
+                    <span class="text-[#e15b8d] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Global Goals</span>
+                    <h2 class="font-heading font-bold text-4xl md:text-5xl text-white mb-4">Commitment to SDG 2030</h2>
+                    <p class="text-white/70 text-lg">Aligning grassroots action with global standards.</p>
+                </div>
+            </div>
+
+            {# Scroll Track - Content Tripled for Infinite Feel #}
+            <div class="overflow-hidden w-full">
+                <div id="sdg-track" class="sdg-track flex gap-6 w-max px-4">
+                    
+                    {% for i in "123" %} {# Repeats 3 times #}
+                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
+                            <div class="text-4xl mb-4">⚖️</div>
+                            <h4 class="font-heading font-bold text-xl text-white mb-2">Gender Equality</h4>
+                            <p class="text-white/60 text-sm">Empowering women to lead in their communities.</p>
+                            <span class="year-label">TARGET: 2027</span>
+                        </div>
+                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
+                            <div class="text-4xl mb-4">🌿</div>
+                            <h4 class="font-heading font-bold text-xl text-white mb-2">Climate Action</h4>
+                            <p class="text-white/60 text-sm">Resilience through indigenous knowledge.</p>
+                            <span class="year-label">TARGET: 2030</span>
+                        </div>
+                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
+                            <div class="text-4xl mb-4">💧</div>
+                            <h4 class="font-heading font-bold text-xl text-white mb-2">Clean Water</h4>
+                            <p class="text-white/60 text-sm">Sustainable access for rural villages.</p>
+                            <span class="year-label">TARGET: 2026</span>
+                        </div>
+                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
+                            <div class="text-4xl mb-4">🤝</div>
+                            <h4 class="font-heading font-bold text-xl text-white mb-2">Partnerships</h4>
+                            <p class="text-white/60 text-sm">Collaborating for sustainable impact.</p>
+                            <span class="year-label">ONGOING</span>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 6. MEET THE TEAM (New Section) #}
+    <section class="py-24 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="text-[#4da6a6] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Our People</span>
+                <h2 class="font-heading font-bold text-4xl text-[#004d4d]">Meet Our Leadership</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                {# Team Member 1 #}
+                <div class="team-card text-center group reveal">
+                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
+                        <img src="{% static 'images/team-1.jpg' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-[#004d4d]">Maryanne Rimbao</h4>
+                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Founder & Director</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">Championing women's rights in the Highlands for over 15 years.</p>
+                </div>
+
+                {# Team Member 2 #}
+                <div class="team-card text-center group reveal delay-100">
+                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
+                        <img src="{% static 'images/team-2.jpeg' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-[#004d4d]">Leonia Young</h4>
+                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Co-Founder & Deputy Director</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">Manages safehousing for all women under HANIWAI Protection Program</p>
+                </div>
+
+                {# Team Member 3 #}
+                <div class="team-card text-center group reveal delay-200">
+                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
+                        <img src="{% static 'images/team-3.jpg' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-[#004d4d]">Melizah Ombo</h4>
+                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Secretary</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">Bridging the gap between rural villages and national policy.</p>
+                </div>
+
+                {# Team Member 4 #}
+                <div class="team-card text-center group reveal delay-300">
+                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
+                        <img src="{% static 'images/images.png' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-[#004d4d]">Catherine Nanoa</h4>
+                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Treasurer</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">Ensuring transparency and integrity in every kina spent.</p>
+                </div>
+
+                {# Team Member 5 #}
+                <div class="team-card text-center group reveal delay-400">
+                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
+                        <img src="{% static 'images/images.png' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-heading font-bold text-lg text-[#004d4d]">Pipi Timil</h4>
+                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Committee Member</p>
+                    <p class="text-gray-500 text-xs leading-relaxed">Sharing our stories with the world to inspire change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 7. LEADERSHIP STATEMENT #}
+    <section class="py-32 bg-white text-center relative overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
+            <span class="text-[15vw] font-heading font-bold leading-none tracking-tighter text-[#004d4d]">HANIWAI</span>
+        </div>
+        <div class="container mx-auto px-4 relative z-10 reveal">
+            <i data-lucide="quote" class="w-12 h-12 text-[#e15b8d] mx-auto mb-8 fill-current opacity-20"></i>
+            <h2 class="font-heading font-bold text-4xl md:text-5xl text-[#004d4d] mb-6 leading-tight max-w-4xl mx-auto">
+                "We know the solutions because they come from our people."
+            </h2>
+            <p class="text-xl text-gray-500 font-light max-w-2xl mx-auto mb-10">
+                Our lived experience is our greatest strength.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg shadow-[#004d4d]/30 transform hover:scale-105 transition-all cursor-default">
+                    100% Indigenous-Led
+                </div>
+                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg shadow-[#004d4d]/30 transform hover:scale-105 transition-all cursor-default opacity-90 hover:opacity-100">
+                    Community-Driven
+                </div>
+                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg shadow-[#004d4d]/30 transform hover:scale-105 transition-all cursor-default opacity-80 hover:opacity-100">
+                    Culturally-Grounded
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 8. CONCISE DONATE CTA (New Section) #}
+    <section class="py-16 bg-[#e15b8d] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="topography-bg h-full w-full bg-white"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10 text-center reveal">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-6">Be Part of the Change</h2>
+            <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                Your support directly empowers indigenous women to protect their land and culture.
+            </p>
+            <a href="/donate/" class="inline-flex items-center gap-2 bg-white text-[#e15b8d] px-10 py-4 rounded-full font-bold shadow-xl hover:bg-gray-100 hover:scale-105 transition-all uppercase tracking-widest text-sm">
+                <span>Donate Today</span>
+                <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            lucide.createIcons();
+
+            // SCROLL-LINKED ANIMATION (Infinite Feel)
+            const section = document.getElementById('sdg-section');
+            const track = document.getElementById('sdg-track');
+            
+            if(section && track) {
+                window.addEventListener('scroll', () => {
+                    const rect = section.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    if (rect.top < windowHeight && rect.bottom > 0) {
+                        // Calculate scrolling percentage (0 to 1)
+                        const distance = windowHeight - rect.top;
+                        const percentage = distance / (windowHeight + rect.height);
+                        
+                        // Move based on scroll, but since we have tripled content, 
+                        // we can scroll a long way without running out.
+                        const maxMove = 1200; // Adjust this value to control speed/distance
+                        const moveAmount = percentage * maxMove; 
+                        
+                        track.style.transform = `translateX(-${moveAmount}px)`;
+                    }
+                });
+            }
+        });
+    </script>
 
 {% endblock %}

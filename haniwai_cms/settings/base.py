@@ -141,3 +141,8 @@ LOGGING = {
         'level': 'ERROR',
     },
 }
+
+# Add this to base.py
+DEFAULT_FROM_EMAIL = 'info@haniwai.org'
+SERVER_EMAIL = 'info@haniwai.org'
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'info@haniwai.org'

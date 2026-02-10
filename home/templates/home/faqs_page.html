@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Frequently Asked Questions | HANIWAI{% endblock %}
+
+{% block content %}
+
+    <style>
+        .faq-accordion {
+            border-bottom: 1px solid rgba(0, 77, 77, 0.1);
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .faq-item.active .faq-content {
+            max-height: 500px; /* Adjust based on content */
+            padding-bottom: 2rem;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            color: #e15b8d;
+        }
+        .category-pill.active {
+            background-color: #004d4d;
+            color: white;
+        }
+    </style>
+
+    {# 1. HERO SECTION #}
+    <section class="relative py-24 bg-[#003333] overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="topography-bg bg-white h-full w-full"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10 text-center text-white">
+            <span class="text-[#4da6a6] font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Support & Guidance</span>
+            <h1 class="font-heading font-bold text-5xl md:text-6xl mb-8">How Can We Help?</h1>
+            
+            {# Search Bar #}
+            <div class="max-w-2xl mx-auto relative">
+                <input type="text" id="faq-search" placeholder="Search for a question..." class="w-full pl-12 pr-4 py-4 rounded-2xl border-none text-gray-900 focus:ring-4 focus:ring-river-blue/30 shadow-2xl">
+                <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400"></i>
+            </div>
+        </div>
+    </section>
+
+    {# 2. FAQ CONTENT #}
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="max-w-4xl mx-auto">
+                
+                {# Category Tabs #}
+                <div class="flex flex-wrap gap-3 mb-12 justify-center">
+                    <button class="category-pill active px-6 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all" data-target="all">All Questions</button>
+                    <button class="category-pill px-6 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all" data-target="support">Support</button>
+                    <button class="category-pill px-6 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all" data-target="involvement">Get Involved</button>
+                    <button class="category-pill px-6 py-2 rounded-full border border-gray-200 text-sm font-bold transition-all" data-target="org">Organization</button>
+                </div>
+
+                {# Questions List #}
+                <div id="faq-list" class="space-y-4">
+                    
+                    {# FAQ 1 #}
+                    <div class="faq-item faq-accordion reveal" data-category="support">
+                        <button class="w-full py-6 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                            <span class="font-heading font-bold text-xl text-[#004d4d] group-hover:text-river-blue transition-colors">Is your crisis support confidential?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-300 transition-transform"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p class="text-gray-600 leading-relaxed font-light">
+                                Yes, 100%. At HANIWAI, safety is our priority. Any information shared with our crisis team or during legal accompaniment is kept strictly confidential within our professional support circle.
+                            </p>
+                        </div>
+                    </div>
+
+                    {# FAQ 2 #}
+                    <div class="faq-item faq-accordion reveal" data-category="involvement">
+                        <button class="w-full py-6 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                            <span class="font-heading font-bold text-xl text-[#004d4d] group-hover:text-river-blue transition-colors">How can I volunteer for HANIWAI?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-300 transition-transform"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p class="text-gray-600 leading-relaxed font-light">
+                                We welcome community members who share our values. Volunteers can assist with community gardens, literacy classes, or awareness programs. Reach out via our contact page to discuss how your skills can help.
+                            </p>
+                        </div>
+                    </div>
+
+                    {# FAQ 3 #}
+                    <div class="faq-item faq-accordion reveal" data-category="support">
+                        <button class="w-full py-6 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                            <span class="font-heading font-bold text-xl text-[#004d4d] group-hover:text-river-blue transition-colors">What is "Legal Accompaniment"?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-300 transition-transform"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p class="text-gray-600 leading-relaxed font-light">
+                                It means you don't have to face the system alone. We walk with you to the police station, help you understand legal documents, and stand by your side during court proceedings to ensure your voice is heard.
+                            </p>
+                        </div>
+                    </div>
+
+                    {# FAQ 4 #}
+                    <div class="faq-item faq-accordion reveal" data-category="org">
+                        <button class="w-full py-6 flex items-center justify-between text-left group" onclick="toggleFaq(this)">
+                            <span class="font-heading font-bold text-xl text-[#004d4d] group-hover:text-river-blue transition-colors">Where does HANIWAI operate?</span>
+                            <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-300 transition-transform"></i>
+                        </button>
+                        <div class="faq-content">
+                            <p class="text-gray-600 leading-relaxed font-light">
+                                We are currently focused on grassroots communities across Papua New Guinea, primarily working through our established networks of indigenous women and local leaders.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# 3. CONCISE CTA #}
+    <section class="py-20 bg-[#e15b8d] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="topography-bg bg-white h-full w-full"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10 text-center text-white">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">Still have questions?</h2>
+            <p class="text-white/80 mb-10 max-w-xl mx-auto font-light">If you couldn't find what you're looking for, our team is ready to listen and help.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/contact/" class="px-10 py-4 bg-white text-[#e15b8d] rounded-full font-bold shadow-xl hover:scale-105 transition-all text-sm uppercase tracking-widest">
+                    Contact Us
+                </a>
+                <a href="/donate/" class="px-10 py-4 bg-[#004d4d] text-white rounded-full font-bold shadow-xl hover:scale-105 transition-all text-sm uppercase tracking-widest">
+                    Support Our Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('active');
+        }
+
+        // Search & Category Logic
+        document.addEventListener("DOMContentLoaded", function() {
+            lucide.createIcons();
+
+            const searchInput = document.getElementById('faq-search');
+            const items = document.querySelectorAll('.faq-item');
+            const pills = document.querySelectorAll('.category-pill');
+
+            function filterFaqs() {
+                const term = searchInput.value.toLowerCase();
+                const activeCat = document.querySelector('.category-pill.active').dataset.target;
+
+                items.forEach(item => {
+                    const text = item.innerText.toLowerCase();
+                    const cat = item.dataset.category;
+                    const matchesSearch = text.includes(term);
+                    const matchesCat = activeCat === 'all' || cat === activeCat;
+
+                    item.style.display = (matchesSearch && matchesCat) ? 'block' : 'none';
+                });
+            }
+
+            searchInput.addEventListener('input', filterFaqs);
+
+            pills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    pills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    filterFaqs();
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

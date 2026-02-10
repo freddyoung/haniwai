@@ -1,81 +1,116 @@
 {% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
-{% block extra_head %}
-  {{ block.super }}
-  <script type="application/ld+json">
-    {{ page.get_event_schema|json_script:"event-schema" }}
-  </script>
-{% endblock %}
+{% block title %}{{ page.title }} | HANIWAI{% endblock %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
-
-{% block title %}{{ page.title }}{% endblock %}
 {% block meta %}
-  <meta name="description" content="{{ page.intro|striptags|truncatechars:160 }}">
-  <meta name="keywords" content="HANIWAI Events, {{ page.title }}, PNG NGO, Indigenous Advocacy, Community Projects, Empowerment, {{ page.category|title }}">
-
-  <link rel="canonical" href="https://www.haniwai.org{{ page.url }}" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="{{ page.title }}">
-  <meta property="og:description" content="{{ page.intro|striptags|truncatechars:160 }}">
-  <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.haniwai.org{{ page.url }}">
-  {% if page.image %}
-    <meta property="og:image" content="{{ page.image.file.url }}">
-  {% else %}
-    <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
-  {% endif %}
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ page.title }}">
-  <meta name="twitter:description" content="{{ page.intro|striptags|truncatechars:160 }}">
-  <meta name="twitter:image" content="{% if page.image %}{{ page.image.file.url }}{% else %}https://www.haniwai.org/static/images/social-preview.jpeg{% endif %}">
-
-  <!-- Schema.org Event -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "{{ page.title|escapejs }}",
-    "startDate": "{{ page.date|date:'c' }}",
-    "description": "{{ page.intro|striptags|truncatechars:180 }}",
-    "url": "https://www.haniwai.org{{ page.url }}",
-    {% if page.image %}
-    "image": "{{ page.image.file.url }}",
-    {% endif %}
-    "organizer": {
-      "@type": "Organization",
-      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
-      "url": "https://www.haniwai.org"
-    }
-  }
-  </script>
+    <meta name="description" content="{{ page.intro|striptags|truncatechars:160 }}">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:image" content="{% if page.image %}{{ page.image.file.url }}{% endif %}">
 {% endblock %}
-
 
 {% block content %}
 
-{% if page.image %}
-  <section class="event-hero" style="background-image: url({{ page.image.file.url }});">
-    <div class="event-hero-overlay">
-      <div class="event-hero-content">
-        <h1>{{ page.title }}</h1>
-        <p class="event-date">{{ page.date }}</p>
-      </div>
-    </div>
-  </section>
-{% endif %}
+    {# 1. HEADER SECTION #}
+    <article class="bg-white min-h-screen">
+        <header class="relative pt-32 pb-20 overflow-hidden">
+            <div class="container mx-auto px-4 lg:px-12 relative z-10">
+                <div class="max-w-4xl mx-auto">
+                    <a href="/events/" class="inline-flex items-center gap-2 text-river-blue font-bold text-xs uppercase tracking-widest mb-8 hover:opacity-70 transition-opacity">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        Back to All Stories
+                    </a>
+                    
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-gray-100 text-deep-teal border border-gray-200">
+                            {{ page.category|title }}
+                        </span>
+                        <div class="flex items-center gap-2 text-xs text-gray-400">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                            {{ page.date|date:"F d, Y" }}
+                        </div>
+                    </div>
 
-<section class="event-detail-section">
-  <div class="container">
-    <p class="event-intro">{{ page.intro }}</p>
-    <div class="event-body">
-      {{ page.body|richtext }}
-    </div>
-  </div>
-</section>
+                    <h1 class="font-heading font-bold text-4xl md:text-6xl text-deep-teal leading-tight mb-8">
+                        {{ page.title }}
+                    </h1>
+
+                    <p class="text-xl md:text-2xl text-gray-500 font-light leading-relaxed border-l-4 border-involved-pink pl-6 mb-12">
+                        {{ page.intro|striptags }}
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        {# 2. MAIN IMAGE #}
+        {% if page.image %}
+        <div class="container mx-auto px-4 lg:px-12 mb-20">
+            <div class="max-w-6xl mx-auto rounded-[2.5rem] overflow-hidden shadow-2xl shadow-deep-teal/10">
+                {% image page.image original class="w-full h-auto object-cover" %}
+            </div>
+        </div>
+        {% endif %}
+
+        {# 3. CONTENT & SIDEBAR #}
+        <div class="container mx-auto px-4 lg:px-12 pb-32">
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-16">
+                
+                {# Social Share Sidebar (Sticky) #}
+                <aside class="lg:col-span-1">
+                    <div class="sticky top-32 flex lg:flex-col gap-4">
+                        <p class="hidden lg:block text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Share</p>
+                        
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.full_url|urlencode }}" target="_blank" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ page.full_url|urlencode }}&text={{ page.title|urlencode }}" target="_blank" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-black hover:text-white transition-all shadow-sm">
+                            <i data-lucide="twitter" class="w-4 h-4"></i>
+                        </a>
+                        <a href="javascript:void(0)" onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')" class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-river-blue hover:text-white transition-all shadow-sm">
+                            <i data-lucide="link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </aside>
+
+                {# Content Body #}
+                <div class="lg:col-span-8">
+                    <div class="prose prose-lg prose-teal max-w-none font-body text-gray-700 leading-relaxed">
+                        {{ page.body|richtext }}
+                    </div>
+                </div>
+
+                {# Recent News Sidebar #}
+                <aside class="lg:col-span-3">
+                    <h4 class="font-heading font-bold text-deep-teal text-xl mb-8">Latest Stories</h4>
+                    <div class="space-y-8">
+                        {% for post in page.get_parent.get_children.live.specific|slice:":3" %}
+                        {% if post.id != page.id %}
+                        <a href="{{ post.url }}" class="group block">
+                            <p class="text-[10px] font-bold text-river-blue uppercase tracking-widest mb-1">{{ post.date|date:"M d" }}</p>
+                            <h5 class="font-heading font-bold text-deep-teal group-hover:text-involved-pink transition-colors leading-tight">
+                                {{ post.title }}
+                            </h5>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </article>
+
+    {# 4. FOOTER CTA #}
+    <section class="py-20 bg-gray-50 border-t border-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="font-heading font-bold text-2xl text-deep-teal mb-6">Enjoyed this story?</h3>
+            <p class="text-gray-500 mb-10 max-w-xl mx-auto font-light">Join our newsletter to stay updated on our grassroots journey and impact in Papua New Guinea.</p>
+            <div class="flex justify-center">
+                <a href="/contact/" class="bg-deep-teal text-white px-10 py-4 rounded-full font-bold shadow-xl hover:scale-105 transition-transform uppercase tracking-widest text-xs">
+                    Get Involved
+                </a>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
-

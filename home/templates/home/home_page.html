@@ -1,451 +1,54 @@
 {% extends "base.html" %}
-{% load static %} 
+{% load static wagtailcore_tags wagtailimages_tags %}
+
 {% block title %}HANIWAI | Empowering Indigenous Women & Protecting Our Planet{% endblock %}
+
 {% block meta %}
+  {# Essential SEO - Preserved from your original file #}
   <meta name="description" content="HANIWAI is a grassroots nonprofit organization in Papua New Guinea, dedicated to empowering indigenous women, preserving cultural heritage, and promoting sustainable development.">
   <meta name="keywords" content="HANIWAI, Indigenous Women PNG, NGO Papua New Guinea, Environmental Advocacy, Gender Equality, Cultural Preservation, Sustainable Development">
-
   <link rel="canonical" href="https://www.haniwai.org/" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="HANIWAI | Empowering Indigenous Women & Protecting Our Planet">
   <meta property="og:description" content="Support indigenous-led advocacy and environmental protection efforts in Papua New Guinea.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.haniwai.org/">
-  <meta property="og:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
+  <meta property="og:image" content="{% static 'images/social-preview.jpeg' %}">
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="HANIWAI | Empowering Indigenous Women & Protecting Our Planet">
   <meta name="twitter:description" content="Join HANIWAI’s mission to uplift indigenous women and protect the environment in Papua New Guinea.">
-  <meta name="twitter:image" content="https://www.haniwai.org/static/images/social-preview.jpeg">
-
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "HANIWAI",
-    "url": "https://www.haniwai.org/",
-    "description": "HANIWAI is a grassroots nonprofit organization in Papua New Guinea, dedicated to empowering indigenous women, preserving cultural heritage, and promoting sustainable development.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Humanity and Nature Indigenous Women’s Association Inc.",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.haniwai.org/static/images/haniwa_logo.png"
-      }
-    }
-  }
-  </script>
 {% endblock %}
-
-{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<section class="hero">
-    <div class="hero-content">
-        <h1>Empowering Indigenous Women, Preserving Our Land.</h1>
-        <p>HANIWAI drives indigenous-led solutions for gender equality, cultural preservation, and sustainable development across Papua New Guinea.
-          and the broader Pacific. Together, we can create a safe world for our indigenous sisters and a sustainable environment for all.
-        </p>
-        <a href="/about/" class="btn"><b>LEARN MORE</b></a>
-    </div>
-</section>
-
-<section class="values-section">
-  <div class="values-container">
+    {# Modular Design Sections - This mirrors Lovable's Index.tsx #}
     
-    <!-- Preserve -->
-    <div class="value-box fade-in-up" 
-         data-title="Preserve Our Heritage"
-         data-subtitle="Cultural and Environmental Stewardship"
-         data-description="We work to safeguard ancestral lands, traditional knowledge, and biodiversity. 
-By preserving our stories, languages, and ecosystems, we ensure resilience for future generations. 
-Let’s honor and protect what sustains us."
-         data-icon="{% static 'images/leaf-heart.png' %}">
-      <div class="icon-wrapper">
-        <img src="{% static 'images/icon-3.png' %}" alt="Icon" class="value-icon icon-default">
-        <img src="{% static 'images/icon-1.png' %}" alt="Icon Hover" class="value-icon icon-hover">
-      </div>
-      <span>Preserve<p>OUR ENVIRONMENT</p></span>
-    </div>
-
-    <!-- Protect -->
-    <div class="value-box fade-in-up" 
-         data-title="Protect Indigenous Women"
-         data-subtitle="Safety, Advocacy, and Empowerment"
-         data-description="We create safe spaces and amplify indigenous women’s voices in decision-making. 
-Through community advocacy and legal support, we defend against violence and marginalization. 
-Protection is a human right — not a privilege."
-         data-icon="{% static 'images/shield-plus.png' %}">
-      <div class="icon-wrapper">
-        <img src="{% static 'images/icon-3.png' %}" alt="Icon" class="value-icon icon-default">
-        <img src="{% static 'images/icon-1.png' %}" alt="Icon Hover" class="value-icon icon-hover">
-      </div>
-      <span>Protect<p>OUR INDIGENOUS WOMEN</p></span>
-    </div>
-
-    <!-- Transform -->
-    <div class="value-box fade-in-up" 
-         data-title="Transform Our Communities"
-         data-subtitle="Growth, Innovation, and Healing"
-         data-description="We invest in sustainable livelihoods, leadership, and education. 
-Transformation means empowering people to shape their own futures. 
-Together, we’re building strong, equitable, and thriving communities."
-         data-icon="{% static 'images/heart-hand.png' %}">
-      <div class="icon-wrapper">
-        <img src="{% static 'images/icon-3.png' %}" alt="Icon" class="value-icon icon-default">
-        <img src="{% static 'images/icon-1.png' %}" alt="Icon Hover" class="value-icon icon-hover">
-      </div>
-      <span>Transform<p>OUR COMMUNITIES</p></span>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-<div class="value-lightbox hidden">
-  <div class="value-lightbox-content">
-    <div class="lightbox-icon-wrapper">
-      <img src="" alt="Icon" class="lightbox-icon"> <!-- leave empty -->
-    </div>
-    <span class="close-lightbox">&times;</span>
-    <h3 class="lightbox-title"></h3>
-    <h4 class="lightbox-subtitle"></h4>
-    <p class="value-description"></p>
-  </div>
-</div>
-
-
-
-<section class="motto-section">
-  <div class="motto-container">
-    <div class="motto-left">
-      <h2>Humanity and Nature Indigenous Women's Association Inc.</h2>
-      <p>
-        At Haniwai, we are dedicated to preserving indigenous culture and heritage, protecting the rights of indigenous women, 
-        marginalized communities, and our environment, and transforming lives and communities for a sustainable and equitable future.
-      </p>
-      <a href="/about/" class="learn-more-link fade-in-up">More About Us </a>
-    </div>
-
-    <div class="motto-right">
-      <div class="motto-image-wrapper">
-        <img src="{% static 'images/trad-women.jpeg' %}" alt="Motto Image" class="motto-main-image">
-        <div class="motto-overlay"></div>
-        <img src="{% static 'images/haniwa_logo.png' %}" alt="NGO Logo" class="motto-logo-overlay">
-      </div>
-    </div>
+    {% include "includes/sections/hero.html" %}
     
-  </div>
-</section>
-
-<section class="goals-section">
-  <div class="goals-overlay">
-    <div class="goals-content">
-      <h2 class="fade-in-up">Our Goals</h2>
-      <p class="fade-in-down">We are working towards a future where women, culture, and the land thrive together.</p>      
-      <div class="goals-list">
-        <div class="goal-item fade-in-left">
-          <img src="{% static 'images/edu-icon.png' %}" alt="Education Icon" class="goal-icon">
-          <div>
-            <h3>Empower Through Education</h3>
-            <p>Deliver culturally-relevant education and leadership opportunities for indigenous women and youth.</p>
-          </div>
-        </div>
-        <div class="goal-item fade-in-left">
-          <img src="{% static 'images/indi-icon.png' %}" alt="Rights Icon" class="goal-icon">
-          <div>
-            <h3>Protect Indigenous Rights</h3>
-            <p>Strengthen legal advocacy and safety initiatives to ensure gender equity and indigenous justice.</p>
-          </div>
-        </div>
-        <div class="goal-item fade-in-left">
-          <img src="{% static 'images/env-icon.png' %}" alt="Environment Icon" class="goal-icon">
-          <div>
-            <h3>Preserve Land & Heritage</h3>
-            <p>Support sustainable land stewardship rooted in ancestral knowledge and ecological balance.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-</div>
-</section> 
-
-<section class="partnerships-section">
-    <div class="partnerships-container">
-        <h2 class="section-heading fade-in-up">Our Valued Partners</h2>
-        <p class="partners-intro fade-in-up">
-            We are proud to collaborate with leading organizations dedicated to humanitarian aid, development, and advancing the rights of women and displaced persons. Our partnerships amplify our impact and drive meaningful change.
-        </p>
-        <div class="partners-logos-grid fade-in-up">
-            <div class="partner-logo-item">
-                <a href="https://wphfund.org/" target="_blank" rel="noopener noreferrer" title="Visit UN Women Peace and Humanitarian Fund">
-                    <img src="{% static 'images/un-logo.png' %}" alt="UN Women Peace and Humanitarian Fund Logo" class="partner-logo">
-                </a>
-            </div>
-
-            <div class="partner-logo-item">
-                 <a href="https://www.bmz.de/" target="_blank" rel="noopener noreferrer" title="Visit BMZ (German Federal Ministry for Economic Cooperation and Development)">
-                    <img src="{% static 'images/bmz-logo.png' %}" alt="BMZ Logo" class="partner-logo">
-                </a>
-            </div>
-
-            <div class="partner-logo-item">
-                 <a href="https://action-network-displacement.org/" target="_blank" rel="noopener noreferrer" title="Visit Action Network on Forced Displacement - Women as Agents for Change">
-                    <img src="{% static 'images/anfd-logo.png' %}" alt="Action Network on Forced Displacement Logo" class="partner-logo">
-                </a>
-            </div>
-
-            <div class="partner-logo-item">
-                 <a href="https://www.civicus.org/" target="_blank" rel="noopener noreferrer" title="Visit CIVICUS">
-                    <img src="{% static 'images/civicus-logo.png' %}" alt="CIVICUS Logo" class="partner-logo">
-                </a>
-            </div>
-
-            <div class="partner-logo-item">
-                 <a href="https://www.giz.de/en/html/index.html" target="_blank" rel="noopener noreferrer" title="Visit GIZ Deutsche Gesellschaft für Internationale Zusammenarbeit">
-                    <img src="{% static 'images/giz-logo.jpg' %}" alt="GIZ Deutsche Gesellschaft für Internationale Zusammenarbeit Logo" class="partner-logo">
-                </a>
-            </div>
-
-            <div class="partner-logo-item">
-                 <a href="https://iwgia.org/en/" target="_blank" rel="noopener noreferrer" title="Visit IWGIA">
-                    <img src="{% static 'images/iwgia-logo.jpg' %}" alt="IWGIA Logo" class="partner-logo">
-                </a>
-            </div>
+    {% include "includes/sections/about.html" %}
+    
+    {% include "includes/sections/programs.html" %}
+    
+    {% include "includes/sections/impact.html" %}
+    
+    {% include "includes/sections/partners.html" %}
+    
+    {# Get Involved Wrapper (matches the gradient styling in Lovable) #}
+    <div class="bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent"></div>
+        <div class="relative z-10">
+            {% include "includes/sections/get_involved.html" %}
         </div>
     </div>
-</section>
 
-
-<section class="home-news">
-  <h2 class="section-heading fade-in-up">Latest news and events</h2>
-  <div class="news-preview-grid fade-in-up">
-    {% for post in latest_news %}
-      <div class="news-preview-card">
-        <a href="{{ post.url }}">
-          {% if post.image %}
-            <div class="news-preview-img">
-              {% image post.image fill-400x200 %}
-              <div class="news-type-label">
-                {{ post.category|title }}
-              </div>
-            </div>
-          {% endif %}
-          <div class="news-preview-info">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.intro }}</p>
-            <span class="news-preview-date">{{ post.date }}</span>
-          </div>
-        </a>
-      </div>
-    {% endfor %}
-  </div>
-
-  <div class="see-more-container fade-in-up">
-    <a href="/events/" class="see-more-link">More Updates</a>
-  </div>
-</section>
-
-{% if latest_resource %}
-    <section class="latest-resource-section content-section bg-light-grey">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Latest Resource</h2>
-            <div class="resource-preview-card fade-in-up">
-                <a href="{% pageurl latest_resource %}" aria-label="View Latest Resource: {{ latest_resource.title }}">
-                    <div class="resource-preview-image-wrapper">
-                        {% if latest_resource.resource_image %}
-                            {% image latest_resource.resource_image fill-500x300 alt=latest_resource.title %}
-                        {% else %}
-                            <img src="{% static 'images/placeholder-resource.jpg' %}" alt="Placeholder resource image" class="placeholder-image">
-                        {% endif %}
-                    </div>
-                    <div class="resource-preview-content">
-                        <h3>{{ latest_resource.title }}</h3>
-                        <p class="resource-preview-date">{{ latest_resource.date|date:"F j, Y" }}</p>
-                        <p>{{ latest_resource.intro|striptags|truncatechars:200 }}</p>
-                        <span class="button button-secondary">More Resources</span>
-                    </div>
-                </a>
-            </div>
-            <div class="text-center fade-in-up">
-                {% if resources_index_page %}
-                    <a href="{% pageurl resources_index_page %}" class="button button-primary">View All Resources</a>
-                {% endif %}
-            </div>
-        </div>
-    </section>
-{% endif %}
-
-<section class="custom-gallery-section">
-  <div class="gallery-scroll-wrapper">
-    <div class="image-track">
-      {% for image in page.gallery_images.all|slice:":10" %}
-        <div class="gallery-slide">
-          <img src="{{ image.image.file.url }}" alt="{{ image.caption }}" />
-        </div>
-      {% endfor %}
-
-      <!-- ✅ Duplicate images for smooth loop -->
-      {% for image in page.gallery_images.all|slice:":10" %}
-        <div class="gallery-slide clone">
-          <img src="{{ image.image.file.url }}" alt="{{ image.caption }}" />
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="gallery-side-link">
-    <a href="/gallery/">
-      <h3>HANIWAI Journey</h3>
-    </a>
-  </div>
-</section>
-
-<!-- Lightbox -->
-<div class="gallery-lightbox hidden">
-  <span class="gallery-lightbox-close">&times;</span>
-  <img class="gallery-lightbox-img" src="" alt="Gallery Full View" />
-</div>
-
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const images = document.querySelectorAll(".motto-image");
-
-        function checkScroll() {
-            images.forEach(img => {
-                const imgPosition = img.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2; // ✅ Adjusted for better timing
-
-                if (imgPosition < screenPosition) {
-                    img.classList.add("show");
-                }
-            });
-        }
-
-        window.addEventListener("scroll", checkScroll);
-        checkScroll(); // ✅ Run on load in case images are already in view
-    });
-</script>
-
+    {% include "includes/sections/news_events.html" %}
+    
+    {% include "includes/sections/resources.html" %}
+    
+    {% include "includes/sections/cta.html" %}
 
 {% endblock %}
+
 {% block extra_js %}
-<script>
-  const lightbox = document.querySelector('.value-lightbox');
-  const lightboxDescription = document.querySelector('.value-description');
-  const lightboxTitle = document.querySelector('.lightbox-title');      // New
-  const lightboxSubtitle = document.querySelector('.lightbox-subtitle'); // New
-  const lightboxIcon = document.querySelector('.lightbox-icon');
-  const closeLightbox = document.querySelector('.close-lightbox');
-
-  const boxes = document.querySelectorAll('.value-box');
-
-  boxes.forEach(box => {
-    box.addEventListener('click', () => {
-      const desc = box.getAttribute('data-description');
-      const iconSrc = box.getAttribute('data-icon');
-      const title = box.getAttribute('data-title');           // New
-      const subtitle = box.getAttribute('data-subtitle');     // New
-
-      lightboxDescription.textContent = desc;
-      lightboxTitle.textContent = title;                      // New
-      lightboxSubtitle.textContent = subtitle;                // New
-      lightboxIcon.setAttribute('src', iconSrc);
-
-      // 💥 Reset animation
-      const content = document.querySelector('.value-lightbox-content');
-      content.classList.remove('animate');
-      void content.offsetWidth; // Trigger reflow
-      content.classList.add('animate');
-
-      lightbox.classList.remove('hidden');
-    });
-  });
-
-  closeLightbox.addEventListener('click', () => {
-    lightbox.classList.add('hidden');
-    lightboxIcon.setAttribute('src', '');
-  });
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.add('hidden');
-      lightboxIcon.setAttribute('src', '');
-    }
-  });
-</script>
-
-<script>
-  const track = document.querySelector('.image-track');
-  const wrapper = document.querySelector('.gallery-scroll-wrapper');
-
-  // Pause on hover
-  wrapper.addEventListener('mouseenter', () => {
-    track.style.animationPlayState = 'paused';
-  });
-
-  wrapper.addEventListener('mouseleave', () => {
-    track.style.animationPlayState = 'running';
-  });
-
-  // Lightbox functionality
-  const images = document.querySelectorAll('.gallery-slide img');
-  const lightbox = document.querySelector('.gallery-lightbox');
-  const lightboxImg = document.querySelector('.gallery-lightbox-img');
-  const closeBtn = document.querySelector('.gallery-lightbox-close');
-
-  images.forEach((img) => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.remove('hidden');
-    });
-  });
-
-  closeBtn.addEventListener('click', () => {
-    lightbox.classList.add('hidden');
-    lightboxImg.src = '';
-  });
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.add('hidden');
-      lightboxImg.src = '';
-    }
-  });
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const animatedItems = document.querySelectorAll(".fade-in-up, .fade-in-down, .fade-in-left, .goal-item");
-
-    function animateOnScroll() {
-      animatedItems.forEach(item => {
-        const itemTop = item.getBoundingClientRect().top;
-        const screenHeight = window.innerHeight;
-
-        if (itemTop < screenHeight - 100) {
-          item.classList.add("visible");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", animateOnScroll);
-    animateOnScroll(); // Initial run
-  });
-</script>
-
-
-
-
-
+    {# Any page-specific logic can go here, but base.html handles the reveal animations #}
 {% endblock %}

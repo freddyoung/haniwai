@@ -1,0 +1,108 @@
+{% load static %}
+{% load wagtailcore_tags %}  
+<style>
+    /* Topography Background Mask */
+    .topography-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        -webkit-mask-image: url("{% static 'images/topography.svg' %}");
+        mask-image: url("{% static 'images/topography.svg' %}");
+        mask-size: 600px 600px;
+        -webkit-mask-size: 600px 600px;
+        mask-repeat: repeat;
+    }
+
+    /* Applying specific colors from the established theme */
+    .text-deep-teal {
+        color: hsl(180, 100%, 15%);
+    }
+    .bg-deep-teal {
+        background-color: hsl(180, 100%, 15%);
+    }
+</style>
+
+<section id="about" class="relative pt-24 md:pt-32 pb-24 bg-white overflow-hidden z-10">
+    
+    {# Pattern foreground updated to deep-teal #}
+    <div class="topography-bg bg-deep-teal opacity-[0.06]"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-7xl mx-auto bg-white rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-gray-100 p-8 md:p-16 lg:p-20 relative overflow-hidden">
+            
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-deep-teal/5 to-transparent rounded-bl-full pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="font-heading font-bold text-4xl md:text-5xl mb-4 text-deep-teal">What Is Haniwai?</h2>
+                    <div class="w-24 h-1 bg-deep-teal mx-auto mb-6"></div>
+                    <p class="text-xl text-gray-800 max-w-3xl mx-auto font-body">
+                        Building bridges between humanity and nature through indigenous wisdom
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    
+                    {# Image Column: Glow removed and positioned for higher alignment #}
+                    <div class="relative w-full">
+                        <div class="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
+                            <img
+                                src="{% static 'images/haniwai-women-march.webp' %}"
+                                alt="Indigenous women community gathering"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="space-y-8 flex flex-col justify-start">
+                        <div>
+                            <h3 class="font-heading font-semibold text-2xl text-deep-teal mb-4">Our Mission</h3>
+                            <div class="space-y-4 text-gray-800 leading-relaxed font-body text-lg">
+                                <p>
+                                    Haniwai (Humanity and Nature Indigenous Women's Association) is a grassroots,
+                                    indigenous women-led nonprofit organization dedicated to empowering vulnerable
+                                    communities across Papua New Guinea.
+                                </p>
+                                <p>
+                                    Founded by indigenous women who understand the unique challenges facing our
+                                    communities, we work to preserve our cultural heritage, protect those in need, and
+                                    transform lives through sustainable development and empowerment programs.
+                                </p>
+                            </div>
+                        </div>
+
+                        {# Facts Grid: Dull background with rounded borders and updated stats #}
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-6 bg-gray-100 border border-gray-200 rounded-xl">
+                                <h4 class="font-heading font-bold text-deep-teal text-xl mb-1">2022</h4>
+                                <p class="text-sm text-gray-700 font-medium uppercase tracking-wider">Organization Founded</p>
+                            </div>
+                            <div class="p-6 bg-gray-100 border border-gray-200 rounded-xl">
+                                <h4 class="font-heading font-bold text-deep-teal text-xl mb-1">25+</h4>
+                                <p class="text-sm text-gray-700 font-medium uppercase tracking-wider">Communities Served</p>
+                            </div>
+                            <div class="p-6 bg-gray-100 border border-gray-200 rounded-xl">
+                                <h4 class="font-heading font-bold text-deep-teal text-xl mb-1">100%</h4>
+                                <p class="text-sm text-gray-700 font-medium uppercase tracking-wider">Indigenous-Led</p>
+                            </div>
+                            <div class="p-6 bg-gray-100 border border-gray-200 rounded-xl">
+                                <h4 class="font-heading font-bold text-deep-teal text-xl mb-1">24/7</h4>
+                                <p class="text-sm text-gray-700 font-medium uppercase tracking-wider">Crisis Support</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <a href="{% slugurl 'about-us' %}" class="group inline-flex items-center gap-3 font-semibold text-deep-teal transition-all duration-300">
+                                <span class="uppercase tracking-widest text-sm group-hover:underline">Our Full Story</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

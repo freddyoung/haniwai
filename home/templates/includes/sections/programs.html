@@ -1,0 +1,123 @@
+{% load static %}
+
+<style>
+    /* Brighter Frosted Glass Effect for Program Cards */
+    .glass-program-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .glass-program-card:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-8px);
+        border-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+</style>
+
+<section id="programs" class="relative py-24 overflow-hidden">
+    
+    {# --- Background Image Layer --- #}
+    <div class="absolute inset-0 z-0">
+        <img src="{% static 'images/village.jpg' %}" 
+             alt="Village Background" 
+             class="w-full h-full object-cover">
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-heading font-bold text-4xl md:text-5xl mb-4 text-[#004d4d]">Our Programs</h2>
+            <div class="w-24 h-1 bg-[#004d4d] mx-auto mb-6"></div>
+            <p class="text-xl text-gray-900 max-w-3xl mx-auto font-light leading-relaxed">
+                Comprehensive support services designed to meet the unique needs of indigenous communities
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto reveal">
+            
+            <div class="glass-program-card p-8 rounded-2xl shadow-sm flex flex-col">
+                <div class="mb-6 text-[#b22222]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4">Domestic Violence Support</h3>
+                <p class="text-gray-900 mb-8 flex-grow leading-relaxed font-medium">
+                    24/7 crisis intervention, safe housing, legal advocacy, and counseling for women and children experiencing domestic violence.
+                </p>
+                {# Button: River-blue default, White on hover #}
+                <button class="w-full py-2.5 px-4 bg-[#4da6a6] border border-[#7bc1c1] text-white rounded-md font-bold hover:bg-white hover:text-[#4da6a6] hover:border-[#4da6a6] transition-all duration-300 uppercase tracking-widest text-xs">
+                    Read More
+                </button>
+            </div>
+
+            <div class="glass-program-card p-8 rounded-2xl shadow-sm flex flex-col">
+                <div class="mb-6 text-[#004d4d]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4">Sorcery Accusation Defense</h3>
+                <p class="text-gray-900 mb-8 flex-grow leading-relaxed font-medium">
+                    Legal protection and community education to defend women falsely accused of sorcery-related violence.
+                </p>
+                <button class="w-full py-2.5 px-4 bg-[#4da6a6] border border-[#7bc1c1] text-white rounded-md font-bold hover:bg-white hover:text-[#4da6a6] hover:border-[#4da6a6] transition-all duration-300 uppercase tracking-widest text-xs">
+                    Read More
+                </button>
+            </div>
+
+            <div class="glass-program-card p-8 rounded-2xl shadow-sm flex flex-col">
+                <div class="mb-6 text-[#7b5c3e]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4">Tribal Refugee Aid</h3>
+                <p class="text-gray-900 mb-8 flex-grow leading-relaxed font-medium">
+                    Emergency assistance, resettlement support, and integration services for displaced tribal communities.
+                </p>
+                <button class="w-full py-2.5 px-4 bg-[#4da6a6] border border-[#7bc1c1] text-white rounded-md font-bold hover:bg-white hover:text-[#4da6a6] hover:border-[#4da6a6] transition-all duration-300 uppercase tracking-widest text-xs">
+                    Read More
+                </button>
+            </div>
+
+            <div class="glass-program-card p-8 rounded-2xl shadow-sm flex flex-col">
+                <div class="mb-6 text-[#cc8e35]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4">Children & Youth Services</h3>
+                <p class="text-gray-900 mb-8 flex-grow leading-relaxed font-medium">
+                    Educational programs, mentorship, cultural preservation activities, and safe spaces for indigenous youth.
+                </p>
+                <button class="w-full py-2.5 px-4 bg-[#4da6a6] border border-[#7bc1c1] text-white rounded-md font-bold hover:bg-white hover:text-[#4da6a6] hover:border-[#4da6a6] transition-all duration-300 uppercase tracking-widest text-xs">
+                    Read More
+                </button>
+            </div>
+
+            <div class="glass-program-card p-8 rounded-2xl shadow-sm flex flex-col">
+                <div class="mb-6 text-[#4a90e2]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4">LGBTQ+ Allyship</h3>
+                <p class="text-gray-900 mb-8 flex-grow leading-relaxed font-medium">
+                    Inclusive support services, advocacy, and safe community spaces for LGBTQ+ indigenous people.
+                </p>
+                <button class="w-full py-2.5 px-4 bg-[#4da6a6] border border-[#7bc1c1] text-white rounded-md font-bold hover:bg-white hover:text-[#4da6a6] hover:border-[#4da6a6] transition-all duration-300 uppercase tracking-widest text-xs">
+                    Read More
+                </button>
+            </div>
+
+            <div class="glass-program-card p-8 rounded-2xl shadow-sm flex flex-col">
+                <div class="mb-6 text-[#e15b8d]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" /><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" /><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" /><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" /></svg>
+                </div>
+                <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4">Micro-enterprise Support</h3>
+                <p class="text-gray-900 mb-8 flex-grow leading-relaxed font-medium">
+                    Seed funding, business training, and market access for indigenous women entrepreneurs.
+                </p>
+                <button class="w-full py-2.5 px-4 bg-[#4da6a6] border border-[#7bc1c1] text-white rounded-md font-bold hover:bg-white hover:text-[#4da6a6] hover:border-[#4da6a6] transition-all duration-300 uppercase tracking-widest text-xs">
+                    Read More
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>

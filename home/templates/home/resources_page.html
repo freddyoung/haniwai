@@ -1,85 +1,110 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
-{% block title %}Resources - HANIWAI{% endblock %}
-{% block meta %}
-  <meta name="description" content="Explore HANIWAI's collection of newsletters, annual reports, and other resources empowering indigenous women and promoting environmental causes in Papua New Guinea.">
-  <meta name="keywords" content="HANIWAI Resources, Newsletters, Annual Reports, Indigenous Women Publications, PNG NGO Documents, Environmental Reports, HANIWAI Publications">
-
-  <link rel="canonical" href="[https://www.haniwai.org](https://www.haniwai.org){{ page.url }}" />
-
-  <meta property="og:title" content="HANIWAI Resources | Newsletters & Annual Reports">
-  <meta property="og:description" content="Access HANIWAI's official documents, including our latest newsletters and comprehensive annual reports on our impact.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="[https://www.haniwai.org](https://www.haniwai.org){{ page.url }}">
-  <meta property="og:image" content="[https://www.haniwai.org/static/images/social-preview.jpeg](https://www.haniwai.org/static/images/social-preview.jpeg)"> {# Consider setting a specific OG image for this page in Wagtail admin #}
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="HANIWAI Resources | Newsletters & Annual Reports">
-  <meta name="twitter:description" content="Download HANIWAI's newsletters and annual reports to learn about our work and impact in Papua New Guinea.">
-  <meta name="twitter:image" content="[https://www.haniwai.org/static/images/social-preview.jpeg](https://www.haniwai.org/static/images/social-preview.jpeg)"> {# Consider setting a specific Twitter image for this page in Wagtail admin #}
-{% endblock %}
-
+{% block title %}Resource Library | HANIWAI{% endblock %}
 
 {% block content %}
-
-<section class="page-hero">
-  <div class="hero-overlay">
-    <h1 class="hero-title">Our Resources</h1>
-  </div>
-</section>
-
-<section class="resources-section">
-  <div class="container">
-    {% if page.intro %}
-      <div class="page-intro-text fade-in-up">
-        {{ page.intro|richtext }}
-      </div>
-    {% endif %}
-
-    <div class="resources-grid">
-      {% for resource in resources %} {# 'resources' is the context variable from ResourcesIndexPage.get_context #}
-        <div class="resource-card fade-in-up">
-          <a href="{{ resource.url }}" aria-label="View {{ resource.title }}">
-            <div class="resource-image-wrapper">
-              {% if resource.resource_image %}
-                {% image resource.resource_image fill-400x250 alt=resource.title %}
-              {% else %}
-                <img src="{% static 'images/placeholder-resource.jpg' %}" alt="Placeholder resource image" class="placeholder-image">
-              {% endif %}
-            </div>
-            <div class="resource-content">
-              <span class="resource-label">{{ resource.date|date:"F Y" }}</span> {# Display month and year #}
-              <h3>{{ resource.title }}</h3>
-              <p>{{ resource.intro|striptags|truncatechars:150 }}</p>
-              {% if resource.resource_file %}
-                <a href="{{ resource.resource_file.file.url }}" target="_blank" class="button button-primary">Download {{ resource.resource_file.file.extension|upper }}</a>
-              {% else %}
-                <a href="{{ resource.url }}" class="button button-secondary">Read More</a>
-              {% endif %}
-            </div>
-          </a>
+    {# 1. HERO SECTION #}
+    <section class="relative py-24 bg-[#003333] overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h1 class="font-heading font-bold text-5xl md:text-6xl text-white mb-6">Knowledge Hub</h1>
+            <p class="text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed">
+                Access our latest annual reports, community newsletters, and research publications.
+            </p>
         </div>
-      {% empty %}
-        <p class="no-resources-message fade-in-up">No resources available yet. Please check back soon!</p>
-      {% endfor %}
-    </div>
+        {# Organic background decoration #}
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-river-blue/10 rounded-full blur-3xl"></div>
+    </section>
 
-    {# Pagination for resources #}
-    {% if resources.has_other_pages %}
-      <div class="pagination fade-in-up">
-        {% if resources.has_previous %}
-          <a href="?page={{ resources.previous_page_number }}" class="pagination-link">&laquo; Previous</a>
-        {% endif %}
-        <span class="current-page">
-          Page {{ resources.number }} of {{ resources.paginator.num_pages }}
-        </span>
-        {% if resources.has_next %}
-          <a href="?page={{ resources.next_page_number }}" class="pagination-link">Next &raquo;</a>
-        {% endif %}
-      </div>
-    {% endif %}
-  </div>
-</section>
+    {# 2. SEARCH & FILTER #}
+    <section class="py-12 bg-white border-b border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 max-w-6xl mx-auto">
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="resource-search" placeholder="Search resources..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-river-blue focus:outline-none transition-all">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-sm font-bold text-deep-teal/40 uppercase tracking-widest self-center">Filter By:</span>
+                    <select class="bg-gray-50 border-none rounded-lg px-4 py-2 text-sm font-bold text-deep-teal focus:ring-2 focus:ring-river-blue">
+                        <option>All Types</option>
+                        <option>Newsletters</option>
+                        <option>Annual Reports</option>
+                        <option>Guides</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    {# 3. RESOURCE GRID #}
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div id="resource-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+                {% for resource in resources %}
+                <div class="resource-card group bg-white rounded-[2rem] overflow-hidden border border-gray-100 hover:shadow-2xl hover:shadow-deep-teal/10 transition-all duration-500 flex flex-col">
+                    
+                    {# Preview Image #}
+                    <div class="aspect-[4/5] relative overflow-hidden bg-gray-200">
+                        {% if resource.resource_image %}
+                            {% image resource.resource_image fill-600x750 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" %}
+                        {% endif %}
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-teal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                             <a href="{{ resource.url }}" class="w-full py-3 bg-white text-deep-teal text-center rounded-xl font-bold text-sm uppercase tracking-widest transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                View Details
+                             </a>
+                        </div>
+                    </div>
+
+                    {# Content #}
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-[10px] font-bold text-river-blue uppercase tracking-[0.2em] mb-3">
+                            {{ resource.date|date:"F Y" }}
+                        </span>
+                        <h3 class="font-heading font-bold text-xl text-deep-teal mb-4 leading-tight group-hover:text-river-blue transition-colors">
+                            {{ resource.title }}
+                        </h3>
+                        <p class="text-gray-500 text-sm font-light leading-relaxed line-clamp-2 mb-8">
+                            {{ resource.intro|striptags }}
+                        </p>
+                        
+                        <div class="mt-auto flex items-center justify-between pt-6 border-t border-gray-50">
+                            {% if resource.resource_file %}
+                            <a href="{{ resource.resource_file.url }}" class="flex items-center gap-2 text-involved-pink font-bold text-xs uppercase tracking-widest hover:opacity-70 transition-opacity">
+                                <i data-lucide="download-cloud" class="w-4 h-4"></i>
+                                Download PDF
+                            </a>
+                            {% endif %}
+                            <span class="text-[10px] text-gray-300 font-medium">PDF • {{ resource.resource_file.file.size|filesizeformat }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full text-center py-20">
+                    <i data-lucide="book-open" class="w-12 h-12 text-gray-200 mx-auto mb-4"></i>
+                    <p class="text-gray-400 italic">No resources found in the library.</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {# PAGINATION #}
+            {% if resources.has_other_pages %}
+            <div class="mt-20 flex justify-center gap-4">
+                {% if resources.has_previous %}
+                    <a href="?page={{ resources.previous_page_number }}" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-deep-teal hover:bg-deep-teal hover:text-white transition-all">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </a>
+                {% endif %}
+                <span class="flex items-center px-6 rounded-full bg-white border border-gray-100 text-sm font-bold text-deep-teal">
+                    Page {{ resources.number }} of {{ resources.paginator.num_pages }}
+                </span>
+                {% if resources.has_next %}
+                    <a href="?page={{ resources.next_page_number }}" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-deep-teal hover:bg-deep-teal hover:text-white transition-all">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
 {% endblock %}

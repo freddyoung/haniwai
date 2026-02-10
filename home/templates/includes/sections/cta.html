@@ -1,0 +1,71 @@
+{% load static %}
+
+<section id="donate-cta" class="relative py-24 overflow-hidden">
+    
+    {# --- High-Impact Background --- #}
+    <div class="absolute inset-0 bg-gradient-to-br from-deep-teal to-[#002a2a]">
+        {# Subtle Topography Overlay #}
+        <div class="topography-bg bg-white opacity-[0.05] w-full h-full"></div>
+    </div>
+
+    {# --- Decorative Elements --- #}
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-river-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-involved-pink/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            
+            {# --- Icon Header --- #}
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full backdrop-blur-md border border-white/20 mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-involved-pink animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+            </div>
+
+            {# --- Text Content --- #}
+            <h2 class="font-heading font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
+                Help Us Reach Our Goal
+            </h2>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto mb-12 font-body font-light leading-relaxed">
+                Your support provides the resources necessary to protect vulnerable women and children 
+                across Papua New Guinea. Every contribution makes a lasting difference.
+            </p>
+
+            {# --- Primary Action Button --- #}
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="/donate" class="group relative inline-flex items-center gap-3 px-10 py-5 bg-involved-pink text-white rounded-full font-bold text-lg transition-all duration-300 shadow-[0_15px_30px_rgba(225,91,141,0.3)] hover:shadow-[0_20px_40px_rgba(225,91,141,0.4)] hover:-translate-y-1">
+                    <span>Donate Now</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:scale-125 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+                
+                <a href="#contact" class="text-white/60 hover:text-white font-semibold uppercase tracking-widest text-xs transition-colors">
+                    Other ways to give
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Ensure colors are mapped correctly if not using a global stylesheet */
+    .bg-deep-teal { background-color: hsl(180, 100%, 15%); }
+    .text-deep-teal { color: hsl(180, 100%, 15%); }
+    .bg-involved-pink { background-color: #e15b8d; }
+    .text-involved-pink { color: #e15b8d; }
+    .text-river-blue { color: hsl(180, 45%, 55%); }
+
+    .topography-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        -webkit-mask-image: url("{% static 'images/topography.svg' %}");
+        mask-image: url("{% static 'images/topography.svg' %}");
+        mask-size: 600px 600px;
+        -webkit-mask-size: 600px 600px;
+        mask-repeat: repeat;
+    }
+</style>

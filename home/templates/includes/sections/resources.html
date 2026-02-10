@@ -1,0 +1,94 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{# Fetching the latest resource from the index #}
+{% with latest_resource=resources.0 %}
+<section id="resources" class="py-24 bg-white overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-7xl mx-auto reveal">
+            
+            {# --- Main Resource Card: Deep Teal Background --- #}
+            <div class="relative bg-deep-teal rounded-[3rem] overflow-hidden shadow-2xl min-h-[550px] flex flex-col md:flex-row border border-white/10">
+                
+                {# 1. Background Tribal Pattern Overlay #}
+                <div class="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-10 pointer-events-none">
+                    <div class="topography-bg bg-white w-full h-full"></div>
+                </div>
+
+                {# 2. Left Side: Featured Image #}
+                <div class="md:w-5/12 relative overflow-hidden min-h-[350px] md:min-h-full">
+                    {% if latest_resource and latest_resource.resource_image %}
+                        {% image latest_resource.resource_image fill-800x1000 class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" %}
+                    {% else %}
+                        {# Fallback image if no resource is found #}
+                        <img src="{% static 'images/newsletter-cover.jpg' %}" 
+                             alt="Latest Resource" 
+                             class="w-full h-full object-cover">
+                    {% endif %}
+                    
+                    {# Subtle overlay to blend image into teal on mobile #}
+                    <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-deep-teal/40 to-transparent"></div>
+                </div>
+
+                {# 3. Right Side: Content Area #}
+                <div class="md:w-7/12 p-10 md:p-16 flex flex-col justify-center relative z-10">
+                    <div class="inline-flex items-center gap-2 mb-6">
+                        <span class="w-8 h-[2px] bg-river-blue"></span>
+                        <span class="text-river-blue font-bold uppercase tracking-[0.2em] text-xs">Featured Publication</span>
+                    </div>
+
+                    {% if latest_resource %}
+                        <h3 class="font-heading font-bold text-3xl md:text-5xl text-white mb-6 leading-tight">
+                            {{ latest_resource.title }}
+                        </h3>
+                        
+                        <div class="text-white/80 text-lg mb-10 leading-relaxed font-body font-light">
+                            {% if latest_resource.intro %}
+                                {{ latest_resource.intro|richtext }}
+                            {% else %}
+                                <p>Download our latest report to discover the impact we've made together in preserving cultural heritage and transforming communities across Papua New Guinea.</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="flex flex-wrap gap-6">
+                            {# CTA 1: Download the actual file from models.py #}
+                            {% if latest_resource.resource_file %}
+                            <a href="{{ latest_resource.resource_file.url }}" download class="group flex items-center gap-3 px-8 py-4 bg-white text-deep-teal rounded-full font-bold transition-all duration-300 shadow-xl hover:shadow-white/10 hover:-translate-y-1">
+                                <span class="uppercase tracking-widest text-xs">Download Report</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                            </a>
+                            {% endif %}
+
+                            {# CTA 2: View Index #}
+                            <a href="/resources/" class="flex items-center gap-3 px-8 py-4 border-2 border-white/20 text-white rounded-full font-bold hover:bg-white/10 transition-all duration-300">
+                                <span class="uppercase tracking-widest text-xs">View All Resources</span>
+                            </a>
+                        </div>
+                    {% else %}
+                        {# Fallback if no posts exist yet #}
+                        <h3 class="font-heading font-bold text-3xl text-white mb-6">Resource Library Coming Soon</h3>
+                        <p class="text-white/70 mb-8">We are currently compiling our latest reports and community stories.</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endwith %}
+
+<style>
+    /* Ensuring the typography pattern works here as well */
+    .topography-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        -webkit-mask-image: url("{% static 'images/topography.svg' %}");
+        mask-image: url("{% static 'images/topography.svg' %}");
+        mask-size: 600px 600px;
+        -webkit-mask-size: 600px 600px;
+        mask-repeat: repeat;
+    }
+</style>
