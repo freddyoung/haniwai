@@ -103,6 +103,23 @@ class HomePage(SeoMixin, Page):
         context['resources'] = apps.get_model('home', 'ResourcePage').objects.live().order_by('-date')[:3]
         
         return context
+    
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        
+        # This pulls the latest 3 news items to prevent the 500 error in news_events.html
+        context['news_items'] = EventsPage.objects.live().order_by('-date')[:3]
+        
+        # This pulls the latest 3 resources for the resources.html section
+        context['resources'] = ResourcePage.objects.live().order_by('-date')[:3]
+        
+        return context
+    
+
+    
+
+
+
 
 
 # =======================
