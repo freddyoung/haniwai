@@ -60,7 +60,7 @@
             display: block;
         }
         
-        /* Team Card Styling */
+        /* Team Card Styling - STRICTLY CIRCULAR */
         .team-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -69,25 +69,60 @@
         }
         .team-img-container {
             overflow: hidden;
-            border-radius: 9999px;
+            border-radius: 9999px; /* This ensures circles */
             border: 4px solid white;
             box-shadow: 0 10px 25px -5px rgba(0, 77, 77, 0.2);
+            width: 128px;
+            height: 128px;
+        }
+
+        /* --- SDG HYBRID LOGIC --- */
+        @media (max-width: 1023px) {
+            #sdg-track-container {
+                overflow-x: auto;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            #sdg-track-container::-webkit-scrollbar { display: none; }
+
+            .animate-mobile-marquee {
+                display: flex;
+                width: max-content;
+                animation: mobileMarquee 35s linear infinite;
+            }
+
+            @keyframes mobileMarquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-33.33%); }
+            }
+
+            #sdg-track-container:active .animate-mobile-marquee {
+                animation-play-state: paused;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .animate-mobile-marquee {
+                animation: none !important;
+                display: flex;
+                width: max-content;
+            }
         }
     </style>
 
     {# 1. HERO SECTION #}
-    <section class="relative py-32 md:py-40 flex items-center overflow-hidden">
+    <section class="relative h-[80vh] flex items-center overflow-hidden w-full">
         <div class="absolute inset-0 z-0">
-            <img src="{% static 'images/motto1.webp' %}" alt="Papua New Guinea Landscape" class="w-full h-full object-cover">
+            <img src="{% static 'images/motto1.webp' %}" alt="Landscape" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-[#003333] via-[#004d4d]/80 to-transparent"></div>
         </div>
 
-        <div class="relative z-10 container mx-auto px-4 lg:px-12">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-3xl reveal">
                 <div class="inline-flex items-center space-x-2 mb-6 border-l-2 border-[#e15b8d] pl-4">
                     <span class="text-[#4da6a6] font-bold tracking-[0.2em] uppercase text-xs">Who We Are</span>
                 </div>
-                <h1 class="font-heading font-bold text-5xl md:text-6xl lg:text-7xl text-white mb-8 leading-tight">
+                <h1 class="font-heading font-bold text-5xl md:text-7xl text-white mb-8 leading-tight">
                     Guardians of <br/>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#4da6a6] to-[#e15b8d]">Culture & Nature</span>
                 </h1>
@@ -99,25 +134,21 @@
     </section>
 
     {# 2. THE STORY #}
-    <section class="py-24 bg-white relative">
-        <div class="container mx-auto px-4 lg:px-12">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section class="py-24 bg-white relative w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
                 <div class="relative reveal order-2 lg:order-1">
                     <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl relative">
-                        <img src="{% static 'images/about-mission.jpg' %}" alt="Community Meeting" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-[#004d4d]/10"></div>
+                        <img src="{% static 'images/about-mission.jpg' %}" alt="Meeting" class="w-full h-full object-cover">
                     </div>
                     <div class="absolute -bottom-6 -left-6 w-full h-full border-2 border-[#e15b8d]/20 rounded-3xl -z-10"></div>
                 </div>
 
                 <div class="reveal order-1 lg:order-2">
-                    <h2 class="font-heading font-bold text-4xl text-[#004d4d] mb-6">
-                        Rooted in Ancestral Wisdom
-                    </h2>
+                    <h2 class="font-heading font-bold text-4xl text-[#004d4d] mb-6">Rooted in Ancestral Wisdom</h2>
                     <div class="space-y-6 text-lg text-gray-600 font-light leading-relaxed">
                         <p>HANIWAI was born from a simple truth: the people closest to the land are best positioned to protect it.</p>
-                        <p>In Papua New Guinea, women are the backbone of the community and the primary custodians of biodiversity. Yet, their voices are often sidelined in decision-making. We exist to change that narrative.</p>
-                        <p>By combining modern sustainable development practices with thousands of years of indigenous knowledge, we are building a future where humanity and nature thrive together.</p>
+                        <p>In Papua New Guinea, women are the backbone of the community and the primary custodians of biodiversity. Yet, their voices are often sidelined. We exist to change that narrative.</p>
                     </div>
                 </div>
             </div>
@@ -125,242 +156,137 @@
     </section>
 
     {# 3. MISSION & VISION #}
-    <section class="py-24 bg-gray-50 relative overflow-hidden">
+    <section class="py-24 bg-gray-50 relative overflow-hidden w-full">
         <div class="topography-bg"></div>
-
-        <div class="container mx-auto px-4 lg:px-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                
-                {# Mission Card #}
                 <div class="bento-card p-10 rounded-[2.5rem] reveal">
                     <div class="w-16 h-16 bg-[#004d4d]/10 rounded-2xl flex items-center justify-center mb-8">
                         <i data-lucide="crosshair" class="w-8 h-8 text-[#004d4d]"></i>
                     </div>
                     <h3 class="font-heading font-bold text-3xl text-[#004d4d] mb-4">Our Mission</h3>
-                    <p class="text-gray-600 text-lg leading-relaxed">
-                        To empower indigenous women and marginalized communities in Papua New Guinea through sustainable development, cultural preservation, and environmental protection.
-                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed">To empower indigenous women and marginalized communities in PNG through sustainable development and cultural preservation.</p>
                 </div>
-
-                {# Vision Card #}
-                <div class="bento-card p-10 rounded-[2.5rem] reveal delay-100 relative overflow-hidden group">
-
-                    <div class="relative z-10">
-                        <div class="w-16 h-16 bg-[#4da6a6]/10 rounded-2xl flex items-center justify-center mb-8">
-                            <i data-lucide="eye" class="w-8 h-8 text-[#4da6a6]"></i>
-                        </div>
-                        <h3 class="font-heading font-bold text-3xl text-[#004d4d] mb-4">Our Vision</h3>
-                        <p class="text-gray-600 text-lg leading-relaxed">
-                            We envision a future where humanity and nature thrive together, driven by equity, dignity, and the enduring wisdom of our ancestors.
-                        </p>
+                <div class="bento-card p-10 rounded-[2.5rem] reveal delay-100">
+                    <div class="w-16 h-16 bg-[#4da6a6]/10 rounded-2xl flex items-center justify-center mb-8">
+                        <i data-lucide="eye" class="w-8 h-8 text-[#4da6a6]"></i>
                     </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    {# 4. CORE VALUES #}
-    <section class="py-24 bg-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
-        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#004d4d 1px, transparent 1px); background-size: 32px 32px;"></div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="text-[#4da6a6] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">What Drives Us</span>
-                <h2 class="font-heading font-bold text-4xl text-[#004d4d]">Our Core Values</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-8 rounded-2xl reveal">
-                    <div class="w-12 h-12 bg-[#004d4d] text-white rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="heart" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Compassion</h3>
-                    <p class="text-gray-600 text-sm">Leading with empathy in all our interactions with communities.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl reveal delay-100">
-                    <div class="w-12 h-12 bg-[#4da6a6] text-white rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="users" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Community</h3>
-                    <p class="text-gray-600 text-sm">Collective strength guides every decision we make.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl reveal delay-200">
-                    <div class="w-12 h-12 bg-[#e15b8d] text-white rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="shield" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Integrity</h3>
-                    <p class="text-gray-600 text-sm">Transparency and accountability in our operations.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl reveal delay-300">
-                    <div class="w-12 h-12 bg-[#003333] text-white rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="award" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="font-heading font-bold text-xl text-[#004d4d] mb-2">Excellence</h3>
-                    <p class="text-gray-600 text-sm">Delivering high-quality support services that last.</p>
+                    <h3 class="font-heading font-bold text-3xl text-[#004d4d] mb-4">Our Vision</h3>
+                    <p class="text-gray-600 text-lg leading-relaxed">A future where humanity and nature thrive together, driven by equity and ancestral wisdom.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    {# 5. SDG 2030 COMMITMENT (SCROLL LINKED + ORIGINAL LOGO) #}
-    <section id="sdg-section" class="relative py-32 bg-[#002a2a] overflow-hidden">
+    {# 5. SDG 2030 COMMITMENT - BOXED HEADER, FLUID TRACK #}
+    <section id="sdg-section" class="relative py-32 bg-[#002a2a] overflow-hidden w-full">
         <div class="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
             <img src="{% static 'images/village.jpg' %}" class="w-full h-full object-cover">
         </div>
         
-        <div class="container mx-auto px-4 lg:px-12 relative z-10">
-            <div class="flex flex-col md:flex-row items-center gap-8 mb-16">
-                
-                {# SDG LOGO: ORIGINAL COLORS (Removed filter) #}
-                <div class="flex-shrink-0">
-                    <img src="{% static 'images/sdg.png' %}" alt="SDG Logo" class="h-28 md:h-32 w-auto"> 
-                </div>
-
-                <div class="max-w-xl text-center md:text-left">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full mb-16">
+            <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                <img src="{% static 'images/sdg.png' %}" alt="SDG Logo" class="h-28 md:h-32 w-auto"> 
+                <div>
                     <span class="text-[#e15b8d] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Global Goals</span>
-                    <h2 class="font-heading font-bold text-4xl md:text-5xl text-white mb-4">Commitment to SDG 2030</h2>
-                    <p class="text-white/70 text-lg">Aligning grassroots action with global standards.</p>
+                    <h2 class="font-heading font-bold text-4xl md:text-5xl text-white">Commitment to SDG 2030</h2>
                 </div>
             </div>
+        </div>
 
-            {# Scroll Track - Content Tripled for Infinite Feel #}
-            <div class="overflow-hidden w-full">
-                <div id="sdg-track" class="sdg-track flex gap-6 w-max px-4">
-                    
-                    {% for i in "123" %} {# Repeats 3 times #}
-                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
-                            <div class="text-4xl mb-4">⚖️</div>
-                            <h4 class="font-heading font-bold text-xl text-white mb-2">Gender Equality</h4>
-                            <p class="text-white/60 text-sm">Empowering women to lead in their communities.</p>
-                            <span class="year-label">TARGET: 2027</span>
-                        </div>
-                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
-                            <div class="text-4xl mb-4">🌿</div>
-                            <h4 class="font-heading font-bold text-xl text-white mb-2">Climate Action</h4>
-                            <p class="text-white/60 text-sm">Resilience through indigenous knowledge.</p>
-                            <span class="year-label">TARGET: 2030</span>
-                        </div>
-                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
-                            <div class="text-4xl mb-4">💧</div>
-                            <h4 class="font-heading font-bold text-xl text-white mb-2">Clean Water</h4>
-                            <p class="text-white/60 text-sm">Sustainable access for rural villages.</p>
-                            <span class="year-label">TARGET: 2026</span>
-                        </div>
-                        <div class="w-[300px] md:w-[350px] bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors">
-                            <div class="text-4xl mb-4">🤝</div>
-                            <h4 class="font-heading font-bold text-xl text-white mb-2">Partnerships</h4>
-                            <p class="text-white/60 text-sm">Collaborating for sustainable impact.</p>
-                            <span class="year-label">ONGOING</span>
-                        </div>
-                    {% endfor %}
-
+        <div id="sdg-track-container" class="relative z-10 w-full">
+            <div id="sdg-track" class="animate-mobile-marquee flex gap-6 px-4 md:px-8">
+                {% for i in "123" %}
+                <div class="w-[300px] md:w-[350px] flex-shrink-0 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
+                    <div class="text-4xl mb-4">⚖️</div>
+                    <h4 class="font-heading font-bold text-xl text-white mb-2">Gender Equality</h4>
+                    <p class="text-white/60 text-sm">Empowering women to lead in their communities.</p>
+                    <span class="year-label">TARGET: 2027</span>
                 </div>
+                <div class="w-[300px] md:w-[350px] flex-shrink-0 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
+                    <div class="text-4xl mb-4">🌱</div>
+                    <h4 class="font-heading font-bold text-xl text-white mb-2">Climate Action</h4>
+                    <p class="text-white/60 text-sm">Resilience through indigenous knowledge.</p>
+                    <span class="year-label">TARGET: 2030</span>
+                </div>
+                <div class="w-[300px] md:w-[350px] flex-shrink-0 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
+                    <div class="text-4xl mb-4">💧</div>
+                    <h4 class="font-heading font-bold text-xl text-white mb-2">Clean Water</h4>
+                    <p class="text-white/60 text-sm">Sustainable access for rural villages.</p>
+                    <span class="year-label">TARGET: 2026</span>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
-    {# 6. MEET THE TEAM (New Section) #}
-    <section class="py-24 bg-white border-b border-gray-100">
-        <div class="container mx-auto px-4 lg:px-12">
+    {# 6. MEET THE TEAM #}
+    <section class="py-24 bg-white border-b border-gray-100 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="text-center mb-16 reveal">
                 <span class="text-[#4da6a6] font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Our People</span>
                 <h2 class="font-heading font-bold text-4xl text-[#004d4d]">Meet Our Leadership</h2>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                {# Team Member 1 #}
-                <div class="team-card text-center group reveal">
-                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
-                        <img src="{% static 'images/team-1.jpg' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                {# All 5 Members with circular icons and full descriptions #}
+                <div class="team-card text-center group">
+                    <div class="team-img-container mx-auto mb-4"><img src="{% static 'images/team-1.jpg' %}" class="w-full h-full object-cover"></div>
                     <h4 class="font-heading font-bold text-lg text-[#004d4d]">Maryanne Rimbao</h4>
-                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Founder & Director</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Championing women's rights in the Highlands for over 15 years.</p>
+                    <p class="text-[#e15b8d] text-[10px] font-bold uppercase mb-2">Founder & Director</p>
+                    <p class="hidden lg:block text-gray-500 text-xs">Highlands women's rights leader for 15+ years.</p>
                 </div>
-
-                {# Team Member 2 #}
-                <div class="team-card text-center group reveal delay-100">
-                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
-                        <img src="{% static 'images/team-2.jpeg' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
+                <div class="team-card text-center group">
+                    <div class="team-img-container mx-auto mb-4"><img src="{% static 'images/team-2.jpeg' %}" class="w-full h-full object-cover"></div>
                     <h4 class="font-heading font-bold text-lg text-[#004d4d]">Leonia Young</h4>
-                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Co-Founder & Deputy Director</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Manages safehousing for all women under HANIWAI Protection Program</p>
+                    <p class="text-[#e15b8d] text-[10px] font-bold uppercase mb-2">Deputy Director</p>
+                    <p class="hidden lg:block text-gray-500 text-xs">Expert in safehousing and women's protection.</p>
                 </div>
-
-                {# Team Member 3 #}
-                <div class="team-card text-center group reveal delay-200">
-                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
-                        <img src="{% static 'images/team-3.jpg' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
+                <div class="team-card text-center group">
+                    <div class="team-img-container mx-auto mb-4"><img src="{% static 'images/team-3.jpg' %}" class="w-full h-full object-cover"></div>
                     <h4 class="font-heading font-bold text-lg text-[#004d4d]">Melizah Ombo</h4>
-                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Secretary</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Bridging the gap between rural villages and national policy.</p>
+                    <p class="text-[#e15b8d] text-[10px] font-bold uppercase mb-2">Secretary</p>
+                    <p class="hidden lg:block text-gray-500 text-xs">Connecting rural voices to national policy.</p>
                 </div>
-
-                {# Team Member 4 #}
-                <div class="team-card text-center group reveal delay-300">
-                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
-                        <img src="{% static 'images/images.png' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
+                <div class="team-card text-center group">
+                    <div class="team-img-container mx-auto mb-4"><img src="{% static 'images/images.png' %}" class="w-full h-full object-cover"></div>
                     <h4 class="font-heading font-bold text-lg text-[#004d4d]">Catherine Nanoa</h4>
-                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Treasurer</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Ensuring transparency and integrity in every kina spent.</p>
+                    <p class="text-[#e15b8d] text-[10px] font-bold uppercase mb-2">Treasurer</p>
+                    <p class="hidden lg:block text-gray-500 text-xs">Financial integrity and transparency expert.</p>
                 </div>
-
-                {# Team Member 5 #}
-                <div class="team-card text-center group reveal delay-400">
-                    <div class="team-img-container w-32 h-32 mx-auto mb-4 relative">
-                        <img src="{% static 'images/images.png' %}" alt="Member" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
+                <div class="team-card text-center group">
+                    <div class="team-img-container mx-auto mb-4"><img src="{% static 'images/images.png' %}" class="w-full h-full object-cover"></div>
                     <h4 class="font-heading font-bold text-lg text-[#004d4d]">Pipi Timil</h4>
-                    <p class="text-[#e15b8d] text-xs font-bold uppercase tracking-widest mb-2">Committee Member</p>
-                    <p class="text-gray-500 text-xs leading-relaxed">Sharing our stories with the world to inspire change.</p>
+                    <p class="text-[#e15b8d] text-[10px] font-bold uppercase mb-2">Committee Member</p>
+                    <p class="hidden lg:block text-gray-500 text-xs">Driving grassroots storytelling and change.</p>
                 </div>
             </div>
         </div>
     </section>
 
     {# 7. LEADERSHIP STATEMENT #}
-    <section class="py-32 bg-white text-center relative overflow-hidden">
+    <section class="py-32 bg-white text-center relative overflow-hidden w-full">
         <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
             <span class="text-[15vw] font-heading font-bold leading-none tracking-tighter text-[#004d4d]">HANIWAI</span>
         </div>
-        <div class="container mx-auto px-4 relative z-10 reveal">
-            <i data-lucide="quote" class="w-12 h-12 text-[#e15b8d] mx-auto mb-8 fill-current opacity-20"></i>
-            <h2 class="font-heading font-bold text-4xl md:text-5xl text-[#004d4d] mb-6 leading-tight max-w-4xl mx-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <i data-lucide="quote" class="w-12 h-12 text-[#e15b8d] mx-auto mb-8 opacity-20"></i>
+            <h2 class="font-heading font-bold text-3xl md:text-5xl text-[#004d4d] mb-10 max-w-4xl mx-auto leading-tight">
                 "We know the solutions because they come from our people."
             </h2>
-            <p class="text-xl text-gray-500 font-light max-w-2xl mx-auto mb-10">
-                Our lived experience is our greatest strength.
-            </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg shadow-[#004d4d]/30 transform hover:scale-105 transition-all cursor-default">
-                    100% Indigenous-Led
-                </div>
-                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg shadow-[#004d4d]/30 transform hover:scale-105 transition-all cursor-default opacity-90 hover:opacity-100">
-                    Community-Driven
-                </div>
-                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg shadow-[#004d4d]/30 transform hover:scale-105 transition-all cursor-default opacity-80 hover:opacity-100">
-                    Culturally-Grounded
-                </div>
+                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg">100% Indigenous-Led</div>
+                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg">Community-Driven</div>
+                <div class="px-8 py-3 bg-[#004d4d] text-white rounded-full font-bold text-sm shadow-lg">Culturally-Grounded</div>
             </div>
         </div>
     </section>
 
-    {# 8. CONCISE DONATE CTA (New Section) #}
-    <section class="py-16 bg-[#e15b8d] relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <div class="topography-bg h-full w-full bg-white"></div>
-        </div>
-        <div class="container mx-auto px-4 relative z-10 text-center reveal">
-            <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-6">Be Part of the Change</h2>
-            <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-                Your support directly empowers indigenous women to protect their land and culture.
-            </p>
-            <a href="/donate/" class="inline-flex items-center gap-2 bg-white text-[#e15b8d] px-10 py-4 rounded-full font-bold shadow-xl hover:bg-gray-100 hover:scale-105 transition-all uppercase tracking-widest text-sm">
+    {# 8. DONATE CTA #}
+    <section class="py-16 bg-[#e15b8d] relative w-full overflow-hidden">
+        <div class="topography-bg opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-8">Be Part of the Change</h2>
+            <a href="/donate/" class="inline-flex items-center gap-2 bg-white text-[#e15b8d] px-10 py-4 rounded-full font-bold shadow-xl uppercase tracking-widest text-sm">
                 <span>Donate Today</span>
                 <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
             </a>
@@ -370,31 +296,24 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             lucide.createIcons();
-
-            // SCROLL-LINKED ANIMATION (Infinite Feel)
             const section = document.getElementById('sdg-section');
             const track = document.getElementById('sdg-track');
-            
-            if(section && track) {
-                window.addEventListener('scroll', () => {
+
+            function handleDesktopScroll() {
+                if (window.innerWidth >= 1024 && section && track) {
                     const rect = section.getBoundingClientRect();
                     const windowHeight = window.innerHeight;
-                    
                     if (rect.top < windowHeight && rect.bottom > 0) {
-                        // Calculate scrolling percentage (0 to 1)
                         const distance = windowHeight - rect.top;
                         const percentage = distance / (windowHeight + rect.height);
-                        
-                        // Move based on scroll, but since we have tripled content, 
-                        // we can scroll a long way without running out.
-                        const maxMove = 1200; // Adjust this value to control speed/distance
-                        const moveAmount = percentage * maxMove; 
-                        
-                        track.style.transform = `translateX(-${moveAmount}px)`;
+                        track.style.transform = `translateX(-${percentage * 1200}px)`;
                     }
-                });
+                } else if (track) {
+                    track.style.transform = '';
+                }
             }
+            window.addEventListener('scroll', handleDesktopScroll);
+            window.addEventListener('resize', handleDesktopScroll);
         });
     </script>
-
 {% endblock %}

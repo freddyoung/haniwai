@@ -3,6 +3,7 @@
 <style>
     [x-cloak] { display: none !important; }
 
+    /* Core HANIWAI Glassmorphism for Cards */
     .glass-pane {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(20px);
@@ -15,44 +16,64 @@
         pointer-events: none;
     }
 
+    /* Mobile First Visibility Logic */
     .hollow-text {
-        color: transparent;
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
-        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .group:hover .hollow-text {
         color: white;
         -webkit-text-stroke: 0px;
         text-shadow: 0 0 20px rgba(255,255,255,0.4);
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .card-title-move {
-        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .group:hover .card-title-move {
         transform: translateY(-2.2rem);
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .content-reveal {
         position: absolute;
         bottom: 15%;
         width: 100%;
-        opacity: 0;
-        transform: translateY(1.5rem);
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .group:hover .content-reveal {
         opacity: 1;
         transform: translateY(0);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* Desktop Hover Interactions (md: 768px+) */
+    @media (min-width: 768px) {
+        .hollow-text {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+            text-shadow: none;
+        }
+        .group:hover .hollow-text {
+            color: white;
+            -webkit-text-stroke: 0px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.4);
+        }
+
+        .card-title-move {
+            transform: translateY(0);
+        }
+        .group:hover .card-title-move {
+            transform: translateY(-2.2rem);
+        }
+
+        .content-reveal {
+            opacity: 0;
+            transform: translateY(1.5rem);
+        }
+        .group:hover .content-reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .icon-aura {
-        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-        filter: blur(40px);
+        background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+        filter: blur(60px);
     }
 </style>
 
-{# --- Added relative and z-30 to the main wrapper --- #}
 <div x-data="{ 
     isModalOpen: false,
     imageError: false, 
@@ -93,12 +114,10 @@
             </p>
         </div>
 
-        {# --- Negative bottom margin pulls the About section up to meet the cards --- #}
         <div class="container mx-auto px-4 relative z-30 -mb-24 md:-mb-32">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto md:pb-24">
                 
-                {# PRESERVE #}
-                <button class="group relative w-full aspect-[1.5/1] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl"
+                <button class="group relative w-full aspect-[1.5/1] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl md:translate-y-4"
                     @click="openModal({
                         title: 'PRESERVE',
                         description: 'We work to preserve the rich cultural heritage and traditions of indigenous communities, ensuring they are passed down to future generations.',
@@ -119,8 +138,7 @@
                     </div>
                 </button>
 
-                {# PROTECT #}
-                <button class="group relative w-full aspect-[1.5/1] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl"
+                <button class="group relative w-full aspect-[1.5/1] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl md:translate-y-12"
                     @click="openModal({
                         title: 'PROTECT',
                         description: 'Our mission extends to protect vulnerable, disaffected, and marginalized people groups, particularly women, alongside safeguarding our biodiversity.',
@@ -141,8 +159,7 @@
                     </div>
                 </button>
 
-                {# TRANSFORM #}
-                <button class="group relative w-full aspect-[1.5/1] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl"
+                <button class="group relative w-full aspect-[1.5/1] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl md:translate-y-0"
                     @click="openModal({
                         title: 'TRANSFORM',
                         description: 'We aim to transform lives by empowering women and providing education, creating a foundation for a sustainable future.',
@@ -166,32 +183,43 @@
         </div>
     </section>
 
-    {# --- MODAL CODE --- #}
+    {# --- IMMERSIVE OVERLAY (No Box) --- #}
     <div x-cloak x-show="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-6" role="dialog">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-[40px]" 
-             x-show="isModalOpen" x-transition:enter="duration-500" x-transition:leave="duration-300"
+        
+        {# Deep Glassmorphic Backdrop #}
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-[45px]" 
+             x-show="isModalOpen" 
+             x-transition:enter="transition-opacity duration-700" 
+             x-transition:leave="transition-opacity duration-500"
              @click="closeModal()"></div>
 
-        <div class="relative w-full max-w-4xl aspect-[1.6/1] flex flex-col items-center justify-center p-12 text-center"
+        {# Content Wrapper: Now transparent and free-floating #}
+        <div class="relative w-full max-w-4xl flex flex-col items-center justify-center text-center py-12"
              x-show="isModalOpen" 
              x-transition:enter="transition ease-out duration-700 transform" x-transition:enter-start="opacity-0 translate-y-12 scale-95" 
              x-transition:enter-end="opacity-100 translate-y-0 scale-100"
              x-transition:leave="transition ease-in duration-400 transform" x-transition:leave-start="opacity-100 translate-y-0 scale-100" 
              x-transition:leave-end="opacity-0 translate-y-12 scale-95">
             
-            <button @click="closeModal()" class="absolute top-0 right-0 px-8 py-2 text-white/60 hover:text-white border border-white/20 rounded-full text-sm uppercase tracking-widest transition-all hover:bg-white/10">
-                Close
-            </button>
-
-            <div class="relative mb-12">
+            {# Icons restored to original color #}
+            <div class="relative mb-10 md:mb-14">
                 <div class="absolute inset-0 icon-aura scale-150"></div>
-                <img :src="selectedMission.iconImg" class="relative z-10 w-48 h-48 md:w-64 md:h-64 object-contain" 
+                <img :src="selectedMission.iconImg" 
+                     class="relative z-10 w-44 h-44 md:w-60 md:h-60 object-contain" 
                      x-show="!imageError" @error="imageError = true">
             </div>
 
-            <h3 class="text-4xl md:text-6xl font-bold font-heading mb-6 text-white drop-shadow-lg tracking-wider" x-text="selectedMission.title"></h3>
-            <div class="h-px w-24 bg-gradient-to-r from-transparent via-white/40 to-transparent mb-8"></div>
-            <p class="max-w-3xl text-xl md:text-2xl text-white/80 leading-relaxed font-light drop-shadow-md" x-text="selectedMission.description"></p>
+            <h3 class="text-4xl md:text-6xl font-medium font-heading mb-6 text-white drop-shadow-lg tracking-wider" x-text="selectedMission.title"></h3>
+            
+            {# Refined Solid Separator #}
+            <div class="h-[1px] w-24 bg-white/20 mb-10 md:mb-12"></div>
+            
+            <p class="max-w-3xl text-xl md:text-2xl text-white/90 leading-relaxed font-light drop-shadow-md mb-16 md:mb-20" x-text="selectedMission.description"></p>
+
+            <button @click="closeModal()" 
+                    class="px-14 py-4 text-white/60 hover:text-white border border-white/20 rounded-full text-xs md:text-sm uppercase tracking-[0.4em] transition-all hover:bg-white/10 glass-pane">
+                Close
+            </button>
         </div>
     </div>
 </div>

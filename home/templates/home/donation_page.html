@@ -31,7 +31,7 @@
     <section class="relative pt-48 pb-36 overflow-hidden">
         <div class="absolute inset-0 z-0">
             {# Replace 'images/donation-hero.jpg' with your actual image path #}
-            <img src="{% static 'images/contact.webp' %}" alt="Donation Hero Background" class="w-full h-full object-cover">
+            <img src="{% static 'images/pacific-women.webp' %}" alt="Donation Hero Background" class="w-full h-full object-cover">
             <div class="absolute inset-0 hero-overlay"></div>
             <div class="absolute inset-0 opacity-[0.05] pointer-events-none">
                 <div class="topography-bg bg-white h-full w-full"></div>
@@ -66,9 +66,19 @@
         </div>
     </section>
 
-    {# 2. IMPACT AREAS - Maintained layout #}
+    {# 2. IMPACT AREAS #}
     <section class="py-24 bg-white">
-        <div class="container mx-auto px-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-2xl mb-16 mx-auto text-center">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-involved-pink mb-6">
+                    How your donation keeps things running
+                </h2>
+                <p class="text-lg text-gray-500 font-light">
+                    Your generosity directly supports these vital areas of our community work.
+                </p>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 
                 <div class="space-y-6 group">
@@ -108,7 +118,7 @@
     {# 3. FINAL TRUST BANNER #}
     <section class="py-20 bg-gray-50 border-t border-gray-100">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="font-heading font-bold text-3xl text-deep-teal mb-4">Transparency is our promise.</h2>
+            <h2 class="font-heading font-bold text-3xl text-deep-teal mb-4">Transparency.</h2>
             <p class="text-gray-500 max-w-xl mx-auto mb-10">
                 Your contribution goes directly to field programs. We maintain a zero-waste policy to ensure maximum community impact.
             </p>

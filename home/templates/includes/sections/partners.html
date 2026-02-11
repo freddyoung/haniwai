@@ -1,7 +1,7 @@
 {% load static %}
 
 <style>
-    /* Infinite Scroll Animation */
+    /* Continuous Scroll Logic */
     @keyframes scroll {
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
@@ -10,16 +10,20 @@
     .animate-infinite-scroll {
         display: flex;
         width: max-content;
-        animation: scroll 30s linear infinite;
+        animation: scroll 40s linear infinite; /* Adjusted speed for more logos */
     }
 
-    /* Pause on hover for accessibility and engagement */
-    .animate-infinite-scroll:hover {
-        animation-play-state: paused;
+    /* Pause on hover only for desktop to allow finger dragging on mobile */
+    @media (hover: hover) {
+        .animate-infinite-scroll:hover {
+            animation-play-state: paused;
+        }
     }
 
     .partner-logo-card {
         transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        user-select: none;
+        -webkit-user-drag: none;
     }
     
     .partner-logo-card:hover {
@@ -27,63 +31,92 @@
         background-color: white;
         box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     }
+
+    /* Mobile Logic: Full color, no grayscale */
+    @media (max-width: 767px) {
+        .partner-logo-card img {
+            filter: grayscale(0) !important;
+        }
+    }
+
+    /* Desktop Logic: Grayscale to Color on hover */
+    @media (min-width: 768px) {
+        .partner-logo-card img {
+            filter: grayscale(1);
+        }
+        .partner-logo-card:hover img {
+            filter: grayscale(0);
+        }
+    }
+
+    /* Hide scrollbar for the touch container */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 </style>
 
 <section id="partners" class="relative py-20 bg-gray-50 border-y border-gray-200 overflow-hidden">
-    {# Header respects page margins #}
+    {# Header #}
     <div class="container mx-auto px-4 relative z-10 mb-16">
         <div class="text-center">
-            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4 text-deep-teal">Our Partners</h2>
-            <p class="text-gray-500 font-body">Working together for a better Papua New Guinea</p>
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4 text-deep-teal">Our Partners & Networks</h2>
+            <div class="w-20 h-1.5 bg-river-blue mx-auto rounded-full"></div>
+            <p class="mt-6 text-gray-600 max-w-2xl mx-auto">
+                Collaborating with local and international organizations to amplify our impact and support indigenous communities.
+            </p>
         </div>
     </div>
 
-    {# Slider spans full width of the screen #}
-    <div class="relative w-full">
-        {# Left & Right Gradient Fades #}
-        <div class="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
-
-        <div class="animate-infinite-scroll flex items-center">
-            
-            {# --- First Set of Logos --- #}
-            <div class="flex gap-8 px-4">
-                <a href="https://www.anfd.org.au/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/anfd-logo.png' %}" alt="ANFD" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="https://www.civicus.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/civicus-logo.png' %}" alt="CIVICUS" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="#" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/giz-logo.jpg' %}" alt="GIZ" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="https://www.adb.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/adb.png' %}" alt="ADB" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="#" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/ypi.jpg' %}" alt="YPI" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-            </div>
+    {# Touch-enabled Slider Container #}
+    <div class="flex overflow-x-auto hide-scrollbar cursor-grab active:cursor-grabbing relative w-full">
+        <div class="animate-infinite-scroll flex gap-8 px-4 items-center">
+            {# --- First Set of Unique Logos --- #}
+            <a href="https://action-network-displacement.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/anfd-logo.png' %}" alt="ANFD" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://www.civicus.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/civicus-logo.png' %}" alt="CIVICUS" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://www.giz.de/en/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/giz-logo.jpg' %}" alt="GIZ" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://www.adb.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/adb.png' %}" alt="ADB" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://iwgia.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/iwgia-logo.jpg' %}" alt="IWGIA" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://ypipng.com/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/ypi.jpg' %}" alt="YPI" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
 
             {# --- Second Set (Duplicate for Continuity) --- #}
-            <div class="flex gap-8 px-4">
-                <a href="https://www.anfd.org.au/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/anfd-logo.png' %}" alt="ANFD" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="https://www.civicus.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/civicus-logo.png' %}" alt="CIVICUS" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="#" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/giz-logo.jpg' %}" alt="GIZ" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="https://www.adb.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/adb.png' %}" alt="ADB" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-                <a href="#" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
-                    <img src="{% static 'images/ypi.jpg' %}" alt="YPI" class="max-w-full max-h-32 object-contain grayscale group-hover:grayscale-0 transition-all">
-                </a>
-            </div>
-
+            <a href="https://action-network-displacement.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/anfd-logo.png' %}" alt="ANFD" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://www.civicus.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/civicus-logo.png' %}" alt="CIVICUS" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://www.giz.de/en/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/giz-logo.jpg' %}" alt="GIZ" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://www.adb.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/adb.png' %}" alt="ADB" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://iwgia.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/iwga-logo.jpg' %}" alt="IWGIA" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
+            <a href="https://ypipng.com/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
+                <img src="{% static 'images/ypi.jpg' %}" alt="YPI" class="max-w-full max-h-32 object-contain transition-all">
+            </a>
         </div>
     </div>
+
+    {# Decorative Gradient Fades #}
+    <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
 </section>
