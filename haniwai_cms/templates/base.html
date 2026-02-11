@@ -49,6 +49,10 @@
                 cursor: pointer;
                 z-index: 100;
             }
+
+            .nav-scrolled .menu {
+                --color: #004d4d;
+            }
             .menu svg {
                 width: 64px;
                 height: 48px;
@@ -76,6 +80,9 @@
             .menu svg path:nth-child(3) {
                 --offset: 133px;
                 --array-2: 107px;
+            }
+            .menu.active {
+                --color: #fff !important;
             }
             /* Refined for perfect symmetry */
             .menu.active svg path {
@@ -392,7 +399,7 @@
                             </ul>
                         </div>
 
-                        <div class="md:col-span-3 lg:col-span-4 flex justify-end">
+                        <div class="md:col-span-3 lg:col-span-4 flex justify-center md:justify-end">
                             <div class="relative w-full max-w-[280px] aspect-[4/5] overflow-hidden">
                                 <img src="{% static 'images/footer.png' %}" 
                                     alt="HANIWAI Community" 

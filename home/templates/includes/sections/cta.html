@@ -1,42 +1,41 @@
 {% load static %}
 
-<section id="donate-cta" class="relative w-full bg-[#e15b8d] overflow-hidden min-h-[500px] flex items-stretch">
+<section id="donate-cta" class="relative w-full bg-[#e15b8d] overflow-hidden min-h-[500px] flex flex-col md:flex-row items-stretch">
     
-    {# --- Left-Side Fluid Image (No Overlays) --- #}
-    <div class="relative w-full md:absolute md:left-0 md:top-0 md:w-1/2 md:h-full overflow-hidden">
+    {# --- Image Section: Now stacks on top for mobile, half-width on desktop --- #}
+    <div class="relative w-full h-[300px] md:h-auto md:absolute md:left-0 md:top-0 md:w-1/2 md:h-full overflow-hidden">
         <img src="{% static 'images/cta2.png' %}" alt="HANIWAI Community" class="w-full h-full object-cover">
-        {# Overlay and Gradient layers removed #}
     </div>
 
-    {# --- Right-Side Constrained Content --- #}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex items-center">
+    {# --- Content Section --- #}
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full flex items-center">
         <div class="grid grid-cols-1 md:grid-cols-2 w-full">
             
-            {# Spacer to clear the image on desktop #}
+            {# Spacer for desktop to keep text on the right side #}
             <div class="hidden md:block"></div>
 
-            {# Text Content aligned to the right-side grid column #}
-            <div class="py-24 md:py-32 md:pl-16 text-left reveal">
+            {# Text Content: Added padding for mobile to prevent "squishing" #}
+            <div class="py-16 md:py-32 md:pl-16 text-left reveal">
                 <span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-6">
                     Our Future
                 </span>
                 
-                <h2 class="font-heading font-bold text-4xl md:text-5xl text-white mb-8 leading-tight">
-                    Fuel the Future of <br> 
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-white mb-8 leading-[1.1]">
+                    Shape the Future of <br class="hidden md:block"> 
                     Indigenous Leadership.
                 </h2>
                 
-                <p class="text-white/90 text-lg font-light mb-12 max-w-lg">
+                <p class="text-white/90 text-lg font-light mb-10 max-w-lg">
                     Your support provides the resources needed for community-led advocacy, safe housing, and sustainable livelihoods in Papua New Guinea.
                 </p>
 
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-8">
-                    <a href="/donate/" class="group flex items-center gap-3 bg-white text-[#e15b8d] px-10 py-4 rounded-full font-bold shadow-2xl hover:scale-105 transition-all text-sm uppercase tracking-widest">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+                    <a href="/donate/" class="w-full sm:w-auto group flex items-center justify-center gap-3 bg-white text-[#e15b8d] px-10 py-4 rounded-full font-bold shadow-2xl hover:scale-105 transition-all text-sm uppercase tracking-widest">
                         <span>Donate Now</span>
                         <i data-lucide="heart" class="w-5 h-5 fill-current transform group-hover:scale-110 transition-transform"></i>
                     </a>
                     
-                    <a href="/contact/" class="text-white/80 hover:text-white font-semibold uppercase tracking-widest text-xs transition-colors border-b border-transparent hover:border-white/40 pb-1">
+                    <a href="/contact/" class="w-full sm:w-auto text-center text-white/80 hover:text-white font-semibold uppercase tracking-widest text-xs transition-colors border-b border-transparent hover:border-white/40 pb-1">
                         Other ways to give
                     </a>
                 </div>
@@ -57,3 +56,21 @@
         transform: translateY(0);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+</script>
