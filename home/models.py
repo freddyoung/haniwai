@@ -190,7 +190,7 @@ class ContactFormField(AbstractFormField):
     page = ParentalKey('ContactPage', on_delete=models.CASCADE, related_name='form_fields')
 
 class ContactPage(SeoMixin, AbstractEmailForm):
-    template = "home/contact_page.html"          # <--- Added 'home/'
+    template = "home/contact_page.html"
     landing_page_template = "home/contact_page.html"
 
     intro = RichTextField(blank=True, help_text="Text above the form")
@@ -213,48 +213,55 @@ class ContactPage(SeoMixin, AbstractEmailForm):
 
     def serve(self, request, *args, **kwargs):
         if request.method == 'POST':
-            # 1. HONEYPOT CHECK (Anti-Spam)
+            # --- DEBUG START ---
+            print("\n" + "="*30)
+            print("DEBUG: Form Submitted!")
+            
+            # 1. HONEYPOT CHECK
             if request.POST.get('website_url'):
-                # Fail silently: Render the page as if it was a fresh load
+                print("DEBUG: Honeypot triggered (Bot detected)")
                 form = self.get_form(page=self, user=request.user)
                 return render(request, self.get_template(request), {'page': self, 'form': form})
 
-            # 2. CLOUDFLARE CHECK (Anti-Bot)
+            # 2. CLOUDFLARE CHECK
             turnstile_token = request.POST.get('cf-turnstile-response')
-            secret_key = "0x4AAAAAACaybN5KBLueo2K1"  # <--- MAKE SURE THIS IS YOUR SECRET KEY
-            
+            secret_key = "0x4AAAAAACa1cytNJYnDKya2tx4ryVBtZLs"  # Your Secret Key
+
+            print(f"DEBUG: Token Received? {'YES' if turnstile_token else 'NO'}")
+            if turnstile_token:
+                print(f"DEBUG: Token Start: {turnstile_token[:15]}...")
+
             try:
+                # We removed 'remoteip' to rule out localhost issues
                 verify = requests.post(
                     'https://challenges.cloudflare.com/turnstile/v0/siteverify',
                     data={
                         'secret': secret_key,
                         'response': turnstile_token,
-                        'remoteip': request.META.get('REMOTE_ADDR')
                     },
                     timeout=5
                 )
                 result = verify.json()
-            except requests.RequestException:
-                # If Cloudflare is down, we default to blocking for safety
+                print(f"DEBUG: Cloudflare API Response: {result}") # <--- THIS IS THE KEY
+                
+            except requests.RequestException as e:
+                print(f"DEBUG: Connection Error: {e}")
                 result = {'success': False}
+
+            print("="*30 + "\n")
+            # --- DEBUG END ---
 
             # 3. IF VERIFICATION FAILS
             if not result.get('success'):
                 form = self.get_form(request.POST, request.FILES, page=self, user=request.user)
-                # This error will now show up in the red box we added to the HTML
                 form.add_error(None, "Security verification failed. Please check the box to prove you are human.")
                 return render(request, self.get_template(request), {'page': self, 'form': form})
 
-            # 4. IF VERIFICATION PASSES -> PROCESS FORM
+            # 4. PROCESS FORM
             form = self.get_form(request.POST, request.FILES, page=self, user=request.user)
-
             if form.is_valid():
-                # CRITICAL: This line actually sends the email and saves to DB
-                self.process_form_submission(form) 
-                
-                # Debugging: Look for this in your terminal to confirm Wagtail tried to send it
-                print(f"--- SUCCESS: Email processed for {request.POST.get('email', 'unknown')} ---")
-                
+                self.process_form_submission(form)
+                print("DEBUG: Email Sent Successfully")
                 return render(request, self.get_template(request), {
                     'page': self,
                     'form': form,
