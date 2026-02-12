@@ -5,123 +5,209 @@
 
 {% block content %}
     <style>
+        /* --- BRAND COLORS --- */
+        :root {
+            --deep-teal: #004d4d;
+            --teal-hover: #003333;
+            --slate-200: #e2e8f0;
+            --slate-400: #94a3b8;
+            --focus-ring: rgba(0, 77, 77, 0.1);
+        }
+
         /* Vibrant Brand Gradient */
         .hero-gradient {
             background: linear-gradient(135deg, #004d4d 0%, #4da6a6 100%);
         }
 
-        /* "Fuller" Premium Input Styling - High-End UI Feel */
-        .premium-input {
-            @apply w-full bg-white border-2 border-slate-100 rounded-[1.5rem] px-8 py-6 text-deep-teal font-medium transition-all duration-300 outline-none shadow-sm !important;
+        .hero-bg-extension {
+            background-color: #004d4d;
+        }
+
+        /* Glass Container */
+        .form-glass-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            /* Responsive Border Radius & Padding */
+            border-radius: 2.5rem;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Desktop specific adjustments for the glass container */
+        @media (min-width: 768px) {
+            .form-glass-container { 
+                padding: 4rem; 
+                border-radius: 4rem;
+            }
+        }
+
+        /* Label Styling */
+        .premium-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--deep-teal);
+            margin-bottom: 0.75rem;
+            margin-left: 1rem;
+        }
+
+        /* --- INPUT STYLING --- */
+        .premium-input,
+        .form-glass-container input:not([type="submit"]):not([type="hidden"]), 
+        .form-glass-container textarea,
+        .form-glass-container select {
+            width: 100%;
+            padding: 1rem 1.5rem; 
+            border: 2px solid var(--slate-200);
+            border-radius: 1.5rem;
+            background-color: white;
+            color: var(--deep-teal);
+            font-weight: 500;
             font-size: 1.1rem;
             line-height: 1.6;
+            transition: all 0.3s ease;
+            outline: none;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            appearance: none;
+            -webkit-appearance: none;
+            box-sizing: border-box;
         }
 
-        .premium-input:focus {
-            @apply border-involved-pink bg-white ring-8 ring-involved-pink/5 shadow-2xl !important;
+        /* Focus State */
+        .premium-input:focus,
+        .form-glass-container input:not([type="submit"]):not([type="hidden"]):focus, 
+        .form-glass-container textarea:focus, 
+        .form-glass-container select:focus {
+            border-color: var(--deep-teal);
+            box-shadow: 0 0 0 4px var(--focus-ring), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-
-        .premium-label {
-            @apply block text-[12px] font-bold uppercase tracking-[0.25em] text-slate-400 mb-4 ml-3;
-        }
-
-        /* Container for the form and success state */
-        .form-glass-container {
-            background: rgba(255, 255, 255, 0.99);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 1);
-        }
-
-        .hero-bg-extension {
-            @apply bg-[#004d4d];
+        
+        ::placeholder {
+            color: #cbd5e1;
+            opacity: 1;
         }
     </style>
 
     <main>
         {# 1. HERO & INTERACTION SECTION #}
-        <section class="hero-bg-extension hero-gradient pt-44 pb-24 relative overflow-hidden">
-            {# Topography Background Overlay #}
+        <section class="hero-bg-extension hero-gradient pt-32 pb-24 lg:pt-44 relative overflow-hidden">
             <div class="absolute inset-0 opacity-[0.12] pointer-events-none">
                 <div class="topography-bg bg-white h-full w-full"></div>
             </div>
 
             <div class="container mx-auto px-6 relative z-10">
-                <div class="max-w-6xl mx-auto">
-                    <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
                         
-                        {# Left Column: Context & Contact Info #}
+                        {# Left Column: Context #}
                         <div class="space-y-12">
                             <div class="space-y-6">
                                 <div class="w-20 h-1.5 bg-involved-pink rounded-full"></div>
-                                <h1 class="font-heading font-bold text-5xl md:text-7xl text-white leading-tight">
+                                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-7xl text-white leading-tight">
                                     Let's <span class="text-white/80 font-light italic">start a</span> <br/> 
                                     <span class="text-white">conversation.</span>
                                 </h1>
-                                <div class="text-xl text-white/80 font-light leading-relaxed max-w-md">
+                                <div class="text-lg md:text-xl text-white/80 font-light leading-relaxed max-w-md">
                                     {{ page.intro|richtext }}
                                 </div>
                             </div>
 
-                            <div class="grid gap-6 max-w-md">
-                                <div class="flex items-center gap-6 p-8 bg-white/10 rounded-[2.5rem] border border-white/20 shadow-xl backdrop-blur-md transition-transform hover:scale-[1.03]">
-                                    <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-white">
-                                        <i data-lucide="phone" class="w-7 h-7"></i>
+                            {# Contact Details Grid #}
+                            {# Responsive: 1 column on tiny screens, 2 columns on tablet/desktop #}
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                                
+                                <div class="flex items-center gap-5 p-6 bg-white/10 rounded-[2rem] border border-white/20 shadow-xl backdrop-blur-md transition-transform hover:scale-[1.02]">
+                                    <div class="w-14 h-14 shrink-0 rounded-2xl bg-white/20 flex items-center justify-center text-white">
+                                        <i data-lucide="phone" class="w-6 h-6"></i>
                                     </div>
-                                    <div>
-                                        <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Direct Line</p>
-                                        <p class="text-2xl font-bold text-white tracking-tight">{{ page.hotline_number }}</p>
+                                    <div class="min-w-0"> <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Direct Line</p>
+                                        <p class="text-lg font-bold text-white tracking-tight truncate">{{ page.hotline_number }}</p>
                                     </div>
                                 </div>
 
-                                <div class="flex items-center gap-6 p-8 bg-white/10 rounded-[2.5rem] border border-white/20 shadow-xl backdrop-blur-md transition-transform hover:scale-[1.03]">
-                                    <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-white">
-                                        <i data-lucide="map-pin" class="w-7 h-7"></i>
+                                <div class="flex items-center gap-5 p-6 bg-white/10 rounded-[2rem] border border-white/20 shadow-xl backdrop-blur-md transition-transform hover:scale-[1.02]">
+                                    <div class="w-14 h-14 shrink-0 rounded-2xl bg-white/20 flex items-center justify-center text-white">
+                                        <i data-lucide="mail" class="w-6 h-6"></i>
                                     </div>
-                                    <div>
-                                        <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Our Office</p>
-                                        <p class="text-xl font-bold text-white leading-snug">{{ page.office_address|linebreaksbr }}</p>
+                                    <div class="min-w-0">
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Email Us</p>
+                                        <p class="text-lg font-bold text-white tracking-tight truncate">info@haniwai.org</p>
                                     </div>
                                 </div>
+
+                                <div class="flex items-center gap-5 p-6 bg-white/10 rounded-[2rem] border border-white/20 shadow-xl backdrop-blur-md transition-transform hover:scale-[1.02] md:col-span-2 lg:col-span-1">
+                                    <div class="w-14 h-14 shrink-0 rounded-2xl bg-white/20 flex items-center justify-center text-white">
+                                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Our Office</p>
+                                        <p class="text-md font-bold text-white leading-snug break-words">{{ page.office_address|linebreaksbr }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-5 p-6 bg-white/10 rounded-[2rem] border border-white/20 shadow-xl backdrop-blur-md transition-transform hover:scale-[1.02] md:col-span-2 lg:col-span-1">
+                                    <div class="w-14 h-14 shrink-0 rounded-2xl bg-white/20 flex items-center justify-center text-white">
+                                        <i data-lucide="clock" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Office Hours</p>
+                                        <p class="text-md font-bold text-white leading-snug">Mon-Fri: 8am - 4pm<br>Sat-Sun: Closed</p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        {# Right Column: Form Column #}
-                        <div class="relative">
+                        {# Right Column: Form #}
+                        <div class="relative w-full">
                             <div class="absolute -top-20 -right-20 w-96 h-96 bg-white/10 blur-[120px] rounded-full -z-10"></div>
                             
-                            <div class="form-glass-container rounded-[4rem] p-12 md:p-16 shadow-2xl">
-                                <h3 class="text-3xl font-bold text-deep-teal mb-10 tracking-tight">Send a Message</h3>
+                            <div class="form-glass-container">
+                                <h3 class="text-2xl md:text-3xl font-bold text-deep-teal mb-8 md:mb-10 tracking-tight">Send a Message</h3>
                                 
-                                <form action="{% pageurl page %}" method="POST" class="space-y-8">
+                                <form action="{% pageurl page %}" method="POST" class="space-y-6">
                                     {% csrf_token %}
-                                    <div class="grid gap-8">
-                                        {% for field in form %}
-                                            <div class="{% if field.name == 'message' or field.name == 'your_message' %}md:col-span-2{% endif %}">
-                                                <label for="{{ field.id_for_label }}" class="premium-label">
-                                                    {{ field.label }}
-                                                </label>
-                                                {{ field }}
-                                                {% if field.errors %}
-                                                    <span class="text-involved-pink text-[10px] font-bold uppercase mt-2 block">{{ field.errors.0 }}</span>
-                                                {% endif %}
-                                            </div>
-                                        {% endfor %}
+                                    
+                                    <div style="display: none; visibility: hidden; opacity: 0;">
+                                        <label for="honey_pot">Don't fill this out if you are human</label>
+                                        <input type="text" name="website_url" id="honey_pot" tabindex="-1" autocomplete="off">
                                     </div>
 
-                                    <button type="submit" class="w-full bg-deep-teal hover:bg-[#003d3d] text-white font-bold py-7 rounded-[1.5rem] transition-all transform hover:scale-[1.02] active:scale-95 shadow-2xl shadow-deep-teal/30 flex items-center justify-center gap-4 text-xl group">
-                                        <span>Send Message</span>
-                                        <i data-lucide="send-horizontal" class="w-6 h-6 transition-transform group-hover:translate-x-2"></i>
-                                    </button>
+                                    {% for field in page.get_form %}
+                                        <div class="relative group mb-6">
+                                            <label for="{{ field.id_for_label }}" class="premium-label">
+                                                {{ field.label }}
+                                            </label>
+                                            
+                                            <div class="relative">
+                                                {{ field }}
+                                            </div>
 
-                                    {# SIMPLE SUCCESS MESSAGE #}
-                                    {% if submitted %}
-                                        <div class="pt-4 text-center animate-in fade-in slide-in-from-bottom-2 duration-700">
-                                            <p class="text-river-blue font-bold text-sm uppercase tracking-[0.3em] flex items-center justify-center gap-3">
-                                                <i data-lucide="check-circle" class="w-5 h-5"></i>
-                                                Inquiry sent successfully
-                                            </p>
+                                            {% if field.help_text %}
+                                                <div id="help-text-{{ field.id_for_label }}" class="hidden-help-text" style="display:none;">
+                                                    {{ field.help_text }}
+                                                </div>
+                                            {% endif %}
+
+                                            {% if field.errors %}
+                                                <div class="mt-2 ml-4 text-xs font-bold text-coral-pink tracking-wide uppercase">
+                                                    {{ field.errors|striptags }}
+                                                </div>
+                                            {% endif %}
                                         </div>
-                                    {% endif %}
+                                    {% endfor %}
+
+                                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACaybN5KBLueo2K1" data-theme="light"></div>
+
+                                    <div class="pt-4 md:pt-8">
+                                        <button type="submit" class="w-full py-4 md:py-5 bg-deep-teal hover:bg-teal-800 text-white font-bold rounded-[1.5rem] shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg tracking-wide flex items-center justify-center gap-3">
+                                            <span>Send Message</span>
+                                            <i data-lucide="send" class="w-5 h-5"></i>
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -132,19 +218,19 @@
         </section>
 
         {# 2. PROTOCOL & SUPPORT SECTION #}
-        <section class="py-24 bg-white">
+        <section class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-16">
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16">
                     <div class="space-y-4">
-                        <h3 class="font-heading font-bold text-2xl text-deep-teal">Cultural Protocol</h3>
-                        <p class="text-slate-500 leading-relaxed font-light text-lg">
+                        <h3 class="font-heading font-bold text-xl md:text-2xl text-deep-teal">Cultural Protocol</h3>
+                        <p class="text-slate-500 leading-relaxed font-light text-base md:text-lg">
                             We respect and uphold the diverse cultural protocols of our indigenous communities. Your inquiries are handled with absolute sensitivity and respect for tradition.
                         </p>
                     </div>
 
                     <div class="space-y-4">
-                        <h3 class="font-heading font-bold text-2xl text-deep-teal">Response Time</h3>
-                        <p class="text-slate-500 leading-relaxed font-light text-lg">
+                        <h3 class="font-heading font-bold text-xl md:text-2xl text-deep-teal">Response Time</h3>
+                        <p class="text-slate-500 leading-relaxed font-light text-base md:text-lg">
                             To ensure thorough and thoughtful responses, our team typically replies to all digital inquiries within 24 to 48 hours. We appreciate your patience.
                         </p>
                     </div>
@@ -153,20 +239,24 @@
         </section>
     </main>
 
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
 
+            // 1. Force the input class on all fields
             const inputs = document.querySelectorAll('input, textarea, select');
             inputs.forEach(input => {
                 input.classList.add('premium-input');
                 
-                const label = document.querySelector(`label[for="${input.id}"]`);
-                if (label && !input.placeholder) {
-                    const labelText = label.innerText.trim();
-                    // Advanced check: Prevents duplicate "Your Your" and cleans up label text
-                    const cleanLabel = labelText.replace(/^your\s+/i, ''); 
-                    input.placeholder = `Please enter your ${cleanLabel.toLowerCase()}...`;
+                // 2. MOVE HELP TEXT TO PLACEHOLDER
+                const helpTextDiv = document.getElementById(`help-text-${input.id}`);
+                
+                if (helpTextDiv) {
+                    const helpText = helpTextDiv.innerText.trim();
+                    if(helpText) {
+                        input.placeholder = helpText;
+                    }
                 }
             });
         });

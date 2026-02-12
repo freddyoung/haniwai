@@ -9,6 +9,7 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.images.models import Image
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalKey
+import requests
 
 # =======================
 # SEO Mixin
@@ -190,7 +191,7 @@ class ContactFormField(AbstractFormField):
 
 class ContactPage(SeoMixin, AbstractEmailForm):
     template = "home/contact_page.html"
-    landing_page_template = "home/contact_landing_page.html" # Create this for the 'Thank You' message
+    landing_page_template = "home/contact_landing_page.html" 
 
     intro = RichTextField(blank=True)
     hotline_number = models.CharField(max_length=100, default="(+675) 7206 7138")
@@ -210,8 +211,42 @@ class ContactPage(SeoMixin, AbstractEmailForm):
         ], heading="Email Configuration"),
     ]
 
-    def serve(self, request):
+    def serve(self, request, *args, **kwargs):
         if request.method == 'POST':
+            # --- SECURITY CHECK 1: HONEYPOT ---
+            # If the hidden field 'website_url' is filled, it's a bot.
+            if request.POST.get('website_url'):
+                # Fail silently: Render the page as if nothing happened (fresh form)
+                form = self.get_form(page=self, user=request.user)
+                return render(request, self.get_template(request), {'page': self, 'form': form})
+
+            # --- SECURITY CHECK 2: CLOUDFLARE TURNSTILE ---
+            turnstile_token = request.POST.get('cf-turnstile-response')
+            secret_key = "0x4AAAAAACaybPNCx7778lKJ5ceiCwABVS0"  # <--- PASTE KEY HERE
+            
+            try:
+                verify = requests.post(
+                    'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+                    data={
+                        'secret': secret_key,
+                        'response': turnstile_token,
+                        'remoteip': request.META.get('REMOTE_ADDR')
+                    },
+                    timeout=5
+                )
+                result = verify.json()
+            except requests.RequestException:
+                # If connection to Cloudflare fails, we log it and default to blocking
+                # or you can set result = {'success': True} to fail open.
+                result = {'success': False}
+
+            if not result.get('success'):
+                # If check fails, reload page with an error
+                form = self.get_form(request.POST, request.FILES, page=self, user=request.user)
+                form.add_error(None, "Security check failed. Please refresh and try again.")
+                return render(request, self.get_template(request), {'page': self, 'form': form})
+
+            # --- EXISTING SUCCESS LOGIC ---
             form = self.get_form(request.POST, request.FILES, page=self, user=request.user)
 
             if form.is_valid():
@@ -230,7 +265,6 @@ class ContactPage(SeoMixin, AbstractEmailForm):
             'page': self,
             'form': form,
         })
-
 
 
 class DonatePage(SeoMixin, Page):
