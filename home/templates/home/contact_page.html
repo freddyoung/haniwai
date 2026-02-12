@@ -123,7 +123,7 @@
                                     <div class="w-14 h-14 shrink-0 rounded-2xl bg-white/20 flex items-center justify-center text-white">
                                         <i data-lucide="phone" class="w-6 h-6"></i>
                                     </div>
-                                    <div class="min-w-0"> <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Direct Line</p>
+                                    <div class="min-w-0"> <p class="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">Direct Line (+675)</p>
                                         <p class="text-lg font-bold text-white tracking-tight truncate">{{ page.hotline_number }}</p>
                                     </div>
                                 </div>
@@ -168,9 +168,9 @@
                             <div class="form-glass-container">
                                 <h3 class="text-2xl md:text-3xl font-bold text-deep-teal mb-8 md:mb-10 tracking-tight">Send a Message</h3>
                                 
-                                <form action="{% pageurl page %}" method="POST" class="space-y-6">
+                                <form id="contactForm" action="{% pageurl page %}" method="POST" class="space-y-6">
                                     {% csrf_token %}
-                                    
+
                                     <div style="display: none; visibility: hidden; opacity: 0;">
                                         <label for="honey_pot">Don't fill this out if you are human</label>
                                         <input type="text" name="website_url" id="honey_pot" tabindex="-1" autocomplete="off">
@@ -181,17 +181,12 @@
                                             <label for="{{ field.id_for_label }}" class="premium-label">
                                                 {{ field.label }}
                                             </label>
-                                            
                                             <div class="relative">
                                                 {{ field }}
                                             </div>
-
                                             {% if field.help_text %}
-                                                <div id="help-text-{{ field.id_for_label }}" class="hidden-help-text" style="display:none;">
-                                                    {{ field.help_text }}
-                                                </div>
+                                                <div id="help-text-{{ field.id_for_label }}" class="hidden-help-text" style="display:none;">{{ field.help_text }}</div>
                                             {% endif %}
-
                                             {% if field.errors %}
                                                 <div class="mt-2 ml-4 text-xs font-bold text-coral-pink tracking-wide uppercase">
                                                     {{ field.errors|striptags }}
@@ -202,13 +197,33 @@
 
                                     <div class="cf-turnstile" data-sitekey="0x4AAAAAACaybN5KBLueo2K1" data-theme="light"></div>
 
+                                    {% if form.non_field_errors %}
+                                        <div class="mt-4 bg-red-50 border border-red-200 text-coral-pink px-6 py-4 rounded-xl text-sm font-bold flex items-center gap-3 animate-pulse">
+                                            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                                            <div>{{ form.non_field_errors }}</div>
+                                        </div>
+                                    {% endif %}
+
                                     <div class="pt-4 md:pt-8">
-                                        <button type="submit" class="w-full py-4 md:py-5 bg-deep-teal hover:bg-teal-800 text-white font-bold rounded-[1.5rem] shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg tracking-wide flex items-center justify-center gap-3">
+                                        <button type="submit" id="submitBtn" class="w-full py-4 md:py-5 bg-deep-teal hover:bg-teal-800 text-white font-bold rounded-[1.5rem] shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 text-lg tracking-wide flex items-center justify-center gap-3">
                                             <span>Send Message</span>
                                             <i data-lucide="send" class="w-5 h-5"></i>
                                         </button>
                                     </div>
                                 </form>
+
+                                <script>
+                                    document.getElementById('contactForm').addEventListener('submit', function(e) {
+                                        // Get the Cloudflare response token from the hidden field they inject
+                                        const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
+                                        
+                                        // If the token is empty, the auto-tick hasn't finished (or user didn't click).
+                                        if (!turnstileResponse || turnstileResponse.value === "") {
+                                            e.preventDefault(); // Stop the form from sending
+                                            alert("Please wait for the security check to finish, or click the checkbox.");
+                                        }
+                                    });
+                                </script>
                             </div>
                         </div>
 

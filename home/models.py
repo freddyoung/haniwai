@@ -190,10 +190,10 @@ class ContactFormField(AbstractFormField):
     page = ParentalKey('ContactPage', on_delete=models.CASCADE, related_name='form_fields')
 
 class ContactPage(SeoMixin, AbstractEmailForm):
-    template = "home/contact_page.html"
-    landing_page_template = "home/contact_landing_page.html" 
+    template = "home/contact_page.html"          # <--- Added 'home/'
+    landing_page_template = "home/contact_page.html"
 
-    intro = RichTextField(blank=True)
+    intro = RichTextField(blank=True, help_text="Text above the form")
     hotline_number = models.CharField(max_length=100, default="(+675) 7206 7138")
     office_address = models.TextField(default="Allotment 74, Section 193, Atlas Street, Hohola, NCD, PNG")
 
@@ -213,16 +213,15 @@ class ContactPage(SeoMixin, AbstractEmailForm):
 
     def serve(self, request, *args, **kwargs):
         if request.method == 'POST':
-            # --- SECURITY CHECK 1: HONEYPOT ---
-            # If the hidden field 'website_url' is filled, it's a bot.
+            # 1. HONEYPOT CHECK (Anti-Spam)
             if request.POST.get('website_url'):
-                # Fail silently: Render the page as if nothing happened (fresh form)
+                # Fail silently: Render the page as if it was a fresh load
                 form = self.get_form(page=self, user=request.user)
                 return render(request, self.get_template(request), {'page': self, 'form': form})
 
-            # --- SECURITY CHECK 2: CLOUDFLARE TURNSTILE ---
+            # 2. CLOUDFLARE CHECK (Anti-Bot)
             turnstile_token = request.POST.get('cf-turnstile-response')
-            secret_key = "0x4AAAAAACaybPNCx7778lKJ5ceiCwABVS0"  # <--- PASTE KEY HERE
+            secret_key = "0x4AAAAAACaybN5KBLueo2K1"  # <--- MAKE SURE THIS IS YOUR SECRET KEY
             
             try:
                 verify = requests.post(
@@ -236,23 +235,26 @@ class ContactPage(SeoMixin, AbstractEmailForm):
                 )
                 result = verify.json()
             except requests.RequestException:
-                # If connection to Cloudflare fails, we log it and default to blocking
-                # or you can set result = {'success': True} to fail open.
+                # If Cloudflare is down, we default to blocking for safety
                 result = {'success': False}
 
+            # 3. IF VERIFICATION FAILS
             if not result.get('success'):
-                # If check fails, reload page with an error
                 form = self.get_form(request.POST, request.FILES, page=self, user=request.user)
-                form.add_error(None, "Security check failed. Please refresh and try again.")
+                # This error will now show up in the red box we added to the HTML
+                form.add_error(None, "Security verification failed. Please check the box to prove you are human.")
                 return render(request, self.get_template(request), {'page': self, 'form': form})
 
-            # --- EXISTING SUCCESS LOGIC ---
+            # 4. IF VERIFICATION PASSES -> PROCESS FORM
             form = self.get_form(request.POST, request.FILES, page=self, user=request.user)
 
             if form.is_valid():
-                self.process_form_submission(form)
+                # CRITICAL: This line actually sends the email and saves to DB
+                self.process_form_submission(form) 
                 
-                # Render the same page but pass 'submitted=True' to the context
+                # Debugging: Look for this in your terminal to confirm Wagtail tried to send it
+                print(f"--- SUCCESS: Email processed for {request.POST.get('email', 'unknown')} ---")
+                
                 return render(request, self.get_template(request), {
                     'page': self,
                     'form': form,
