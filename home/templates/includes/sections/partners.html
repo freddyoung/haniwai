@@ -10,7 +10,7 @@
     .animate-infinite-scroll {
         display: flex;
         width: max-content;
-        animation: scroll 40s linear infinite; /* Adjusted speed for more logos */
+        animation: scroll 30s linear infinite; /* Updated from 40s to 30s for quicker movement */
     }
 
     /* Pause on hover only for desktop to allow finger dragging on mobile */
@@ -71,8 +71,27 @@
         </div>
     </div>
 
-    {# Touch-enabled Slider Container #}
-    <div class="flex overflow-x-auto hide-scrollbar cursor-grab active:cursor-grabbing relative w-full">
+    {# Touch-enabled Slider Container with Infinite Mobile Loop Logic #}
+    <div 
+        x-data="{ 
+            handleScroll() {
+                const container = this.$el;
+                const scrollWidth = container.scrollWidth;
+                const halfWidth = scrollWidth / 2;
+                
+                // If user swipes near the end of the second set, snap back to the first
+                if (container.scrollLeft >= halfWidth) {
+                    container.scrollLeft -= halfWidth;
+                } 
+                // If user swipes backward to the very start, snap to the middle
+                else if (container.scrollLeft <= 0) {
+                    container.scrollLeft += halfWidth;
+                }
+            }
+        }"
+        @scroll.passive="handleScroll"
+        class="flex overflow-x-auto hide-scrollbar cursor-grab active:cursor-grabbing relative w-full"
+    >
         <div class="animate-infinite-scroll flex gap-8 px-4 items-center">
             {# --- First Set of Unique Logos --- #}
             <a href="https://action-network-displacement.org/" target="_blank" class="group partner-logo-card flex-[0_0_300px] bg-white rounded-xl p-8 h-48 flex items-center justify-center border border-gray-100">
